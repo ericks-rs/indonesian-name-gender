@@ -1,20 +1,3 @@
-"""Does the encoder choice decide anything once the representation is fixed?
-
-Subsection A shows the character advantage separating cleanly at every
-architecture. The obvious next question is the other axis, and it had no
-artifact behind it. The paired matrix across the four architectures within each
-representation level lived only in the ranking table, where a reader can see
-that CharBiGRU sits 0.041 points above CharBiLSTM but not whether that means
-anything.
-
-The comparisons are paired over the same five seeds and corrected with Holm
-inside each level, which is the same rule the rest of the manuscript uses. Six
-comparisons per level, so the correction is over six.
-
-The result is worth stating plainly. At the character level nothing separates,
-including the 30,001 parameter recurrent model against the 605,953 parameter
-Transformer. At the word level one comparison of six survives.
-"""
 from __future__ import annotations
 
 import itertools
@@ -28,7 +11,6 @@ ROOT = Path(__file__).parent.parent
 RUNS = ROOT / "results" / "final" / "24_grid_attention_pooling" / "multiseed_runs.csv"
 OUT = ROOT / "results" / "final" / "39_architecture"
 
-
 def holm(ps: list[float]) -> list[float]:
     order = np.argsort(ps)
     out, run = [0.0] * len(ps), 0.0
@@ -36,7 +18,6 @@ def holm(ps: list[float]) -> list[float]:
         run = min(1.0, max(run, ps[i] * (len(ps) - rank)))
         out[i] = run
     return out
-
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -81,9 +62,6 @@ def main() -> int:
     s = pd.DataFrame(spread)
     s.to_csv(OUT / "within_level_spread.csv", index=False)
 
-    # Size ratios against the smallest model. The parameter-efficiency paragraph
-    # quotes them, and dividing two numbers from a table in the prose puts a
-    # figure in the manuscript that no artifact holds.
     bench = ROOT / "results" / "final" / "11_inference_benchmark" / "tables" / "inference_benchmark.csv"
     if bench.exists():
         b = pd.read_csv(bench)
@@ -104,7 +82,6 @@ def main() -> int:
     print(s.to_string(index=False))
     print(f"\nWritten to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

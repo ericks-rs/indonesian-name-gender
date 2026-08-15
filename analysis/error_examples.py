@@ -1,25 +1,3 @@
-"""Named error examples with a reason attached to each, from stored predictions.
-
-The review asked for the error analysis to carry examples. The corpus holds real
-registration records, so the published table describes each case by its
-structure and its evidence and never prints the name. A name paired with an
-institution, a registration year and the statement that the record was
-misclassified is enough to identify a person, and nothing in the scientific
-content requires it.
-
-The full listing keeps the names, since it stays local. Only the manuscript
-table is de-identified, and the case identifiers let any row be traced back
-inside the project.
-
-Every example carries a reason that is computed rather than asserted. For each name the final character n-gram is looked up in
-the training partition, and the gender it points to there is compared with the
-true label. A name the models miss unanimously is usually a name whose ending is
-a reliable marker of the other gender in the data they were fitted on.
-
-Reasons are assigned by rule, in priority order, so the same evidence always
-produces the same label. Nothing is retrained and nothing is hand picked beyond
-taking the clearest cases in each category.
-"""
 from __future__ import annotations
 
 from collections import Counter
@@ -34,17 +12,10 @@ GRID = FINAL / "24_grid_attention_pooling"
 OUT = FINAL / "27_error_analysis"
 CHAR = ["CharBiRNN", "CharBiGRU", "CharBiLSTM", "CharTransformer"]
 SEEDS = [42, 7, 123, 2024, 777]
-# The ending length is not fixed. A window chosen by hand decides the answer,
-# which was learned the expensive way: a three-character window called -sri
-# balanced at 49.4 percent on 87 names while the two-character -ri is 80.1
-# percent on 9,692. For each name the longest window from four down to two is
-# taken that still has MIN_SUPPORT training names behind it, so the evidence is
-# as specific as the data can actually support. The distribution of chosen
-# lengths is printed, and the sensitivity to the rule is reported.
-NGRAM_MAX, NGRAM_MIN = 4, 2
-MIN_SUPPORT = 30   # below this the ending is called rare rather than misleading
-STRONG = 0.75      # share of one gender that makes an ending a marker
 
+NGRAM_MAX, NGRAM_MIN = 4, 2
+MIN_SUPPORT = 30
+STRONG = 0.75
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -52,7 +23,6 @@ def main() -> int:
     pred = pd.read_csv(GRID / "val_predictions.csv")
     err = pd.read_csv(OUT / "per_name_errors.csv")
 
-    # how each ending behaves in training
     tl = tr.NAMA.astype(str).str.lower()
     ty = (tr.LABEL == "P").astype(int).values
     tot, fem = {}, {}
@@ -62,7 +32,6 @@ def main() -> int:
         fem[k] = Counter(e[ty == 1])
 
     def pick_ending(name: str):
-        """Longest ending still backed by MIN_SUPPORT training names."""
         for k in range(NGRAM_MAX, NGRAM_MIN - 1, -1):
             e = name[-k:]
             if tot[k].get(e, 0) >= MIN_SUPPORT:
@@ -99,10 +68,6 @@ def main() -> int:
                             "false negative")
 
     def reason(r):
-        """Assigned by rule, in priority order, so the same evidence always
-        produces the same label. The share quoted is always the share of the
-        gender the evidence points to, never the raw female share, so a reason
-        never reads as its own opposite."""
         share, fshare = r.ending_female_share, r.first_female_share
         if r.ends_in_initial:
             return "name ends in a single-letter initial, so the final characters carry no suffix"
@@ -110,14 +75,14 @@ def main() -> int:
             return "ending never seen in training"
         if r.ending_n < MIN_SUPPORT:
             return f"ending seen only {int(r.ending_n)} times in training"
-        # the ending is a marker, and it points away from the true label
+
         if r.label == 1 and share <= 1 - STRONG:
             return (f"ending is {(1 - share) * 100:.0f} percent male across "
                     f"{int(r.ending_n)} training names")
         if r.label == 0 and share >= STRONG:
             return (f"ending is {share * 100:.0f} percent female across "
                     f"{int(r.ending_n)} training names")
-        # the ending agrees with the label, so something earlier overrode it
+
         if r.first_n >= MIN_SUPPORT and r.label == 1 and fshare <= 1 - STRONG:
             return (f"first token {r.first_token} is {(1 - fshare) * 100:.0f} percent male "
                     f"across {int(r.first_n)} training names, against the ending")
@@ -139,8 +104,6 @@ def main() -> int:
     hard["reason"] = hard.apply(reason, axis=1)
 
     def category(r):
-        """A single categorical field, so downstream counts never depend on
-        matching a phrase inside a sentence."""
         share, fshare = r.ending_female_share, r.first_female_share
         if r.ends_in_initial:
             return "ends in an initial"
@@ -191,7 +154,6 @@ def main() -> int:
     if int(vc.sum()) != len(hard):
         raise SystemExit("categories do not partition the set")
 
-    # a browsable listing of every candidate, so the table can be chosen by hand
     cats = {"misleading ending": r"percent (?:male|female) across \d+ training names$",
             "first token overrides the ending": r"^first token",
             "ending rare in training": r"only \d+ times",
@@ -228,11 +190,6 @@ def main() -> int:
     print("")
     print(f"candidate listing at {OUT / 'error_candidates.md'}")
 
-    # the table for the manuscript, the clearest cases in each direction.
-    # Names ending in a single-letter initial are excluded from the examples.
-    # Their final characters carry an abbreviation rather than a suffix, so they
-    # illustrate a record-keeping habit rather than anything about the model,
-    # and only one of the 261 is of that kind anyway.
     picked = Path(__file__).parent / "error_examples_selected.txt"
     if picked.exists():
         want = [l.strip() for l in picked.read_text(encoding="utf-8").splitlines()
@@ -247,12 +204,7 @@ def main() -> int:
         print("")
         print(f"using the {len(table)} names listed in {picked.name}")
     else:
-        # Sorting one bucket by ending frequency and taking the top four gave
-        # four rows with the same ending and the same sentence, because the
-        # commonest misleading ending dominates that bucket. A table of examples
-        # is there to show the range of ways the models fail, so each category
-        # gets a slot before any category gets a second one, and no ending is
-        # used twice.
+
         rows, per_type = [], 7
         for t in ("false negative", "false positive"):
             sub = hard[(hard.type == t) & ~hard.ends_in_initial]
@@ -275,7 +227,7 @@ def main() -> int:
                     break
             rows.append(sub.loc[taken])
         table = pd.concat(rows)
-    # de-identified view for the manuscript
+
     table = table.reset_index(drop=True)
     tag = {"false negative": "FN", "false positive": "FP"}
     seen = {"FN": 0, "FP": 0}
@@ -293,24 +245,21 @@ def main() -> int:
         "ending_pct_female": (table.ending_female_share * 100).round(1).values,
         "true_label": np.where(table.label.values == 1, "female", "male"),
         "predicted": np.where(table.predicted.values == 1, "female", "male"),
-        # Without this a reader counts the categories in the table and takes the
-        # mix for the real one. The table spans the failure modes on purpose, so
-        # its mix is deliberately not the population's.
+
         "share_of_all_261_pct": table.category.map(
             (hard.category.value_counts() / len(hard) * 100).round(1)).values,
-        # the token itself is withheld even though it is common, since the row
-        # already narrows the record by length and ending
+
         "reason": table.reason.str.replace(r"first token \S+ is", "first token is",
                                            regex=True).values})
     pub.to_csv(OUT / "error_examples_table.csv", index=False)
     (OUT / "error_examples_table.md").write_text(
         "# Error examples for the manuscript\n\n"
-        "Names are withheld. These are real registration records, and a name "
-        "printed beside an institution, a year and a misclassification is "
-        "identifying. The key from case identifier to name stays in "
+        "Names are withheld, because a name printed beside a year and a "
+        "misclassification is identifying. The key from case identifier to name "
+        "stays in "
         "`error_examples_key.csv`, which is local only.\n\n"
         + pub.to_markdown(index=False) + chr(10), encoding="utf-8")
-    # local key, never released
+
     pd.DataFrame({"case": ids, "name": table.name.values}).to_csv(
         OUT / "error_examples_key.csv", index=False)
     table = pub
@@ -318,7 +267,6 @@ def main() -> int:
     print(table.to_string(index=False))
     print(f"\nWritten to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

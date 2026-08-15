@@ -1,16 +1,3 @@
-"""The machine and the versions every number in the paper was produced on.
-
-Reviewer B asked for efficiency measured under identical runtime conditions, and
-Reviewer A asked for enough access to verify the experiments. Both need the
-environment written down, and until now it existed only as a line printed into
-one run log. A log is not something a table can cite and not something a reader
-can diff against their own setup.
-
-This writes the hardware, the interpreter and the package versions to a CSV and a
-readable note. It records what is installed now, so run it from the same
-environment the results came from, which for anything importing torch means the
-riset-gender interpreter.
-"""
 from __future__ import annotations
 
 import importlib.metadata as md
@@ -25,7 +12,6 @@ OUT = ROOT / "results" / "final" / "34_environment"
 PACKAGES = ["torch", "numpy", "pandas", "scikit-learn", "scipy", "matplotlib",
             "seaborn", "transformers", "fastapi", "uvicorn", "pydantic",
             "imbalanced-learn", "requests"]
-
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -55,13 +41,6 @@ def main() -> int:
     d = pd.DataFrame(rows)
     d.to_csv(OUT / "environment.csv", index=False)
 
-    # The training configuration the Methods section states, written down so it
-    # can be checked rather than trusted. It is mirrored from CFG and SEEDS in
-    # seeds_grid_complete.py, which cannot be imported here because importing it
-    # would start a training run. The submitted manuscript put the epoch ceiling
-    # at 25, while the real ceiling is 50 and the character Transformer stops at
-    # a mean of 36.6, so the stated figure would have made its own result
-    # impossible. Any change to CFG has to be mirrored here.
     train = [
         ("optimizer", "Adam"), ("initial_learning_rate", "0.001"),
         ("batch_size", "512"), ("max_epochs", "50"),
@@ -96,7 +75,6 @@ def main() -> int:
     print("\n" + note)
     print(f"Written to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

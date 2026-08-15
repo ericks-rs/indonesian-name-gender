@@ -1,14 +1,3 @@
-"""Figures 5, 6, 8, 9 and 13, redrawn from the current run.
-
-Every one of these was built under the earlier protocol, on a validation
-partition that no longer exists and, for the two Transformers, on an
-architecture the manuscript no longer uses. They also predate the decision to
-report the character family rather than a single champion, so the two that
-singled out CharBiGRU now show all four character models.
-
-Error bars are the interval over five seeds, which the submitted versions could
-not show because they came from one run. Drawn on the base interpreter.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -26,20 +15,17 @@ GRID = FINAL / "24_grid_attention_pooling"
 FIGS = ROOT / "results" / "figures"
 MIRROR = FINAL / "13_figures"
 DPI = 600
-T_CRIT = 2.776  # t(0.975, df = 4)
+T_CRIT = 2.776
 
 CHAR = ["CharBiRNN", "CharBiGRU", "CharBiLSTM", "CharTransformer"]
 WORD = ["WordBiRNN", "WordBiGRU", "WordBiLSTM", "WordTransformer"]
 SEEDS = [42, 7, 123, 2024, 777]
 CCHAR, CWORD, CCLASS, CPRE = "#1f4e79", "#c98b3a", "#5b8c5a", "#8b1a1a"
 
-# One JOIV column is 3.49 inches. Every figure is drawn to that width, so panels
-# stack downwards and the type is sized for the column rather than shrunk into it.
 COL = 3.4
 plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
                      "xtick.labelsize": 6.4, "ytick.labelsize": 6.4,
                      "legend.fontsize": 6.4})
-
 
 def save(fig, name):
     FIGS.mkdir(parents=True, exist_ok=True)
@@ -47,12 +33,11 @@ def save(fig, name):
     for d in (FIGS, MIRROR):
         fig.savefig(d / name, dpi=DPI, bbox_inches="tight", facecolor="white",
                     pad_inches=0.08)
-    # vector alongside raster, matching the rest of the manuscript set
+
     fig.savefig((FIGS / name).with_suffix(".pdf"), bbox_inches="tight",
                 facecolor="white", pad_inches=0.08)
     plt.close(fig)
     print(f"  {name}")
-
 
 def load_all() -> pd.DataFrame:
     g = pd.read_csv(GRID / "multiseed_summary.csv")
@@ -70,15 +55,7 @@ def load_all() -> pd.DataFrame:
               "f1": r.val_f1_mean, "f1_sd": r.val_f1_std} for r in p.itertuples()]
     return pd.DataFrame(rows).sort_values("f1", ascending=False).reset_index(drop=True)
 
-
 def fig5(df):
-    """Four metrics for every classifier, two per figure.
-
-    This was one figure of four panels in a two-by-two grid. A single column is
-    3.4 inches wide, which the manuscript now requires of every figure, and four
-    panels of fourteen rotated model labels do not survive that width. Two
-    figures of two stacked panels each do, and horizontal bars put the model
-    names on the axis where they stay readable."""
     col = {"character": CCHAR, "word": CWORD, "classical": CCLASS, "pretrained": CPRE}
     order = df.model.tolist()
     y = np.arange(len(order))
@@ -107,9 +84,7 @@ def fig5(df):
         fig.tight_layout(pad=0.5)
         save(fig, name)
 
-
 def fig6(df):
-    """F1 of the eight from-scratch neural models, with the seed interval."""
     d = df[df.family.isin(["character", "word"])].sort_values("f1")
     y = np.arange(len(d))
     err = d.f1_sd.values * 100 * T_CRIT / np.sqrt(len(SEEDS))
@@ -134,17 +109,9 @@ def fig6(df):
     fig.tight_layout(pad=0.6)
     save(fig, "fig_neural_f1_lollipop.png")
 
-
 def fig8(pred):
-    """Confusion matrices for the four character models, pooled over five seeds.
-
-    A single seed shifts accuracy by up to 0.46 points between fits, so a matrix
-    drawn from one of them reports a run rather than a model. Counts here are the
-    mean over the five, rounded to whole names."""
     y = pred.label.values
-    # Four matrices in a row is four panels, two over the limit the manuscript
-    # sets, and at a single column each would be under an inch across. Two
-    # figures of two stacked matrices keep every cell legible.
+
     for name, pair in (("fig_confusion_birnn_bigru.png", CHAR[:2]),
                        ("fig_confusion_bilstm_transformer.png", CHAR[2:])):
         fig, axes = plt.subplots(2, 1, figsize=(COL, 4.4))
@@ -167,9 +134,7 @@ def fig8(pred):
             ax.set_ylabel("actual")
         fig.tight_layout(pad=0.5)
         save(fig, name)
-    # The counts the prose quotes off this panel, and the word models beside them
-    # for the comparison the panel itself cannot show. Nothing was written to
-    # disk before, so a false-negative count in the text could not be checked.
+
     rows = []
     for m in CHAR + WORD:
         cm = np.mean([confusion_matrix(y, pred[f"{m}__seed{s}"].values)
@@ -184,9 +149,7 @@ def fig8(pred):
     d.to_csv(MIRROR / "tables" / "confusion_counts.csv", index=False)
     print(d.to_string(index=False))
 
-
 def fig9(pred, names):
-    """Accuracy against the number of tokens in the name, family by family."""
     ntok = np.array([len(str(s).lower().split()) for s in names])
     bins = np.clip(ntok, 1, 5)
     y = pred.label.values
@@ -219,10 +182,7 @@ def fig9(pred, names):
     fig.tight_layout(pad=0.6)
     save(fig, "fig_accuracy_by_token_count.png")
 
-
 def fig13():
-    """Internal against external F1, on the full benchmark and on the basis the
-    text reports, the 1,464 distinct names that do not appear in training."""
     c = pd.read_csv(FINAL / "21_external_clean" / "external_clean_summary.csv")
     g = pd.read_csv(GRID / "multiseed_summary.csv").set_index("Model")
     t = pd.read_csv(FINAL / "03_seeds_tfidf" / "tfidf_seed_summary.csv").set_index("Model")
@@ -258,7 +218,6 @@ def fig13():
     fig.tight_layout(pad=0.5)
     save(fig, "fig_external_validation.png")
 
-
 def main() -> int:
     df = load_all()
     pred = pd.read_csv(GRID / "val_predictions.csv")
@@ -270,7 +229,6 @@ def main() -> int:
     fig9(pred, pred.name.values)
     fig13()
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

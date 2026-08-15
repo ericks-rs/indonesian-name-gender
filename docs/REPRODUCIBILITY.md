@@ -45,7 +45,7 @@ tokenizers and figures sit at paths this tree does not use.
 The privacy audit deserves one caveat. `audit_personal_data.py` runs from a clone
 and scans every shipped table for a column whose values look like names, which is
 how it flags a disclosure. Its second half compares those values against the
-corpus itself to catch a real registration, and that comparison needs the private
+corpus itself to catch a real name from the training data, and that comparison needs the private
 corpus, which is not shipped. From a clone the corpus list is empty, so the
 membership check is inert and only the structural scan runs. That is enough to
 confirm no shipped table still carries a name column, which is what a reader wants
@@ -58,9 +58,9 @@ can be rerun is everything downstream, since the analysis scripts read
 `results/final/` rather than the data.
 
 The corpus files themselves have no producing script in this repository. They
-were built from the registry before this work began, and
+were built before this work began, and
 `results/final/37_corpus_provenance/` records twelve invariants they satisfy,
-each tested rather than remembered. Anyone rebuilding from a registry should
+each tested rather than remembered. Anyone rebuilding from a comparable corpus should
 expect to reproduce the counts, not the procedure.
 
 ## Environment

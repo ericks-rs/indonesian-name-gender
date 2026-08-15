@@ -1,15 +1,3 @@
-"""Cross-dataset results for all fourteen models, and the paired test on them.
-
-Two gaps are closed here. The corrected external table covered only the eight
-from-scratch neural models, so the pretrained encoders and the TF-IDF baselines
-sat in separate files and could not be placed in one ranking. And the character
-versus word comparison carried confidence intervals on the internal partition
-but not on the public benchmark, which is where the gap is widest and therefore
-where an interval matters most.
-
-Nothing is retrained. Every value is read from the five-seed runs already on
-disk, so internal and external figures for a model come from the same fits.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -26,8 +14,7 @@ PAIRS = [("CharBiRNN", "WordBiRNN", "BiRNN"),
          ("CharBiLSTM", "WordBiLSTM", "BiLSTM"),
          ("CharBiGRU", "WordBiGRU", "BiGRU"),
          ("CharTransformer", "WordTransformer", "Transformer")]
-T_CRIT = 2.776  # t(0.975, df = 4)
-
+T_CRIT = 2.776
 
 def holm(p: list[float]) -> list[float]:
     if any(not np.isfinite(v) for v in p):
@@ -40,9 +27,7 @@ def holm(p: list[float]) -> list[float]:
         out[i] = run
     return out
 
-
 def load() -> pd.DataFrame:
-    """One row per model and seed, with internal and external F1 side by side."""
     frames = []
 
     n = pd.read_csv(FINAL / "24_grid_attention_pooling" / "multiseed_runs.csv")
@@ -61,7 +46,6 @@ def load() -> pd.DataFrame:
 
     return pd.concat(frames, ignore_index=True)
 
-
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     runs = load()
@@ -77,7 +61,6 @@ def main() -> int:
     s.to_csv(OUT / "external_unified_summary.csv")
     print("\n" + s.to_string())
 
-    # paired character versus word on the public benchmark
     per = {m: g.set_index("Seed").external_f1 for m, g in runs.groupby("Model")}
     seeds = sorted(set(runs[runs.Model == "CharBiRNN"].Seed))
     rows = []
@@ -101,7 +84,6 @@ def main() -> int:
                "ci95_hi_pp", "cohens_dz", "p_holm"]].to_string(index=False))
     print(f"lowest confidence bound: {min(r['ci95_lo_pp'] for r in rows):+.2f} pp")
 
-    # how much each family loses when it leaves the institutional corpus
     fam = runs.assign(drop=(runs.internal_f1 - runs.external_f1) * 100)
     fam["Level"] = np.where(fam.Model.str.startswith("Char"), "character",
                     np.where(fam.Model.str.startswith("Word"), "word", fam.Family))
@@ -112,7 +94,6 @@ def main() -> int:
 
     print(f"\nWritten to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

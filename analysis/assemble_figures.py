@@ -1,14 +1,3 @@
-"""Collect the current figures into one numbered set for the manuscript.
-
-Figures accumulated under three different protocols and two numbering schemes,
-which left duplicate numbers, gaps, and thirty-odd files from runs that no
-longer exist sitting in the same directory. Picking the wrong one is a silent
-error, so the manuscript set lives in its own folder, is numbered in the order
-the paper uses, and is rebuilt from scratch every time this runs.
-
-Anything in results/figures that is not on the list below is stale by
-construction and gets moved out of the way.
-"""
 from __future__ import annotations
 
 import re
@@ -21,15 +10,6 @@ OUT = SRC / "manuscript"
 ATTIC = ROOT / "_archive" / "v3i_old_figures"
 SOURCE = SRC / "_source"
 
-# Manuscript number, source file, what the caption will be about.
-#
-# The order is the order of first citation, which is what IEEE and JOIV require
-# and what the set did not have. Figures added late took whatever number was
-# free, so the reader met 15 before 7 and 12 near the end. Three further rules
-# apply from this revision on. Every figure fits one column, no figure carries
-# more than two panels, and no figure has panels cited from two different
-# subsections. The last rule is why the paired forest and the efficiency
-# frontier each became two figures.
 ORDER = [
     (1, "02_name_length_distribution.png", "name length in characters and in tokens"),
     (2, "01_label_distribution.png", "label proportions across the three partitions"),
@@ -54,9 +34,8 @@ ORDER = [
     (21, "fig_efficiency_latency.png", "F1 against single-thread CPU latency"),
     (22, "fig_sensitivity_sweep.png", "every configuration in the sensitivity sweep"),
     (23, "fig_imbalance_strategies.png", "resampling strategies against a weighted objective"),
-    (24, "fig_temporal_drift.png", "F1 by registration year and by training window"),
+    (24, "fig_temporal_drift.png", "F1 by the year a name first appears and by training window"),
 ]
-
 
 def main() -> int:
     if OUT.exists():
@@ -69,7 +48,7 @@ def main() -> int:
     for n, src, what in ORDER:
         p = SRC / src
         if not p.exists():
-            # a previous run already tidied the sources away, so look there too
+
             p = SOURCE / re.sub(r"^(?:\d+_|fig_)", "", src)
         if not p.exists():
             missing.append(src)
@@ -90,19 +69,11 @@ def main() -> int:
         shutil.move(str(p), str(ATTIC / p.name))
         moved += 1
 
-    # The producing scripts number their output on their own, and those numbers
-    # are not the manuscript's. Two of them collide outright, 14_prior_comparison
-    # and 14_sensitivity_sweep, which become figures 18 and 12. Leaving a second
-    # numbered set one directory above the real one invites picking the wrong
-    # file, so the sources move into their own folder with the number stripped.
     SOURCE.mkdir(parents=True, exist_ok=True)
     for p in sorted(SRC.glob("*.png")) + sorted(SRC.glob("*.pdf")):
         stem = re.sub(r"^(?:\d+_|fig_)", "", p.name)
         shutil.move(str(p), str(SOURCE / stem))
-    # The mirror under results/final/13_figures carries the producing scripts'
-    # own numbering, where 14_ means two different manuscript figures. Same hazard
-    # as the source folder, same treatment. Its CSVs are left alone, since an
-    # analysis reads them.
+
     mirror = ROOT / "results" / "final" / "13_figures"
     renamed = 0
     if mirror.exists():
@@ -130,7 +101,6 @@ def main() -> int:
     if missing:
         print(f"MISSING: {', '.join(missing)}")
     return 1 if missing else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

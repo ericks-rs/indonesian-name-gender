@@ -12,7 +12,7 @@ dist/
 .DS_Store
 Thumbs.db
 
-# the admissions corpus is not redistributable, see docs/DATA.md.
+# the training corpus is not redistributable, see docs/DATA.md.
 # Anchored, because src/indonamegender/data/ carries the packaged model.
 /data/
 *.parquet

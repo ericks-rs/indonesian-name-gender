@@ -1,21 +1,3 @@
-"""Cross-dataset scores after removing benchmark names the models trained on.
-
-An audit of the public benchmark found that 409 of its 1,960 rows carry a name
-that also appears in the training partition. Those rows measure recall of a
-memorized name rather than transfer. A second audit found that the 1,960 rows
-cover only 1,795 distinct names, 139 of them listed more than once and one as
-many as six times, so a repeated name counts several times toward the score.
-
-Every model is therefore scored on three bases from the same stored predictions,
-with nothing retrained: the full benchmark, the uncontaminated rows, and the
-uncontaminated rows collapsed to one row per name. The third is the one the
-manuscript reports, because it is the only basis on which no name is weighted
-more heavily than another and no score reflects a memorized training name. The
-first two are kept so the effect of each filter is visible.
-
-The three prediction files are row aligned against the same benchmark ordering,
-which is asserted below, so one mask applies to all fourteen models.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -37,8 +19,7 @@ SOURCES = [
 PAIRS = [("CharBiRNN", "WordBiRNN", "BiRNN"), ("CharBiLSTM", "WordBiLSTM", "BiLSTM"),
          ("CharBiGRU", "WordBiGRU", "BiGRU"),
          ("CharTransformer", "WordTransformer", "Transformer")]
-T_CRIT = 2.776  # t(0.975, df = 4)
-
+T_CRIT = 2.776
 
 def holm(p: list[float]) -> list[float]:
     if any(not np.isfinite(v) for v in p):
@@ -50,9 +31,7 @@ def holm(p: list[float]) -> list[float]:
         out[i] = run
     return out
 
-
 def paired(runs: pd.DataFrame, col: str, dest: Path, basis: str) -> pd.DataFrame:
-    """Character minus word on one scoring basis, matched seeds and Holm."""
     per = {m: g.set_index("Seed")[col] for m, g in runs.groupby("Model")}
     seeds = sorted(per["CharBiRNN"].index)
     out = []
@@ -79,14 +58,11 @@ def paired(runs: pd.DataFrame, col: str, dest: Path, basis: str) -> pd.DataFrame
           f"lowest bound {df.ci95_lo_pp.min():+.2f}")
     return df
 
-
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     tr = pd.read_csv(ROOT / "data" / "splits" / "train_1990_2021.csv")
     seen = set(tr.NAMA.str.strip().str.lower())
 
-    # the mask is built once from the first source and reused, which is only
-    # sound if the files line up. Checked rather than trusted.
     ref = pd.read_csv(SOURCES[0][0])
     refkey = ref.name.str.strip().str.lower()
     for path, _ in SOURCES[1:]:
@@ -134,8 +110,6 @@ def main() -> int:
     s.to_csv(OUT / "external_clean_summary.csv")
     print("\n" + s.to_string())
 
-    # the paired test is run on both bases. The manuscript quotes the
-    # deduplicated one, and the other is kept so the difference is on record.
     for basis, col, fname in (
             ("uncontaminated rows", "external_clean", "char_vs_word_clean_paired.csv"),
             ("uncontaminated, one row per name", "external_clean_dedup",
@@ -153,7 +127,6 @@ def main() -> int:
     print(g.to_string())
     print(f"\nWritten to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

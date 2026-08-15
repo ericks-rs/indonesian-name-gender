@@ -17,18 +17,27 @@ confidence interval clear of zero. Encoder choice decided far less. Within the
 character-level group no pairwise difference survived Holm correction, so the
 paper names no best encoder.
 
-| | test F1 | external F1 | parameters | CPU latency |
+| model | level | precision | recall | F1 |
 |---|---|---|---|---|
-| CharBiGRU | 0.9593 | 0.9345 | 86,065 | 1.3433 ms |
-| CharBiLSTM | 0.9589 | **0.9375** | 114,097 | **0.3952 ms** |
-| CharBiRNN | 0.9574 | 0.9297 | **30,001** | 0.5238 ms |
-| CharTransformer | 0.9554 | 0.9368 | 605,953 | 1.1456 ms |
-| IndoBERT | 0.9578 | 0.9211 | 124,442,882 | 58.1366 ms |
-| XLM-R | 0.9617 | 0.9257 | 278,045,186 | 59.3377 ms |
+| TF-IDF+SVM | character | 0.9777 | 0.9484 | **0.9628** |
+| XLM-R | subword | 0.9730 | 0.9506 | 0.9617 |
+| mBERT | subword | 0.9737 | 0.9483 | 0.9608 |
+| TF-IDF+LR | character | 0.9755 | 0.9453 | 0.9602 |
+| CharBiGRU | character | 0.9698 | 0.9491 | 0.9593 |
+| CharBiLSTM | character | 0.9688 | 0.9493 | 0.9589 |
+| IndoBERT | subword | 0.9694 | 0.9466 | 0.9578 |
+| CharBiRNN | character | 0.9677 | 0.9473 | 0.9574 |
+| CharTransformer | character | 0.9633 | 0.9476 | 0.9554 |
+| WordTransformer | word | 0.9361 | 0.9369 | 0.9365 |
+| WordBiLSTM | word | 0.9349 | 0.9338 | 0.9344 |
+| WordBiGRU | word | 0.9345 | 0.9324 | 0.9335 |
+| WordBiRNN | word | 0.9374 | 0.9274 | 0.9323 |
+| TF-IDF+RF | character | 0.9545 | 0.8871 | 0.9196 |
 
-The character-level models match the fine-tuned encoders on the test partition
-and lead on transfer, at 44.6 to 151.4 times lower single-thread CPU latency.
-Full results are in `results/final/`.
+All fourteen classifiers are shown. The character-level neural models match the
+fine-tuned encoders on the test partition and lead on the external benchmark, at
+44.6 to 151.4 times lower single-thread CPU latency. Precision, recall, external
+F1, parameter counts and latency for every model are in `results/final/`.
 
 ## Install
 
@@ -53,7 +62,7 @@ p.predict("GATOTKACA WIRAWAN")
 ```
 
 The bundled model is the seed-42 `CharBiLSTM`, which is the one the paper
-recommends for names from outside the source institution. It has the highest
+recommends for names beyond the training data. It has the highest
 external F1 at 0.9375 and the lowest CPU latency at 0.3952 milliseconds, and it
 reproduces the stored prediction on all 15,923 evaluation names exactly. It
 trails CharBiGRU internally by 0.04 points, a difference the paper reports as
@@ -118,8 +127,7 @@ than claimed.
 
 ## Privacy
 
-The corpus is a university admissions registry. No file here contains a
-registration.
+No file in this repository contains a record from the training data.
 
 The word vocabulary ships hashed. Every entry except the two reserved indices is
 `blake2s(salt + token)`, which keeps the embedding index intact while making the

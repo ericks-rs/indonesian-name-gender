@@ -1,14 +1,3 @@
-"""Table and figure for the positional attention analysis.
-
-Replaces the entropy material. Entropy could say how evenly a model divided its
-attention but not whether the mass landed anywhere the linguistics predicts, and
-its ordering among character models did not survive a change of seed. Position
-does both, so this builds the artefacts the manuscript needs from it.
-
-Drawn on the base interpreter. matplotlib crashes with an access violation
-inside the CUDA environment, so figures are always produced separately from the
-runs that need torch.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -25,26 +14,16 @@ SRC = ROOT / "results" / "final" / "26_attention_position"
 FIGS = ROOT / "results" / "figures"
 CHAR = ["CharBiRNN", "CharBiGRU", "CharBiLSTM", "CharTransformer"]
 WORD = ["WordBiRNN", "WordBiGRU", "WordBiLSTM", "WordTransformer"]
-T_CRIT = 2.776  # t(0.975, df = 4)
+T_CRIT = 2.776
 STYLE = {"CharBiRNN": ("#1f4e79", "o", "-"), "CharBiGRU": ("#2e7d32", "s", "-"),
          "CharBiLSTM": ("#b8860b", "^", "-"), "CharTransformer": ("#8b1a1a", "D", "--")}
 
-
-# One JOIV column is 3.49 inches. Panels stack downwards at that width.
 COL = 3.4
 plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
                      "xtick.labelsize": 6.4, "ytick.labelsize": 6.4,
                      "legend.fontsize": 6.4})
 
 def holm(p):
-    """Holm step-down, returned in the order the p-values came in.
-
-    This was missing. `build_table` ran a t-test per model and wrote the raw
-    p-value straight out, and the manuscript then printed that column under the
-    heading `Holm p`. Ers caught it on 15 August. The family is the eight
-    positional tests, so a model is judged against the whole grid rather than
-    against its own representation level.
-    """
     import numpy as _np
     p = _np.asarray(p, dtype=float)
     order = _np.argsort(p)
@@ -55,11 +34,9 @@ def holm(p):
         adj[i] = min(1.0, running)
     return adj
 
-
 def ci(v):
     v = np.asarray(v, dtype=float)
     return T_CRIT * v.std(ddof=1) / np.sqrt(len(v))
-
 
 def build_table(per_seed: pd.DataFrame, uni: pd.DataFrame) -> pd.DataFrame:
     uc = float(uni[uni.level == "char"].uniform_weight.iloc[0])
@@ -85,11 +62,10 @@ def build_table(per_seed: pd.DataFrame, uni: pd.DataFrame) -> pd.DataFrame:
             "p raw final vs first": float(p_ends),
             "Centre of mass": round(float(g.centre_of_mass.mean()), 4)})
     t = pd.DataFrame(rows)
-    # both families are the eight models, one test each
+
     t["Holm p final vs uniform"] = holm(t["p raw final vs uniform"].values)
     t["Holm p final vs first"] = holm(t["p raw final vs first"].values)
     return t
-
 
 def main() -> int:
     FIGS.mkdir(parents=True, exist_ok=True)
@@ -162,7 +138,6 @@ def main() -> int:
     print(f"\nfigure written to {FIGS / 'fig_attention_position.png'}")
     print(f"table written to {SRC / 'table_attention_position.csv'}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

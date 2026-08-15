@@ -1,15 +1,3 @@
-"""Training and development F1 curves, Figure 7 rebuilt from the current run.
-
-The submitted version of this figure came from a single run under the earlier
-protocol, and its per-epoch history was never kept, so it could not be redrawn
-against the numbers the revision reports. The grid now records history for every
-fit, which means the curve can show the spread across five seeds instead of one
-trajectory, and the training F1 is measured over the whole training partition
-rather than estimated from a sample.
-
-Curves are truncated at the epoch each run stopped, so a line ending early means
-early stopping fired there rather than the model diverging.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -30,9 +18,6 @@ COL = {"CharBiRNN": "#1f4e79", "CharBiGRU": "#2e7d32", "CharBiLSTM": "#b8860b",
        "CharTransformer": "#8b1a1a", "WordBiRNN": "#1f4e79", "WordBiGRU": "#2e7d32",
        "WordBiLSTM": "#b8860b", "WordTransformer": "#8b1a1a"}
 
-
-# One JOIV column is 3.49 inches. Panels stack downwards at that width.
-# COL is already the colour map in this module, hence the separate name.
 COLW = 3.4
 plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
                      "xtick.labelsize": 6.4, "ytick.labelsize": 6.4,
@@ -51,7 +36,6 @@ def band(ax, h, models, col, style, label_suffix):
                 label=f"{m}{label_suffix}")
         ax.fill_between(x, lo.values, hi.values, color=COL[m], alpha=0.12, linewidth=0)
 
-
 def main() -> int:
     FIGS.mkdir(parents=True, exist_ok=True)
     h = pd.read_csv(SRC / "training_history.csv")
@@ -65,9 +49,6 @@ def main() -> int:
     s.to_csv(OUT / "stopping_epoch_summary.csv")
     print("\nepoch at which each run stopped\n" + s.to_string())
 
-    # bracket access, not attribute access. A column named "last" would resolve
-    # to the DataFrame method of that name and silently compare against a bound
-    # method, which is how this table came out empty the first time.
     gap = h.merge(stop.rename(columns={"epoch": "stop_epoch"}), on=["Model", "Seed"])
     final = gap[gap["epoch"] == gap["stop_epoch"]]
     fs = final.groupby("Model").agg(train_f1=(tcol, "mean"), dev_f1=("dev_f1", "mean")).round(4)
@@ -101,7 +82,6 @@ def main() -> int:
     plt.close(fig)
     print(f"\nfigure written to {FIGS / 'fig_training_curves.png'}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

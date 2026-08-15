@@ -25,7 +25,7 @@ p.predict("SITI AMINAH")
 ```
 
 The bundled model is `CharBiLSTM`, the one the paper recommends for names from
-outside the training source. It reaches 0.9375 F1 on an independent benchmark and
+beyond the training data. It reaches 0.9375 F1 on an independent benchmark and
 answers in 0.3952 ms on a single CPU thread. No download is needed for it.
 
 ## Other models
@@ -57,8 +57,8 @@ fine-tune them are in the repository under `experiments/`.
 
 ## Notes
 
-The label is a binary administrative field, male or female. It reflects a
-registration record, not how a person identifies, and the model estimates that
+The label is a binary administrative field, male or female. It reflects a recorded
+administrative label, not how a person identifies, and the model estimates that
 field rather than a person. Intended for completing missing fields in existing
 records for aggregate analysis, not for decisions about individuals.
 

@@ -1,18 +1,3 @@
-"""Figure 10, what each model reads when it looks at a name.
-
-A matrix of attention weights makes a reader translate coordinates back into
-letters before anything can be understood. This journal is about visualization,
-so the name is drawn as the name, and each character is shaded by the weight it
-received. The suffix lights up on the page rather than in a legend.
-
-The word-level strip below each name uses the same layout at token granularity,
-which puts the two reading strategies side by side. Character models pull toward
-the end of the name. Word models pull toward the first token.
-
-Weights are the mean over five seeds, computed by attention_examples.py.
-Drawing is separate because matplotlib exits with an access violation inside the
-CUDA environment. Run this on the base interpreter.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -35,14 +20,12 @@ DPI = 600
 CMAP = LinearSegmentedColormap.from_list(
     "attn", ["#ffffff", "#fdf1d8", "#f7c96b", "#e88a3c", "#b8431f", "#6d1a10"])
 
-
 def weights_of(df, name, model):
     r = df[(df.name == name) & (df.model == model)].iloc[0]
     cols = sorted([c for c in df.columns if c.startswith("pos_")],
                   key=lambda s: int(s.split("_")[1]))
     v = r[cols].astype(float).values
     return v[~np.isnan(v)]
-
 
 def strip(ax, labels, w, vmax, y, h, x0, cw, fs):
     for i, (t, v) in enumerate(zip(labels, w)):
@@ -56,10 +39,7 @@ def strip(ax, labels, w, vmax, y, h, x0, cw, fs):
                 color="white" if lum < 0.55 else "#23211f",
                 family="DejaVu Sans Mono", weight="bold" if v >= vmax * 0.55 else "normal")
 
-
-# One JOIV column is 3.49 inches.
 COL = 3.4
-
 
 def main() -> int:
     FIGS.mkdir(parents=True, exist_ok=True)
@@ -70,9 +50,6 @@ def main() -> int:
     vmax_c = max(weights_of(df, n, m).max() for n, _, _ in examples for m in CHAR)
     vmax_w = max(weights_of(df, n, m).max() for n, _, _ in examples for m in WORD)
 
-    # Four names in a two-by-two grid is four panels on one figure, twice the
-    # limit, and none of them survives a 3.4-inch column. Two figures of two
-    # names, stacked, keep every character legible.
     cw = 0.92 / maxlen
     for fname, batch in (("fig_attention_reading_one.png", examples[:2]),
                          ("fig_attention_reading_two.png", examples[2:])):
@@ -99,8 +76,7 @@ def main() -> int:
                 strip(ax, chars, weights_of(df, name, m), vmax_c, yy, h, x0, cw, 5.4)
                 ax.text(x0 - 0.012, yy + h / 2, m.replace("Char", ""), ha="right", va="center",
                         fontsize=6.0, color="#3a3a3a")
-            # a name with no gender-bearing ending gets no box, since a dashed
-            # rectangle around characters that carry no signal would assert one
+
             if suf:
                 sx = x0 + (n - len(suf)) * cw
                 ax.add_patch(Rectangle((sx + 0.02 * cw, top - 3 * (h + pad) - 0.014),
@@ -153,7 +129,6 @@ def main() -> int:
     print(f"\npeak inside the suffix in {inside} of the {marked} cases where a "
           f"suffix is marked")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

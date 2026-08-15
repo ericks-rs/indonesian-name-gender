@@ -1,17 +1,3 @@
-"""Where attention lands, not just how widely it spreads.
-
-Entropy answers how evenly a model divides its attention. It cannot say whether
-the mass falls anywhere meaningful, and after the mechanism was made uniform
-across the grid the entropy ordering among character models turned out not to
-survive a change of seed. Position is the sharper question. The manuscript
-argues that Indonesian gender marking sits in suffixes, so the mechanistic claim
-worth testing is whether character models put their weight on the final
-characters of a name.
-
-Nothing is trained. The forty stored checkpoints are loaded and run over the
-2024-2025 partition, and the attention vector each one produces is summarised by
-where its mass sits rather than by how flat it is.
-"""
 from __future__ import annotations
 
 import os
@@ -31,7 +17,7 @@ from scipy import stats
 ROOT = Path(__file__).parent.parent
 if os.name == "nt":
     for p in [os.path.join(sys.prefix, "Library", "bin"),
-              os.path.join(sys.prefix, "Lib", "site-packages", "torch", "lib")] + \
+              os.path.join(sys.prefix, "Lib", "site-packages", "torch", "lib")] +\
              glob.glob(os.path.join(sys.prefix, "Lib", "site-packages", "nvidia", "*", "bin")):
         if os.path.isdir(p):
             os.add_dll_directory(p)
@@ -43,16 +29,15 @@ DATA = ROOT / "data" / "splits"
 TOK = ROOT / "results" / "tokenizers"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 SEEDS = [42, 7, 123, 2024, 777]
-T_CRIT = 2.776  # t(0.975, df = 4)
+T_CRIT = 2.776
 CFG = dict(CHAR_MAX_LEN=50, WORD_MAX_LEN=8, CHAR_EMB_DIM=48, WORD_EMB_DIM=96,
            HIDDEN_DIM=192, DROPOUT=0.3, TRF_CHAR_DIM=128, TRF_WORD_DIM=192,
            N_HEADS=8, N_LAYERS=3, FF_MULTIPLIER=4)
 MODELS = ["CharBiRNN", "CharBiLSTM", "CharBiGRU", "CharTransformer",
           "WordBiRNN", "WordBiLSTM", "WordBiGRU", "WordTransformer"]
-# suffixes the manuscript names as gender-bearing
+
 FEM = ("wati", "ati", "ani", "ika", "ita", "sih", "ningsih", "ah", "iyah", "yanti")
 MAS = ("wan", "man", "din", "udin", "anto", "arto", "yanto", "ono", "adi", "aji")
-
 
 class CharTokenizer:
     def __init__(self): self.char2idx = {"<PAD>": 0, "<UNK>": 1}
@@ -62,7 +47,6 @@ class CharTokenizer:
     @property
     def vocab_size(self): return len(self.char2idx)
 
-
 class WordTokenizer:
     def __init__(self, min_freq=2): self.word2idx = {"<PAD>": 0, "<UNK>": 1}; self.min_freq = min_freq
     def encode(self, name, n):
@@ -71,12 +55,10 @@ class WordTokenizer:
     @property
     def vocab_size(self): return len(self.word2idx)
 
-
 sys.modules["__main__"].CharTokenizer = CharTokenizer
 sys.modules["__main__"].WordTokenizer = WordTokenizer
 char_tok = pickle.load(open(TOK / "char_tokenizer.pkl", "rb"))
 word_tok = pickle.load(open(TOK / "word_tokenizer.pkl", "rb"))
-
 
 class Attention(nn.Module):
     def __init__(self, hd):
@@ -85,7 +67,6 @@ class Attention(nn.Module):
         s = self.attn(out).squeeze(-1).masked_fill(mask == 0, -1e9)
         w = torch.softmax(s, dim=1)
         return (out * w.unsqueeze(-1)).sum(dim=1), w
-
 
 class BiRNNAttn(nn.Module):
     RNN = {"rnn": nn.RNN, "lstm": nn.LSTM, "gru": nn.GRU}
@@ -99,7 +80,6 @@ class BiRNNAttn(nn.Module):
         out, _ = self.rnn(self.embedding(x))
         _, w = self.attention(out, (x != 0).float())
         return w
-
 
 class TransformerAttn(nn.Module):
     def __init__(self, vocab, d, heads, layers, ff, max_len, dropout):
@@ -121,7 +101,6 @@ class TransformerAttn(nn.Module):
         _, w = self.attention(self.norm(out), (~pad).float())
         return w
 
-
 def make(name):
     if name.endswith("Transformer"):
         if name.startswith("Char"):
@@ -139,7 +118,6 @@ def make(name):
     return BiRNNAttn(word_tok.vocab_size, CFG["WORD_EMB_DIM"], CFG["HIDDEN_DIM"],
                      CFG["DROPOUT"], cell), "word"
 
-
 @torch.no_grad()
 def weights_for(model, ids, batch=1024):
     out = []
@@ -148,11 +126,7 @@ def weights_for(model, ids, batch=1024):
         out.append(model(xb).cpu().numpy())
     return np.concatenate(out)
 
-
 def summarise(W, lengths, k=4):
-    """Mass on the last k units, the first k, the single last and first, and
-    the centre of mass. The manuscript names both suffixes and prefixes as
-    gender markers, so both ends are measured."""
     n = len(W)
     tail = np.zeros(n); head = np.zeros(n)
     last = np.zeros(n); first = np.zeros(n); com = np.zeros(n)
@@ -165,10 +139,9 @@ def summarise(W, lengths, k=4):
         head[i] = w[:min(k, L)].sum()
         last[i] = w[-1]
         first[i] = w[0]
-        # 0 at the first position, 1 at the last, so length does not distort it
+
         com[i] = float((w * np.arange(L)).sum() / (L - 1)) if L > 1 else np.nan
     return tail, head, last, first, com
-
 
 def holm(p):
     order = np.argsort(p)
@@ -177,7 +150,6 @@ def holm(p):
         run = min(1.0, max(run, p[i] * (len(p) - rank)))
         out[i] = run
     return out
-
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -204,7 +176,7 @@ def main() -> int:
             model = model.to(DEVICE).eval()
             W = weights_for(model, ids)
             tail, head, last, first, com = summarise(W, lens)
-            # a uniform model would put exactly this much on the last four units
+
             unif_tail = np.minimum(4, lens) / lens
             rows.append({"Model": m, "Seed": seed, "level": lvl,
                          "tail4_mass": round(float(tail.mean()), 5),
@@ -217,7 +189,7 @@ def main() -> int:
                          "tail4_with_suffix": round(float(tail[has_suffix].mean()), 5),
                          "tail4_without_suffix": round(float(tail[~has_suffix].mean()), 5)})
             if seed == 42 and lvl == "char":
-                # average attention over the last 12 character slots, right aligned
+
                 acc = np.zeros(12); cnt = np.zeros(12)
                 for i in range(len(W)):
                     L = int(lens[i]); w = W[i][:L]
@@ -275,7 +247,6 @@ def main() -> int:
 
     print(f"\nWritten to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

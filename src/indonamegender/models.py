@@ -1,11 +1,8 @@
-"""Model architectures buat BiRNNAttn + TransformerClf."""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 class Attention(nn.Module):
-    """Additive attention pooling (Bahdanau-style)."""
     def __init__(self, hidden_dim):
         super().__init__()
         self.attn = nn.Linear(hidden_dim, 1, bias=False)
@@ -16,9 +13,7 @@ class Attention(nn.Module):
         pooled = (rnn_out * weights.unsqueeze(-1)).sum(dim=1)
         return pooled, weights
 
-
 class BiRNNAttn(nn.Module):
-    """Bidirectional RNN/GRU/LSTM + additive attention."""
     RNN_CLASSES = {"rnn": nn.RNN, "lstm": nn.LSTM, "gru": nn.GRU}
 
     def __init__(self, vocab_size, emb_dim, hidden_dim, dropout, rnn_type="lstm"):
@@ -42,17 +37,7 @@ class BiRNNAttn(nn.Module):
             return logit, weights
         return logit
 
-
 class TransformerClf(nn.Module):
-    """Pre-norm Transformer encoder pooled by the same additive attention as the
-    recurrent models.
-
-    Version 0.1.0 pooled by mean, and `return_attention` handed back a flat vector
-    that only encoded which positions were not padding. The revised paper puts every
-    model in the grid behind the Attention module above, so the checkpoints carry an
-    `attention.attn.weight` tensor and the weights returned here are the ones the
-    classifier actually used.
-    """
     def __init__(self, vocab_size, d_model, n_heads, n_layers, ff_dim, max_len, dropout):
         super().__init__()
         self.d_model = d_model

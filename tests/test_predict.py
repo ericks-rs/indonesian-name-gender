@@ -1,7 +1,5 @@
-"""Smoke tests buat GenderPredictor."""
 import pytest
 from indonamegender import GenderPredictor
-
 
 def test_predict_female():
     gp = GenderPredictor()
@@ -10,13 +8,11 @@ def test_predict_female():
     assert r["confidence"] > 0.8
     assert r["model"] == "CharBiGRU"
 
-
 def test_predict_male():
     gp = GenderPredictor()
     r = gp.predict("GATOTKACA WIRAWAN")
     assert r["gender"] == "Male"
     assert r["confidence"] > 0.8
-
 
 def test_batch():
     gp = GenderPredictor()
@@ -24,14 +20,13 @@ def test_batch():
     assert len(results) == 2
     assert all("gender" in r for r in results)
 
-
 def test_attention():
     gp = GenderPredictor()
     r = gp.get_attention("DEWI SRI")
     assert "tokens" in r
     assert "attention" in r
     assert len(r["tokens"]) == len(r["attention"])
-    assert abs(sum(r["attention"]) - 1.0) < 0.01  # normalized
+    assert abs(sum(r["attention"]) - 1.0) < 0.01
 
 def test_invalid_model():
     with pytest.raises(ValueError):

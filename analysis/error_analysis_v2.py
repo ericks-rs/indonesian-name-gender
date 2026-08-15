@@ -1,13 +1,3 @@
-"""Error analysis over the five-seed grid, not one arbitrary run.
-
-The earlier version read the single-run predictions from the main experiment,
-which is a different fit from the one every table now reports, and it described
-the errors of one seed as if they were the model's. Both are avoided here. The
-pool is defined over the five seeds of the current grid, so an error is graded
-by how many seeds make it rather than by whether one particular run happened to.
-
-Nothing is retrained. Predictions come from the stored per-name files.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -24,7 +14,6 @@ SEEDS = [42, 7, 123, 2024, 777]
 FEM = ("wati", "ati", "ani", "ika", "ita", "sih", "ningsih", "ah", "iyah", "yanti")
 MAS = ("wan", "man", "din", "udin", "anto", "arto", "yanto", "ono", "adi", "aji")
 
-
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     pred = pd.read_csv(SRC / "val_predictions.csv")
@@ -33,7 +22,6 @@ def main() -> int:
     names = pred.name.astype(str).values
     low = np.array([s.lower() for s in names])
 
-    # how many of the five seeds each character model gets wrong, per name
     wrong = {}
     for m in CHAR:
         w = np.zeros(len(y), dtype=int)
@@ -41,7 +29,7 @@ def main() -> int:
             w += (pred[f"{m}__seed{s}"].values != y).astype(int)
         wrong[m] = w
     W = pd.DataFrame(wrong)
-    total = W.sum(axis=1)  # 0 to 20 across four models and five seeds
+    total = W.sum(axis=1)
 
     df = pd.DataFrame({"name": names, "label": y,
                        "n_wrong_of_20": total.values,
@@ -52,7 +40,6 @@ def main() -> int:
         df[f"wrong_{m}"] = W[m].values
     df["ends_listed_suffix"] = [s.endswith(FEM) or s.endswith(MAS) for s in low]
 
-    # vocabulary novelty, measured on tokens rather than whole names
     seen = set()
     for n in tr.NAMA.astype(str).str.lower():
         seen.update(n.split())
@@ -83,7 +70,6 @@ def main() -> int:
     prof.to_csv(OUT / "error_group_profile.csv", index=False)
     print("\n" + prof.to_string(index=False))
 
-    # how the female skew depends on where the "always wrong" line is drawn
     curve = []
     for cut in (20, 19, 18, 16, 15, 10, 5, 1):
         sub = df[df.n_wrong_of_20 >= cut]
@@ -97,7 +83,6 @@ def main() -> int:
           f"{df.label.mean()*100:.2f} percent")
     print(cv.to_string(index=False))
 
-    # error rate by token count and by whether the name carries a listed suffix
     by_tok = df.assign(err=df.n_wrong_of_20 / 20).groupby(
         df.n_tokens.clip(1, 6)).agg(n=("name", "size"), error_rate=("err", "mean")).round(4)
     by_tok.to_csv(OUT / "error_rate_by_token_count.csv")
@@ -108,7 +93,6 @@ def main() -> int:
     by_suf.to_csv(OUT / "error_rate_by_suffix.csv")
     print("\nerror rate by listed suffix\n" + by_suf.to_string())
 
-    # the names every model and seed fails, worth reading in the paper
     ex = hard.sort_values(["n_tokens", "name"])[
         ["name", "label", "n_tokens", "ends_listed_suffix", "all_tokens_unseen"]]
     ex.to_csv(OUT / "always_wrong_names.csv", index=False)
@@ -117,7 +101,6 @@ def main() -> int:
           f"against {df.all_tokens_unseen.mean()*100:.1f}% overall.")
     print(f"\nWritten to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

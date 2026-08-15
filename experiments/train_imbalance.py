@@ -1,27 +1,3 @@
-"""Imbalance strategies re-run under the main protocol.
-
-The earlier imbalance comparison in `results/final/15_imbalance_standby` selected
-checkpoints on the test partition and used one seed per cell, so its class-weighted
-baseline sits 0.16 to 0.49 percentage points away from the grid the manuscript
-reports. A robustness check run under a looser protocol than the experiment it is
-checking argues against the paper rather than for it.
-
-Everything above `run()` in this file is copied byte for byte from
-`experiment_multiseed.py`, so the split, the tokenizers, the eight architectures,
-the optimizer, the scheduler, the epoch cap, the early-stopping patience and the
-five seeds are the same objects rather than the same intention. Diff the two files
-and only the driver differs.
-
-Three alternatives are compared against the class-weighted objective. Unweighted
-training, random oversampling of the minority class, and class-balanced sampling.
-SMOTE and the generated names are left out on purpose. SMOTE interpolates between
-discrete token identifiers, which is hard to defend, and generated names would need
-their own account of how they were produced, filtered and checked for leakage.
-
-Checkpoints are selected on development F1. The test partition is scored once, after
-selection. Differences are paired within seed against the class-weighted baseline,
-which is read from the existing grid rather than re-run.
-"""
 from __future__ import annotations
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
@@ -61,12 +37,10 @@ CFG = dict(CHAR_MAX_LEN=50, WORD_MAX_LEN=8, CHAR_EMB_DIM=48, WORD_EMB_DIM=96,
            N_HEADS=8, N_LAYERS=3, FF_MULTIPLIER=4,
            LR=1e-3, BATCH_SIZE=512, EPOCHS=50, PATIENCE=6)
 
-# ---------- data ----------
 df_train = pd.read_csv(DATA_DIR / "train_1990_2021.csv")
 df_dev = pd.read_csv(DATA_DIR / "dev_2022_2023.csv")
 df_val = pd.read_csv(DATA_DIR / "val_2024_2025.csv")
-# the public benchmark is scored per seed as well, so cross-dataset transfer
-# rests on the same five runs as the internal figures
+
 df_ext = pd.read_csv(PROJECT_ROOT / "data" / "external" / "indonesian-names.csv")
 df_ext = df_ext.rename(columns={"name": "NAMA"})
 df_ext["LABEL_ENC"] = df_ext["gender"].map({"m": 0, "f": 1})
@@ -77,7 +51,6 @@ n_neg = int((df_train["LABEL_ENC"] == 0).sum())
 n_pos = int((df_train["LABEL_ENC"] == 1).sum())
 pos_weight_val = n_neg / n_pos
 print(f"Train {len(df_train):,} (M={n_neg:,} F={n_pos:,}, pos_weight={pos_weight_val:.4f}) | Val {len(df_val):,}", flush=True)
-
 
 class CharTokenizer:
     def __init__(self): self.char2idx = {"<PAD>": 0, "<UNK>": 1}
@@ -102,7 +75,6 @@ with open(TOKENIZERS_DIR / "char_tokenizer.pkl", "rb") as f: char_tok = pickle.l
 with open(TOKENIZERS_DIR / "word_tokenizer.pkl", "rb") as f: word_tok = pickle.load(f)
 print(f"Tokenizers: char={char_tok.vocab_size} word={word_tok.vocab_size}", flush=True)
 
-
 class NameDataset(Dataset):
     def __init__(self, df, ctok, wtok, cfg):
         self.names = df["NAMA"].values; self.labels = df["LABEL_ENC"].values
@@ -117,13 +89,11 @@ class NameDataset(Dataset):
 train_ds = NameDataset(df_train, char_tok, word_tok, CFG)
 val_ds = NameDataset(df_val, char_tok, word_tok, CFG)
 val_dl = DataLoader(val_ds, batch_size=CFG["BATCH_SIZE"], shuffle=False, num_workers=0, pin_memory=True)
-# every selection decision reads the development split, so the 2024-2025
-# partition stays untouched until the final score is taken
+
 dev_ds = NameDataset(df_dev, char_tok, word_tok, CFG)
 dev_dl = DataLoader(dev_ds, batch_size=CFG["BATCH_SIZE"], shuffle=False, num_workers=0, pin_memory=True)
 ext_ds = NameDataset(df_ext, char_tok, word_tok, CFG)
 ext_dl = DataLoader(ext_ds, batch_size=CFG["BATCH_SIZE"], shuffle=False, num_workers=0, pin_memory=True)
-
 
 class Attention(nn.Module):
     def __init__(self, hd):
@@ -164,7 +134,6 @@ class TransformerClf(nn.Module):
         pooled = (out * nz).sum(1) / nz.sum(1).clamp(min=1)
         return self.fc(self.dropout(self.norm(pooled))).squeeze(1)
 
-
 SPECS_RNN = {
     "CharBiRNN":  (char_tok.vocab_size, CFG["CHAR_EMB_DIM"], "rnn",  "char_ids"),
     "CharBiLSTM": (char_tok.vocab_size, CFG["CHAR_EMB_DIM"], "lstm", "char_ids"),
@@ -178,7 +147,6 @@ SPECS_TRF = {
     "WordTransformer": (word_tok.vocab_size, CFG["TRF_WORD_DIM"], CFG["WORD_MAX_LEN"], "word_ids"),
 }
 
-
 def make_model(name):
     if name in SPECS_RNN:
         v, e, rt, key = SPECS_RNN[name]
@@ -186,7 +154,6 @@ def make_model(name):
     v, d, ml, key = SPECS_TRF[name]
     return TransformerClf(v, d, CFG["N_HEADS"], CFG["N_LAYERS"],
                           d*CFG["FF_MULTIPLIER"], ml, CFG["DROPOUT"]), key
-
 
 @torch.no_grad()
 def evaluate(model, dl, crit, key):
@@ -202,14 +169,7 @@ def evaluate(model, dl, crit, key):
             "recall": recall_score(l, p, zero_division=0),
             "f1": f1_score(l, p, zero_division=0)}
 
-
 def make_loader(strategy, seed, g):
-    """The only thing that varies between conditions.
-
-    Class weighting keeps every example once and reweights the loss. The three
-    alternatives all train on an unweighted objective, and differ in what the
-    sampler hands the model.
-    """
     if strategy == "oversampling":
         rng = np.random.RandomState(seed)
         idx = np.arange(len(df_train))
@@ -228,7 +188,6 @@ def make_loader(strategy, seed, g):
                           num_workers=0, pin_memory=True)
     return DataLoader(train_ds, batch_size=CFG["BATCH_SIZE"], shuffle=True,
                       num_workers=0, pin_memory=True, generator=g)
-
 
 def run(name, seed, strategy):
     torch.manual_seed(seed); np.random.seed(seed); torch.cuda.manual_seed_all(seed)
@@ -266,7 +225,6 @@ def run(name, seed, strategy):
     del model, opt
     torch.cuda.empty_cache()
     return best, best_ep, dur
-
 
 MODELS = ["CharBiRNN", "CharBiLSTM", "CharBiGRU", "CharTransformer",
           "WordBiRNN", "WordBiLSTM", "WordBiGRU", "WordTransformer"]

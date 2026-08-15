@@ -1,4 +1,3 @@
-"""Inference engine for the demo."""
 from __future__ import annotations
 import hashlib
 
@@ -22,7 +21,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 class CharTokenizer:
     def __init__(self):
         self.char2idx = {"<PAD>": 0, "<UNK>": 1}
@@ -36,19 +34,13 @@ class CharTokenizer:
     def vocab_size(self):
         return len(self.char2idx)
 
-
-# Kunci vocab word-level tersimpan sebagai hash. Token aslinya berasal dari
-# registri admisi dan tidak boleh ikut dirilis. Indeksnya tidak berubah, jadi
-# checkpoint tetap cocok. Lihat indonamegender/tokenizers.py untuk alasannya.
 VOCAB_SALT = "indonamegender-v1"
-
 
 def vocab_key(word):
     if word.startswith("<") and word.endswith(">"):
         return word
     return hashlib.blake2s((VOCAB_SALT + word).encode("utf-8"),
                            digest_size=8).hexdigest()
-
 
 class WordTokenizer:
     def __init__(self, min_freq=2):
@@ -57,7 +49,7 @@ class WordTokenizer:
         self.hashed = True
 
     def _key(self, word):
-        # Pickle lama menyimpan token polos dan tidak punya atribut hashed.
+
         return vocab_key(word) if getattr(self, "hashed", False) else word
 
     def encode(self, name, max_len):
@@ -69,12 +61,9 @@ class WordTokenizer:
     def vocab_size(self):
         return len(self.word2idx)
 
-
-# Pickle compat: inject classes ke __main__ supaya pickle.load works
 import __main__
 __main__.CharTokenizer = CharTokenizer
 __main__.WordTokenizer = WordTokenizer
-
 
 class Attention(nn.Module):
     def __init__(self, hidden_dim):
@@ -86,7 +75,6 @@ class Attention(nn.Module):
         scores = scores.masked_fill(mask == 0, -1e9)
         weights = F.softmax(scores, dim=1)
         return (rnn_out * weights.unsqueeze(-1)).sum(dim=1), weights
-
 
 class BiRNNAttn(nn.Module):
     RNN_CLASSES = {"rnn": nn.RNN, "lstm": nn.LSTM, "gru": nn.GRU}
@@ -113,17 +101,7 @@ class BiRNNAttn(nn.Module):
             return logits, weights
         return logits
 
-
 class TransformerClf(nn.Module):
-    """Transformer encoder pooled by the same additive attention as the recurrent
-    models.
-
-    The published version of this file pooled by mean and had no attention
-    distribution of its own, so the attention shown for a Transformer was derived
-    from its self-attention matrices, a quantity that never entered the
-    classification. Every model in the grid now pools through the module below,
-    which is what the revised paper reports and what these checkpoints contain.
-    """
 
     def __init__(self, vocab_size, d_model, n_heads, n_layers, ff_dim, max_len, dropout):
         super().__init__()
@@ -152,7 +130,6 @@ class TransformerClf(nn.Module):
             return logits, weights
         return logits
 
-
 CFG = {
     "CHAR_MAX_LEN": 50, "WORD_MAX_LEN": 8,
     "CHAR_EMB_DIM": 48, "WORD_EMB_DIM": 96,
@@ -161,28 +138,22 @@ CFG = {
     "N_HEADS": 8, "N_LAYERS": 3, "FF_MULTIPLIER": 4,
 }
 
-
 class Predictor:
     LABEL_MAP = {0: "L", 1: "P"}
     LABEL_DESC = {"L": "Laki-laki", "P": "Perempuan"}
 
     def __init__(self, results_dir: str | Path, model_suffix: str = "",
                  models_dir: str | Path | None = None):
-        """models_dir defaults to results_dir/models. The published checkpoints
-        live under a run directory and carry a seed in the filename, so pass that
-        directory with model_suffix="__seed42" to load them."""
         self.results_dir = Path(results_dir)
         self.model_suffix = model_suffix
         self.models_dir = Path(models_dir) if models_dir else self.results_dir / "models"
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        # Load tokenizers
         with open(self.results_dir / "tokenizers" / "char_tokenizer.pkl", "rb") as f:
             self.char_tok: CharTokenizer = pickle.load(f)
         with open(self.results_dir / "tokenizers" / "word_tokenizer.pkl", "rb") as f:
             self.word_tok: WordTokenizer = pickle.load(f)
 
-        # Model factory configs (8 neural models incl WordBiRNN)
         self.model_configs = {
             "CharBiRNN":       ("rnn",   self.char_tok, CFG["CHAR_EMB_DIM"]),
             "CharBiLSTM":      ("lstm",  self.char_tok, CFG["CHAR_EMB_DIM"]),
@@ -194,9 +165,6 @@ class Predictor:
             "WordTransformer": ("trf",   self.word_tok, CFG["TRF_WORD_DIM"]),
         }
 
-        # A missing checkpoint used to be skipped in silence, which is how a
-        # release shipped with seven of the eight models and nobody noticed.
-        # Absences are collected and reported instead.
         self.models: dict[str, nn.Module] = {}
         self.missing: list[str] = []
         for name, (kind, tok, dim) in self.model_configs.items():
@@ -269,7 +237,6 @@ class Predictor:
         prob_p = float(torch.sigmoid(logits).item())
         pred = 1 if prob_p >= 0.5 else 0
 
-        # Determine tokens & mask
         is_char = "Char" in model_name
         max_len = CFG["CHAR_MAX_LEN"] if is_char else CFG["WORD_MAX_LEN"]
 
@@ -278,10 +245,8 @@ class Predictor:
         else:
             tokens = name.lower().split()[:max_len]
 
-        # weights is (1, T); take real tokens only
         w = weights[0].cpu().tolist()[:len(tokens)]
 
-        # Normalize for display (sum to 1 over real tokens)
         total = sum(w) if sum(w) > 0 else 1.0
         w_norm = [v / total for v in w]
 
@@ -302,9 +267,8 @@ class Predictor:
     def available_models(self):
         return list(self.models.keys())
 
-
 if __name__ == "__main__":
-    # Quick CLI test
+
     pred = Predictor(Path(__file__).parent.parent / "results")
     print("\n=== Single prediction ===")
     print(pred.predict_single("BANOWATI LARASATI"))

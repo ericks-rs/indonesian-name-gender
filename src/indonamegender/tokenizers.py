@@ -1,30 +1,15 @@
-"""Char + Word tokenizer (pickled di package data/).
-
-Kunci vocab word-level disimpan sebagai hash, bukan token asli. Vocab dibangun
-dari registri admisi dan 23,461 dari 24,945 tokennya tidak muncul di sumber
-publik mana pun, sebagian cuma dipakai dua orang. Menyimpan token polos berarti
-mengirim potongan korpus itu ke publik. Hash menghilangkan daftarnya tanpa
-menyentuh indeks, jadi baris embedding di checkpoint tetap cocok dan prediksinya
-identik. Salt ikut dirilis karena paket ini harus bisa jalan, sehingga seseorang
-masih bisa menguji satu nama yang sudah dia tebak duluan. Yang hilang adalah
-kemampuan menarik seluruh daftarnya sekaligus.
-"""
 import hashlib
 from collections import Counter
 
 VOCAB_SALT = "indonamegender-v1"
 
-
 def vocab_key(word):
-    """Kunci tersimpan untuk satu token word-level."""
     if word.startswith("<") and word.endswith(">"):
         return word
     return hashlib.blake2s((VOCAB_SALT + word).encode("utf-8"),
                            digest_size=8).hexdigest()
 
-
 class CharTokenizer:
-    """Karakter tokenizer dengan PAD + UNK."""
     def __init__(self):
         self.char2idx = {"<PAD>": 0, "<UNK>": 1}
         self.idx2char = {0: "<PAD>", 1: "<UNK>"}
@@ -46,18 +31,14 @@ class CharTokenizer:
     def vocab_size(self):
         return len(self.char2idx)
 
-
 class WordTokenizer:
-    """Word tokenizer dengan min_freq cutoff."""
     def __init__(self, min_freq=2):
         self.word2idx = {"<PAD>": 0, "<UNK>": 1}
         self.min_freq = min_freq
         self.hashed = True
 
     def _key(self, word):
-        # Pickle lama menyimpan token polos. Dibaca dengan kode ini dia tidak
-        # punya atribut hashed, dan lookup-nya harus tetap pakai token polos,
-        # kalau tidak semuanya jatuh ke UNK tanpa ada yang error.
+
         return vocab_key(word) if getattr(self, "hashed", False) else word
 
     def fit(self, names):

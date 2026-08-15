@@ -1,15 +1,3 @@
-"""Six figures for claims that so far rest on tables alone.
-
-Each answers a specific reviewer comment. The sensitivity swarm answers the
-question of whether a shared configuration is doing the work. The forest plot
-puts the confidence intervals the review asked for on a page instead of in a
-column. The efficiency frontier turns a latency table into a picture of what the
-accuracy costs. The error profile shows who the models fail, which the review
-asked to see with examples. The last two support the temporal and imbalance
-arguments that currently have no visual at all.
-
-Drawn on the base interpreter. Every value is read from results/final.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -27,8 +15,7 @@ FIGS = ROOT / "results" / "figures"
 MIRROR = FINAL / "13_figures"
 DPI = 600
 CCHAR, CWORD, CCLASS, CPRE = "#1f4e79", "#c98b3a", "#5b8c5a", "#8b1a1a"
-# One JOIV column is 3.49 inches. Every figure is drawn to that width, panels
-# stack downwards, and no figure carries more than two of them.
+
 COL = 3.4
 plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
                      "xtick.labelsize": 6.4, "ytick.labelsize": 6.4,
@@ -36,7 +23,6 @@ plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
 
 CHAR = ["CharBiRNN", "CharBiGRU", "CharBiLSTM", "CharTransformer"]
 WORD = ["WordBiRNN", "WordBiGRU", "WordBiLSTM", "WordTransformer"]
-
 
 def save(fig, name):
     for d in (FIGS, MIRROR):
@@ -48,14 +34,7 @@ def save(fig, name):
     plt.close(fig)
     print(f"  {name}")
 
-
 def fig_sensitivity():
-    """Every one of the 112 configurations, scored on the development partition.
-
-    The earlier version plotted the 2024-2025 figure, which meant the comparison
-    across configurations was made on the partition the headline table reports.
-    The claim now rests on development scores, so it never touches that
-    partition, and the test column stays in the source file for transparency."""
     d = pd.read_csv(FINAL / "31_sensitivity_dev" / "sensitivity_dev_and_test.csv")
     d = d.rename(columns={"Dev_F1": "F1"})
     order = CHAR[:3] + ["CharTransformer"] + WORD[:3] + ["WordTransformer"]
@@ -88,16 +67,11 @@ def fig_sensitivity():
     fig.tight_layout(pad=0.6)
     save(fig, "fig_sensitivity_sweep.png")
 
-
 def fig_forest():
-    """Paired character minus word, with the interval over five seeds."""
     a = pd.read_csv(FINAL / "00_summary" / "char_vs_word_paired.csv")
-    # panel (b) uses the basis the text reports, one row per distinct name
+
     b = pd.read_csv(FINAL / "21_external_clean" / "char_vs_word_clean_dedup_paired.csv")
-    # Panel (a) belonged to the representation-level subsection and panel (b) to
-    # external validation. A figure whose panels are cited from two different
-    # subsections is exactly what the manuscript no longer allows, so each gets
-    # its own single-column figure.
+
     for name, d, col in (("fig_paired_forest_test.png", a, CCHAR),
                          ("fig_paired_forest_external.png", b, "#5b7c99")):
         fig, ax = plt.subplots(figsize=(COL, 2.2))
@@ -121,9 +95,7 @@ def fig_forest():
         fig.tight_layout(pad=0.5)
         save(fig, name)
 
-
 def fig_efficiency():
-    """What the accuracy costs to serve."""
     b = pd.read_csv(FINAL / "11_inference_benchmark" / "tables" /
                     "inference_benchmark.csv").set_index("Model")
     g = pd.read_csv(GRID / "multiseed_summary.csv").set_index("Model")
@@ -138,16 +110,14 @@ def fig_efficiency():
             f1, fam = p.loc[m, "val_f1_mean"], "pretrained"
         else:
             continue
-        # the repeated-trial figure where one exists, the single run otherwise,
-        # which today means TF-IDF only
-        ms = b.loc[m, "CPU_fwd_ms_repeated"] if "CPU_fwd_ms_repeated" in b.columns \
+
+        ms = b.loc[m, "CPU_fwd_ms_repeated"] if "CPU_fwd_ms_repeated" in b.columns\
             and pd.notna(b.loc[m, "CPU_fwd_ms_repeated"]) else b.loc[m, "CPU_fwd_ms"]
         pts.append({"model": m, "family": fam, "f1": f1 * 100,
                     "cpu_ms": ms, "params": b.loc[m, "Params"]})
     d = pd.DataFrame(pts)
     col = {"character": CCHAR, "word": CWORD, "pretrained": CPRE}
-    # Same split as the forest. Panel (a) was cited from the inference-cost
-    # subsection and panel (b) from parameter efficiency.
+
     for name, xcol, xlab in (("fig_efficiency_latency.png", "cpu_ms",
                               "CPU latency per name (ms, log scale)"),
                              ("fig_efficiency_params.png", "params",
@@ -171,14 +141,7 @@ def fig_efficiency():
         fig.tight_layout(pad=0.5)
         save(fig, name)
 
-
 def fig_errors():
-    """Who the models fail, over twenty character-model fits.
-
-    Three panels side by side, one over the limit and far too wide for a column.
-    The first two belong together, since both describe the same grouping of
-    names by how many fits get them wrong. The third asks a different question
-    and becomes its own figure."""
     e = pd.read_csv(FINAL / "27_error_analysis" / "per_name_errors.csv")
     prof = pd.read_csv(FINAL / "27_error_analysis" / "error_group_profile.csv")
     fig, axes = plt.subplots(2, 1, figsize=(COL, 4.4))
@@ -234,19 +197,13 @@ def fig_errors():
     fig.tight_layout(pad=0.5)
     save(fig, "fig_error_by_token.png")
 
-
 def fig_temporal():
-    """Accuracy year by year, and what training only on older records costs."""
     y = pd.read_csv(FINAL / "10_temporal_drift" / "tables" / "temporal" / "per_year_f1.csv")
     c = pd.read_csv(FINAL / "10_temporal_drift" / "tables" / "temporal" /
                     "cross_decade_results.csv")
     fig, axes = plt.subplots(2, 1, figsize=(COL, 4.6))
     ax = axes[0]
-    # The per-year file holds one row per model per year, eight models across
-    # two years. Handing all sixteen rows to a single plot call joined them into
-    # one zigzag with a fractional year axis, which described nothing. The
-    # measurement is a paired change per model, so it is drawn as one line per
-    # model between the two years.
+
     ycol = [c_ for c_ in y.columns if c_.lower() == "f1"][0]
     scale = 100 if y[ycol].max() <= 1 else 1
     for m, g in y.groupby("Model"):
@@ -256,7 +213,7 @@ def fig_temporal():
                 markersize=3.0, linewidth=1.0, alpha=0.85)
     ax.set_xticks(sorted(y.Year.unique()))
     ax.set_xlim(min(y.Year) - 0.12, max(y.Year) + 0.12)
-    ax.set_xlabel("registration year of the evaluated names")
+    ax.set_xlabel("year the name first appears")
     ax.set_ylabel("F1 (%)")
     ax.set_title("(a)", fontsize=7.6, loc="left")
     handles = [plt.Line2D([], [], color=CCHAR, label="character"),
@@ -282,16 +239,7 @@ def fig_temporal():
     fig.tight_layout(pad=0.5)
     save(fig, "fig_temporal_drift.png")
 
-
 def fig_imbalance():
-    """Resampling against the class-weighted objective, under the main protocol.
-
-    The earlier version of this figure read `15_imbalance_standby`, a one-seed run
-    that selected checkpoints on the test partition. Its class-weighted baseline
-    disagreed with the grid the manuscript reports by up to 0.49 points, which made
-    the figure argue against the paper. The 120 runs behind the current file use the
-    same five seeds, the same development-set selection and one final scoring of the
-    test partition, so every bar is a difference between two matched fits."""
     f = FINAL / "40_imbalance_protocol" / "per_model_paired.csv"
     if not f.exists():
         print("  fig_imbalance skipped, the re-run has not produced its table yet")
@@ -324,7 +272,6 @@ def fig_imbalance():
     fig.tight_layout(pad=0.5)
     save(fig, "fig_imbalance_strategies.png")
 
-
 def main() -> int:
     print("figures written")
     for fn in (fig_sensitivity, fig_forest, fig_efficiency, fig_errors,
@@ -334,7 +281,6 @@ def main() -> int:
         except Exception as e:
             print(f"  {fn.__name__} FAILED, {e.__class__.__name__}: {e}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

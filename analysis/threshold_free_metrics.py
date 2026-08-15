@@ -1,20 +1,3 @@
-"""Comparison that does not depend on where the threshold sits.
-
-Every number the manuscript reports, F1, accuracy, precision and recall, is taken
-at a fixed cut of 0.5. Every model was also trained with a class-weighted
-objective, which moves where a model puts its probabilities. Two models can
-therefore differ in reported F1 while ranking the names identically, or agree on
-F1 while one is far better calibrated. Nothing in the result set could tell those
-cases apart, because no threshold-free metric existed anywhere.
-
-AUC answers the ranking question and Brier answers the calibration one. Both come
-straight from the stored probabilities, so this refits nothing. Reported per seed
-with the same interval treatment as the rest of the paper.
-
-If the AUC ordering matches the F1 ordering, the paper's claims stand and gain a
-second line of support. If it does not, the abstract has to be written differently,
-which is why this runs before the writing does.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -29,8 +12,7 @@ OUT = ROOT / "results" / "final" / "38_threshold_free"
 SEEDS = [42, 7, 123, 2024, 777]
 CHAR = ["CharBiRNN", "CharBiGRU", "CharBiLSTM", "CharTransformer"]
 WORD = ["WordBiRNN", "WordBiGRU", "WordBiLSTM", "WordTransformer"]
-T_CRIT = 2.776   # t(0.975, df = 4)
-
+T_CRIT = 2.776
 
 def per_seed(p: pd.DataFrame, y: np.ndarray, mask=None) -> list[dict]:
     rows = []
@@ -46,13 +28,11 @@ def per_seed(p: pd.DataFrame, y: np.ndarray, mask=None) -> list[dict]:
                          "brier": brier_score_loss(y[m], q)})
     return rows
 
-
 def summarise(d: pd.DataFrame, col: str) -> pd.DataFrame:
     g = d.groupby("Model")[col].agg(mean="mean", sd=lambda v: v.std(ddof=1))
     g["ci95_lo"] = g["mean"] - T_CRIT * g["sd"] / np.sqrt(len(SEEDS))
     g["ci95_hi"] = g["mean"] + T_CRIT * g["sd"] / np.sqrt(len(SEEDS))
     return g.round(6).reset_index()
-
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -65,7 +45,6 @@ def main() -> int:
     auc.to_csv(OUT / "auc_summary.csv", index=False)
     brier.to_csv(OUT / "brier_summary.csv", index=False)
 
-    # paired, matched seeds, the same treatment the F1 comparison gets
     piv_a = d.pivot(index="Seed", columns="Model", values="auc")
     piv_b = d.pivot(index="Seed", columns="Model", values="brier")
     pairs = []
@@ -79,7 +58,7 @@ def main() -> int:
                           "diff": round(float(diff.mean()), 6),
                           "ci95_lo": round(float(diff.mean() - T_CRIT * se), 6),
                           "ci95_hi": round(float(diff.mean() + T_CRIT * se), 6),
-                          # Brier is a loss, so character is better when it is lower
+
                           "favours_character": bool(sign * diff.mean() > 0)})
     pr = pd.DataFrame(pairs)
     pr.to_csv(OUT / "char_vs_word_threshold_free.csv", index=False)
@@ -111,7 +90,6 @@ def main() -> int:
           f"{'no overlap' if ch.min() > wd.max() else 'OVERLAP'}")
     print(f"Written to {OUT}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

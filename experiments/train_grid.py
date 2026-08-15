@@ -1,21 +1,3 @@
-"""Multi-seed repeated experiments (Reviewer B comment 2).
-
-"the reported improvements would be more convincing if supported by repeated
-experiments using multiple random seeds, accompanied by standard deviations,
-confidence intervals, and statistical significance testing"
-
-Retrains all 8 neural models under 5 random seeds (40 runs). The seed controls
-both parameter initialisation and minibatch shuffling. Protocol is otherwise
-identical to the paper (temporal split, class-weighted BCE, same hyperparameters).
-
-Reports per-seed metrics, mean, standard deviation, and 95% confidence intervals,
-plus Welch t-tests for the headline character-versus-word comparison.
-
-Output:
-- results/tables/multiseed/multiseed_runs.csv        (40 rows, one per run)
-- results/tables/multiseed/multiseed_summary.csv     (mean/std/CI per model)
-- results/tables/multiseed/multiseed_char_vs_word.csv (paired architecture tests)
-"""
 from __future__ import annotations
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
@@ -55,12 +37,10 @@ CFG = dict(CHAR_MAX_LEN=50, WORD_MAX_LEN=8, CHAR_EMB_DIM=48, WORD_EMB_DIM=96,
            N_HEADS=8, N_LAYERS=3, FF_MULTIPLIER=4,
            LR=1e-3, BATCH_SIZE=512, EPOCHS=50, PATIENCE=6)
 
-# ---------- data ----------
 df_train = pd.read_csv(DATA_DIR / "train_1990_2021.csv")
 df_dev = pd.read_csv(DATA_DIR / "dev_2022_2023.csv")
 df_val = pd.read_csv(DATA_DIR / "val_2024_2025.csv")
-# the public benchmark is scored per seed as well, so cross-dataset transfer
-# rests on the same five runs as the internal figures
+
 df_ext = pd.read_csv(PROJECT_ROOT / "data" / "external" / "indonesian-names.csv")
 df_ext = df_ext.rename(columns={"name": "NAMA"})
 df_ext["LABEL_ENC"] = df_ext["gender"].map({"m": 0, "f": 1})
@@ -71,7 +51,6 @@ n_neg = int((df_train["LABEL_ENC"] == 0).sum())
 n_pos = int((df_train["LABEL_ENC"] == 1).sum())
 pos_weight_val = n_neg / n_pos
 print(f"Train {len(df_train):,} (M={n_neg:,} F={n_pos:,}, pos_weight={pos_weight_val:.4f}) | Val {len(df_val):,}", flush=True)
-
 
 class CharTokenizer:
     def __init__(self): self.char2idx = {"<PAD>": 0, "<UNK>": 1}
@@ -96,7 +75,6 @@ with open(TOKENIZERS_DIR / "char_tokenizer.pkl", "rb") as f: char_tok = pickle.l
 with open(TOKENIZERS_DIR / "word_tokenizer.pkl", "rb") as f: word_tok = pickle.load(f)
 print(f"Tokenizers: char={char_tok.vocab_size} word={word_tok.vocab_size}", flush=True)
 
-
 class NameDataset(Dataset):
     def __init__(self, df, ctok, wtok, cfg):
         self.names = df["NAMA"].values; self.labels = df["LABEL_ENC"].values
@@ -111,13 +89,11 @@ class NameDataset(Dataset):
 train_ds = NameDataset(df_train, char_tok, word_tok, CFG)
 val_ds = NameDataset(df_val, char_tok, word_tok, CFG)
 val_dl = DataLoader(val_ds, batch_size=CFG["BATCH_SIZE"], shuffle=False, num_workers=0, pin_memory=True)
-# every selection decision reads the development split, so the 2024-2025
-# partition stays untouched until the final score is taken
+
 dev_ds = NameDataset(df_dev, char_tok, word_tok, CFG)
 dev_dl = DataLoader(dev_ds, batch_size=CFG["BATCH_SIZE"], shuffle=False, num_workers=0, pin_memory=True)
 ext_ds = NameDataset(df_ext, char_tok, word_tok, CFG)
 ext_dl = DataLoader(ext_ds, batch_size=CFG["BATCH_SIZE"], shuffle=False, num_workers=0, pin_memory=True)
-
 
 class Attention(nn.Module):
     def __init__(self, hd):
@@ -158,7 +134,6 @@ class TransformerClf(nn.Module):
         pooled = (out * nz).sum(1) / nz.sum(1).clamp(min=1)
         return self.fc(self.dropout(self.norm(pooled))).squeeze(1)
 
-
 SPECS_RNN = {
     "CharBiRNN":  (char_tok.vocab_size, CFG["CHAR_EMB_DIM"], "rnn",  "char_ids"),
     "CharBiLSTM": (char_tok.vocab_size, CFG["CHAR_EMB_DIM"], "lstm", "char_ids"),
@@ -172,7 +147,6 @@ SPECS_TRF = {
     "WordTransformer": (word_tok.vocab_size, CFG["TRF_WORD_DIM"], CFG["WORD_MAX_LEN"], "word_ids"),
 }
 
-
 def make_model(name):
     if name in SPECS_RNN:
         v, e, rt, key = SPECS_RNN[name]
@@ -180,7 +154,6 @@ def make_model(name):
     v, d, ml, key = SPECS_TRF[name]
     return TransformerClf(v, d, CFG["N_HEADS"], CFG["N_LAYERS"],
                           d*CFG["FF_MULTIPLIER"], ml, CFG["DROPOUT"]), key
-
 
 @torch.no_grad()
 def evaluate(model, dl, crit, key):
@@ -195,7 +168,6 @@ def evaluate(model, dl, crit, key):
             "precision": precision_score(l, p, zero_division=0),
             "recall": recall_score(l, p, zero_division=0),
             "f1": f1_score(l, p, zero_division=0)}
-
 
 def run(name, seed):
     torch.manual_seed(seed); np.random.seed(seed); torch.cuda.manual_seed_all(seed)
@@ -236,7 +208,6 @@ def run(name, seed):
     torch.cuda.empty_cache()
     return best, ext, best_ep, dur, n_params
 
-
 MODELS = ["CharBiRNN", "CharBiLSTM", "CharBiGRU", "CharTransformer",
           "WordBiRNN", "WordBiLSTM", "WordBiGRU", "WordTransformer"]
 
@@ -253,13 +224,12 @@ for name in MODELS:
                      "Recall": round(m["recall"], 6), "F1": round(m["f1"], 6),
                      "Ext_Accuracy": round(x["accuracy"], 6), "Ext_F1": round(x["f1"], 6),
                      "Best_epoch": ep, "Train_s": round(dur, 1)})
-        pd.DataFrame(rows).to_csv(runs_csv, index=False)   # checkpoint each run
+        pd.DataFrame(rows).to_csv(runs_csv, index=False)
         print(f"[{i:>2}/{total}] {name:<16} seed={seed:<5} F1={m['f1']:.4f} "
               f"ext={x['f1']:.4f} (best ep {ep}, {dur:.0f}s)", flush=True)
 
 runs = pd.DataFrame(rows)
 
-# ---------- aggregate: mean, std, 95% CI ----------
 from scipy import stats
 n = len(SEEDS)
 tcrit = stats.t.ppf(0.975, df=n-1)
@@ -281,16 +251,15 @@ for name, g in runs.groupby("Model", sort=False):
 summary = pd.DataFrame(agg).sort_values("F1_mean", ascending=False)
 summary.to_csv(OUT_DIR / "multiseed_summary.csv", index=False)
 
-# ---------- char vs word significance across seeds ----------
 pairs = [("CharBiRNN", "WordBiRNN"), ("CharBiLSTM", "WordBiLSTM"),
          ("CharBiGRU", "WordBiGRU"), ("CharTransformer", "WordTransformer"),
-         ("CharBiGRU", "WordTransformer")]   # best char vs best word
+         ("CharBiGRU", "WordTransformer")]
 cmp_rows = []
 for a, b in pairs:
     va = runs[runs.Model == a].sort_values("Seed").F1.values
     vb = runs[runs.Model == b].sort_values("Seed").F1.values
-    t_ind = stats.ttest_ind(va, vb, equal_var=False)      # Welch (independent inits)
-    t_rel = stats.ttest_rel(va, vb)                       # paired by seed
+    t_ind = stats.ttest_ind(va, vb, equal_var=False)
+    t_rel = stats.ttest_rel(va, vb)
     diff = va.mean() - vb.mean()
     pooled = np.sqrt((va.var(ddof=1) + vb.var(ddof=1)) / 2)
     cmp_rows.append({

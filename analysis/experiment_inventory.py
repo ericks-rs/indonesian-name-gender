@@ -1,12 +1,3 @@
-"""Count every model fit behind the revision, from the artifacts themselves.
-
-Reviewer A asked for evidence that the shared configuration is not doing the
-work, and Reviewer B asked for variance and significance. Both answers rest on a
-large number of separate fits, so the count has to be stated in the manuscript
-and it has to be recomputed rather than remembered. Every number below is the
-row count of a file on disk, except the Transformer sweep, which is still queued
-and is reported as planned.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -18,7 +9,6 @@ FINAL = ROOT / "results" / "final"
 LIVE = ROOT / "results" / "tables"
 OUT = FINAL / "00_summary"
 
-# label, unit of work, path, whether the fits are neural
 BLOCKS = [
     ("Main grid, class weighting", "8 architectures, seed 42",
      FINAL / "01_main" / "tables" / "neural_weighted_only.csv", "neural"),
@@ -52,7 +42,6 @@ BLOCKS = [
      FINAL / "14_selection_bias" / "selection_bias_charbigru.csv", "neural"),
 ]
 
-# analyses that reuse stored checkpoints or predictions and fit nothing new
 REUSE = [
     ("Cross-dataset, all fourteen models", "stored predictions on the public benchmark",
      FINAL / "21_external_clean" / "external_clean_summary.csv"),
@@ -70,17 +59,13 @@ REUSE = [
 
 PLANNED = {"Sensitivity, dev and test": 112, "Sensitivity, recurrent, test only": 84}
 
-# Most files hold one fit per row. The decomposition holds one seed per row with
-# a column per arm, so its row count is a third of the fits behind it.
 FITS_PER_ROW = {"Selection and window decomposition": 3}
-
 
 def count(path: Path) -> int:
     try:
         return len(pd.read_csv(path))
     except Exception:
         return 0
-
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -114,7 +99,6 @@ def main() -> int:
 
     print(f"\nWritten to {OUT / 'experiment_inventory.csv'}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

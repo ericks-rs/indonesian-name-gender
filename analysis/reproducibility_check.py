@@ -1,23 +1,3 @@
-"""Will someone who reruns this get the same numbers.
-
-Reviewer A8 asks for access so the experiments can be verified. That invites a
-question the manuscript has never answered: if a reader reruns the grid with seed
-42, do they get 0.9593 again, or something close to it. Recurrent kernels on cuDNN
-are not deterministic by default, and nothing in the training script asks for
-determinism, so the honest answer has to be measured rather than assumed.
-
-Two things are separable and only one of them was ever checked.
-
-Loading is exact. The released checkpoint reproduces the stored predictions on
-all 15,923 evaluation names, which stage_release_models.py verifies on every run.
-
-Retraining is the open question. This runs the same architecture twice from the
-same seed, on the same batches, through the same optimiser, and compares the
-resulting weights. It imports the classes from seeds_grid_complete rather than
-copying them, because a near-copy would answer the question for a different
-model. Ten epochs on a slice, which is enough to see divergence if there is any,
-without spending eighty minutes to learn it.
-"""
 from __future__ import annotations
 
 import os
@@ -34,13 +14,12 @@ from torch.utils.data import DataLoader
 
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT / "pipeline"))
-import seeds_grid_complete as G  # noqa: E402
+import seeds_grid_complete as G
 
 OUT = ROOT / "results" / "final" / "35_reproducibility"
 SEED = 42
 EPOCHS = 10
 N_TRAIN = 20000
-
 
 def one_run(name: str, tr_ds, pw: float) -> dict:
     torch.manual_seed(SEED)
@@ -62,7 +41,6 @@ def one_run(name: str, tr_ds, pw: float) -> dict:
     return ({k: v.detach().cpu().clone() for k, v in model.state_dict().items()},
             model, key)
 
-
 @torch.no_grad()
 def f1(model, dl, key: str) -> float:
     from sklearn.metrics import f1_score
@@ -73,14 +51,12 @@ def f1(model, dl, key: str) -> float:
         t.append(b["label"].numpy())
     return float(f1_score(np.concatenate(t), np.concatenate(p), zero_division=0))
 
-
 def compare(a: dict, b: dict) -> tuple[bool, float]:
     worst = 0.0
     for k in a:
         d = float((a[k] - b[k]).abs().max())
         worst = max(worst, d)
     return worst == 0.0, worst
-
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -89,9 +65,6 @@ def main() -> int:
     ds = G.NameDS(tr.NAMA.values, y)
     pw = float((y == 0).sum() / max((y == 1).sum(), 1))
 
-    # A weight difference only matters if it moves the score, so both runs are
-    # scored on the development partition. That is the number a reader comparing
-    # their rerun against the paper actually holds in their hand.
     dv = pd.read_csv(ROOT / "data" / "splits" / "dev_2022_2023.csv")
     dv_dl = DataLoader(G.NameDS(dv.NAMA.values, (dv.LABEL == "P").astype(int).values),
                        batch_size=G.CFG["BATCH_SIZE"], shuffle=False)
@@ -115,11 +88,7 @@ def main() -> int:
 
     allsame = bool(d.identical.all())
     worst_f1 = float(d.dev_f1_difference_pp.abs().max())
-    # Bit-identity is the wrong bar, and so was the first threshold written here.
-    # The tables carry F1 to four decimals, so the smallest difference they can
-    # show is 0.0001 in F1 units, which is 0.01 percentage points. Comparing a
-    # value in percentage points against 0.005 mixed the two units and called a
-    # difference visible when it sits below the last digit the paper prints.
+
     RESOLUTION_PP = 0.01
     visible = worst_f1 >= RESOLUTION_PP
 
@@ -157,7 +126,6 @@ def main() -> int:
     (OUT / "note.txt").write_text(note, encoding="utf-8")
     print("\n" + note)
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

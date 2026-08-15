@@ -1,13 +1,3 @@
-"""Pretrained baselines across five random seeds.
-
-Reviewer B2 asked for repeated runs behind the reported improvements. The
-parity claim against IndoBERT, mBERT and XLM-R was added later, so it was still
-resting on a single run while the eight grid models already had five seeds.
-This script closes that gap and makes a paired test across seeds possible.
-
-Only the seed-42 checkpoint is kept. Storing all fifteen would cost roughly
-7 GB and nothing downstream reads the other twelve.
-"""
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
@@ -40,14 +30,11 @@ SEEDS = [42, 7, 123, 2024, 777]
 KEEP_CKPT_SEED = 42
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
 def seed_everything(seed):
-    """Seed before the model is built, otherwise initialisation is not covered."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
-
 
 class NameDS(Dataset):
     def __init__(self, texts, labels, tokenizer, max_len):
@@ -64,7 +51,6 @@ class NameDS(Dataset):
                 "attention_mask": enc["attention_mask"].squeeze(0),
                 "label": torch.tensor(self.labels[i], dtype=torch.long)}
 
-
 @torch.no_grad()
 def evaluate(model, dl):
     model.eval()
@@ -77,7 +63,6 @@ def evaluate(model, dl):
     p, y = np.concatenate(preds), np.concatenate(labels)
     return {"accuracy": accuracy_score(y, p), "precision": precision_score(y, p),
             "recall": recall_score(y, p), "f1": f1_score(y, p)}, p
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -210,7 +195,6 @@ def main():
                           "val_f1_min", "val_f1_max", "ext_f1_mean"]].to_string(index=False))
     print(f"\nTotal wall time: {runs_df.train_s.sum()/60:.1f} min")
     print(f"Written to {out}", flush=True)
-
 
 if __name__ == "__main__":
     main()
