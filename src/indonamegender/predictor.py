@@ -97,7 +97,12 @@ class GenderPredictor:
                 rnn_type=kind,
             )
 
-        state = torch.load(pt_path, map_location=self.device)
+        # Always deserialize on CPU, then move the built model to the target
+        # device. The checkpoints were saved from CUDA, so mapping straight to a
+        # requested device fails on a machine whose CUDA reports available but
+        # has no visible device, and needlessly ties loading to where the file
+        # was written. CPU-first works everywhere.
+        state = torch.load(pt_path, map_location="cpu")
         try:
             self.model.load_state_dict(state)
         except RuntimeError as e:

@@ -5,7 +5,7 @@ than assumed.
 
 ## Loading a checkpoint is exact
 
-The bundled `CharBiGRU` reproduces the stored seed-42 prediction on all 15,923
+The bundled `CharBiLSTM` reproduces the stored seed-42 prediction on all 15,923
 evaluation names, with no disagreement. Anything that only loads and predicts is
 deterministic.
 
@@ -27,7 +27,7 @@ Eleven of the twenty-two do, and each was executed from a clean checkout rather
 than assumed to work.
 
 - `architecture_comparison.py`
-- `audit_personal_data.py`
+- `audit_personal_data.py` (structural column scan only, see note)
 - `environment_record.py`
 - `experiment_inventory.py`
 - `external_paired.py`
@@ -41,6 +41,15 @@ than assumed to work.
 The other eleven stop at their first read. Nine want the corpus. Two,
 `latency_repeats.py` and `assemble_figures.py`, want the training layout, where
 tokenizers and figures sit at paths this tree does not use.
+
+The privacy audit deserves one caveat. `audit_personal_data.py` runs from a clone
+and scans every shipped table for a column whose values look like names, which is
+how it flags a disclosure. Its second half compares those values against the
+corpus itself to catch a real registration, and that comparison needs the private
+corpus, which is not shipped. From a clone the corpus list is empty, so the
+membership check is inert and only the structural scan runs. That is enough to
+confirm no shipped table still carries a name column, which is what a reader wants
+to verify.
 
 ## What you cannot reproduce from this repository
 

@@ -104,7 +104,7 @@ python analysis/threshold_free_metrics.py   # AUC and Brier
 python analysis/imbalance_protocol.py       # the 120-run robustness check
 python analysis/architecture_comparison.py  # within-level encoder comparisons
 python analysis/external_paired.py          # the external benchmark, paired
-python analysis/audit_personal_data.py      # the privacy scan, over this tree
+python analysis/audit_personal_data.py      # privacy scan (structural, see docs)
 ```
 
 The remaining eleven stop at their first read. Nine need the corpus, and two

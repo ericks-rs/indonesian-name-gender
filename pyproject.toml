@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "indonamegender"
-version = "1.0.1"
+version = "1.0.2"
 description = "Character-level gender classification for Indonesian personal names"
 readme = "README_pypi.md"
 requires-python = ">=3.9"
