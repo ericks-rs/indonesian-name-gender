@@ -33,10 +33,10 @@ Full results are in `results/final/`.
 ## Install
 
 ```bash
-pip install -e .
+pip install indonamegender
 ```
 
-Or with the analysis extras, needed only to regenerate tables and figures.
+From a clone, add the analysis extras to regenerate tables and figures.
 
 ```bash
 pip install -e ".[analysis]"
@@ -57,13 +57,22 @@ recommends for names from outside the source institution. It has the highest
 external F1 at 0.9375 and the lowest CPU latency at 0.3952 milliseconds, and it
 reproduces the stored prediction on all 15,923 evaluation names exactly. It
 trails CharBiGRU internally by 0.04 points, a difference the paper reports as
-not separable. The other seven checkpoints are under `models/`, loaded from
-there rather than downloaded.
+not separable.
+
+The other seven are under `models/` in a clone. From a pip install they are
+fetched once from the `v1.0.0` release and cached under
+`~/.cache/indonamegender/`, so any architecture in the grid can be asked for by
+name.
+
+```python
+GenderPredictor("CharBiGRU")        # bundled? no, downloaded once
+GenderPredictor("WordTransformer")  # same
+```
 
 ## Layout
 
 ```
-src/indonamegender/   inference package, with the bundled model
+src/indonamegender/   inference package, published on PyPI as indonamegender
 experiments/          the two training entry points
 analysis/             statistics, figures and audits over the artifacts
 models/               eight seed-42 checkpoints, one per architecture
