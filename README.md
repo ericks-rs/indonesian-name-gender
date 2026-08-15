@@ -49,17 +49,21 @@ from indonamegender import GenderPredictor
 
 p = GenderPredictor()
 p.predict("GATOTKACA WIRAWAN")
-# {'gender': 'Male', 'confidence': 0.9959, 'model': 'CharBiGRU', ...}
+# {'gender': 'Male', 'confidence': 0.999, 'model': 'CharBiLSTM', ...}
 ```
 
-The bundled model is the seed-42 `CharBiGRU`, and it reproduces the stored
-prediction on all 15,923 evaluation names exactly. The other seven checkpoints
-are under `models/`.
+The bundled model is the seed-42 `CharBiLSTM`, which is the one the paper
+recommends for names from outside the source institution. It has the highest
+external F1 at 0.9375 and the lowest CPU latency at 0.3952 milliseconds, and it
+reproduces the stored prediction on all 15,923 evaluation names exactly. It
+trails CharBiGRU internally by 0.04 points, a difference the paper reports as
+not separable. The other seven checkpoints are under `models/`, loaded from
+there rather than downloaded.
 
 ## Layout
 
 ```
-src/indonamegender/   inference package, the one thing on PyPI
+src/indonamegender/   inference package, with the bundled model
 experiments/          the two training entry points
 analysis/             statistics, figures and audits over the artifacts
 models/               eight seed-42 checkpoints, one per architecture

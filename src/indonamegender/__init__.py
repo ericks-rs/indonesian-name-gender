@@ -11,7 +11,7 @@ Angka F1 di bawah berasal dari rata-rata lima seed pada partisi 2024-2025.
 Quick start:
     from indonamegender import GenderPredictor
 
-    gp = GenderPredictor()  # default CharBiGRU
+    gp = GenderPredictor()  # default CharBiLSTM
     result = gp.predict("BANOWATI LARASATI")
     # {'name': 'BANOWATI LARASATI', 'gender': 'Female', 'confidence': 0.9949}
 """
@@ -21,8 +21,8 @@ __version__ = "0.1.0"
 __all__ = ["GenderPredictor"]
 
 AVAILABLE_MODELS = [
-    "CharBiGRU",       # default, 86,065 params, F1 0.9593
-    "CharBiLSTM",      # 114,097 params, F1 0.9589
+    "CharBiGRU",       # 86,065 params, F1 0.9593
+    "CharBiLSTM",      # default, 114,097 params, F1 0.9589, external 0.9375
     "CharBiRNN",       # 30,001 params, F1 0.9574
     "CharTransformer", # 605,953 params, F1 0.9554
     "WordTransformer", # 6,126,721 params, F1 0.9365

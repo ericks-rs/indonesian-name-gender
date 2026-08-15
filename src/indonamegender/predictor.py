@@ -50,12 +50,12 @@ class GenderPredictor:
     """Indonesian name gender predictor.
 
     Args:
-        model: nama model (default CharBiGRU). Other models auto-download
+        model: nama model (default CharBiLSTM). Other models auto-download
                dari GitHub Releases on first use.
         device: 'cpu' atau 'cuda' (auto-detect kalau None).
     """
 
-    def __init__(self, model: str = "CharBiGRU", device: str = None):
+    def __init__(self, model: str = "CharBiLSTM", device: str = None):
         if model not in MODEL_CONFIGS:
             raise ValueError(
                 f"Unknown model: {model}. Available: {list(MODEL_CONFIGS)}"
@@ -73,9 +73,9 @@ class GenderPredictor:
         kind, embed_level, dim = MODEL_CONFIGS[model]
         tok = self.char_tok if embed_level == "char" else self.word_tok
 
-        # CharBiGRU bundled, others download
-        if model == "CharBiGRU":
-            pt_path = PACKAGE_DATA / "CharBiGRU.pt"
+        # CharBiLSTM bundled, others download
+        if model == "CharBiLSTM":
+            pt_path = PACKAGE_DATA / "CharBiLSTM.pt"
             if not pt_path.exists():
                 pt_path = download_model(model)
         else:
