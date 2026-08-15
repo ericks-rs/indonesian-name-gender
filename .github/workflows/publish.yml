@@ -1,0 +1,50 @@
+# Publish to PyPI through Trusted Publishing, no token stored anywhere.
+#
+# PyPI is configured to trust this repository, this workflow file and the
+# `pypi` environment, and mints a short-lived credential for each run. Nothing
+# secret lives in the repository or in GitHub settings.
+#
+# It runs when a version tag is pushed. The tag must match the version in
+# pyproject.toml, which the build step verifies before anything is uploaded.
+name: publish
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check the tag matches pyproject
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          proj=$(grep -m1 '^version' pyproject.toml | sed -E 's/.*"(.*)".*/\1/')
+          echo "tag=$tag pyproject=$proj"
+          test "$tag" = "$proj" || { echo "tag does not match pyproject version"; exit 1; }
+      - name: Build
+        run: |
+          python -m pip install --upgrade build
+          python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write          # the OIDC token Trusted Publishing exchanges
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
