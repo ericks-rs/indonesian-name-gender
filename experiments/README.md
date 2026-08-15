@@ -9,9 +9,8 @@ These are the scripts that produced the reported results, one per model family.
 | `train_pretrained.py` | IndoBERT, mBERT, XLM-R, fully fine-tuned | `results/tables/transformer_baselines/` |
 | `train_imbalance.py` | the three imbalance strategies over the eight models | `results/tables/imbalance_protocol/` |
 
-All four read the training corpus from `data/splits/`, which is **not shipped**,
-which is not included in this repository. They therefore stop at the
-first `read_csv` from a fresh clone. `docs/DATA.md` states the layout a substitute
+All four read the training corpus from `data/splits/`, which is not included in
+this repository. They therefore stop at the first `read_csv` from a fresh clone. `docs/DATA.md` states the layout a substitute
 corpus must follow. The tokenizers under `tokenizers/` are shipped and are the
 ones fitted on the reported training partition.
 

@@ -24,7 +24,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / "data" / "splits"
 RESULTS_DIR = PROJECT_ROOT / "results"
-TOKENIZERS_DIR = RESULTS_DIR / "tokenizers"
+TOKENIZERS_DIR = PROJECT_ROOT / "tokenizers"
 OUT_DIR = RESULTS_DIR / "tables" / "imbalance_protocol"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
