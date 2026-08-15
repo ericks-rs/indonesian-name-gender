@@ -1,0 +1,230 @@
+{
+  "01": {
+    "folder": "01_main",
+    "scripts": [
+      "program/experiment_class_weights.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 16.4,
+    "n_outputs": 11,
+    "outputs": [
+      "models/CharBiGRU_weighted.pt",
+      "models/CharBiLSTM_weighted.pt",
+      "models/CharBiRNN_weighted.pt",
+      "models/CharTransformer_weighted.pt",
+      "models/WordBiGRU_weighted.pt",
+      "models/WordBiLSTM_weighted.pt",
+      "models/WordBiRNN_weighted.pt",
+      "models/WordTransformer_weighted.pt",
+      "tables/histories_weighted.json",
+      "tables/neural_weighted_only.csv",
+      "tables/predictions_weighted.csv"
+    ]
+  },
+  "02": {
+    "folder": "02_seeds_grid",
+    "scripts": [
+      "program/experiment_multiseed.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 56.1,
+    "n_outputs": 3,
+    "outputs": [
+      "tables/multiseed/multiseed_char_vs_word.csv",
+      "tables/multiseed/multiseed_runs.csv",
+      "tables/multiseed/multiseed_summary.csv"
+    ]
+  },
+  "03": {
+    "folder": "03_seeds_tfidf",
+    "scripts": [
+      "pipeline/seeds_tfidf.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/python.exe",
+    "ok": true,
+    "minutes": 1.3,
+    "n_outputs": 0,
+    "outputs": []
+  },
+  "04": {
+    "folder": "04_seeds_transformers",
+    "scripts": [
+      "pipeline/seeds_transformers.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 542.5,
+    "n_outputs": 3,
+    "outputs": [
+      "models/transformer_baselines/IndoBERT.pt",
+      "models/transformer_baselines/XLM-R.pt",
+      "models/transformer_baselines/mBERT.pt"
+    ]
+  },
+  "05": {
+    "folder": "05_attention_entropy",
+    "scripts": [
+      "program/attention_entropy_fullval.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 0.1,
+    "n_outputs": 3,
+    "outputs": [
+      "tables/attention_entropy_fullval.csv",
+      "tables/attention_entropy_fullval_bylen.csv",
+      "tables/attention_entropy_fullval_detail.csv"
+    ],
+    "fixed": "figure redrawn on base interpreter"
+  },
+  "06": {
+    "folder": "06_error_analysis",
+    "scripts": [
+      "program/error_analysis.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/python.exe",
+    "ok": true,
+    "minutes": 0.0,
+    "n_outputs": 7,
+    "outputs": [
+      "tables/error_analysis/all_errors_CharBiGRU.csv",
+      "tables/error_analysis/error_prone_last_tokens.csv",
+      "tables/error_analysis/error_rate_by_token_count.csv",
+      "tables/error_analysis/error_suffix_profile.csv",
+      "tables/error_analysis/error_vocabulary_novelty.csv",
+      "tables/error_analysis/examples_false_negative.csv",
+      "tables/error_analysis/examples_false_positive.csv"
+    ]
+  },
+  "07": {
+    "folder": "07_external_validation",
+    "scripts": [
+      "program/external_validation_all8.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 0.2,
+    "n_outputs": 1,
+    "outputs": [
+      "tables/external_validation_all8.csv"
+    ]
+  },
+  "08": {
+    "folder": "08_significance",
+    "scripts": [
+      "pipeline/significance.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/python.exe",
+    "ok": true,
+    "minutes": 0.0,
+    "n_outputs": 0,
+    "outputs": []
+  },
+  "09": {
+    "folder": "09_sensitivity",
+    "scripts": [
+      "program/experiment_hyperparam_sensitivity.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 15.8,
+    "n_outputs": 2,
+    "outputs": [
+      "tables/sensitivity/hyperparam_char_word_gap.csv",
+      "tables/sensitivity/hyperparam_sensitivity.csv"
+    ]
+  },
+  "10": {
+    "folder": "10_temporal_drift",
+    "scripts": [
+      "program/temporal_drift/analyze_temporal_patterns.py",
+      "program/temporal_drift/experiment_cross_decade.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 1.4,
+    "n_outputs": 3,
+    "outputs": [
+      "tables/temporal/per_year_f1.csv",
+      "tables/temporal/per_year_f1_pivot.csv",
+      "tables/temporal/suffix_trend_per_window.csv"
+    ],
+    "fixed": "figures redrawn, cross_decade re-run"
+  },
+  "11": {
+    "folder": "11_inference_benchmark",
+    "scripts": [
+      "program/benchmark_inference.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/envs/riset-gender/python.exe",
+    "ok": true,
+    "minutes": 14.1,
+    "n_outputs": 1,
+    "outputs": [
+      "tables/inference_benchmark.csv"
+    ]
+  },
+  "12": {
+    "folder": "12_inference_tfidf",
+    "scripts": [
+      "program/benchmark_inference_tfidf.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/python.exe",
+    "ok": true,
+    "minutes": 0.1,
+    "n_outputs": 1,
+    "outputs": [
+      "tables/inference_benchmark.csv"
+    ]
+  },
+  "13": {
+    "folder": "13_figures",
+    "scripts": [
+      "pipeline/figures_eda.py",
+      "program/regen_figures_weighted.py",
+      "program/generate_attention_weighted.py",
+      "program/generate_external_validation_chart.py",
+      "pipeline/make_figures.py",
+      "pipeline/figures_prior.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/python.exe",
+    "ok": true,
+    "minutes": 0.4,
+    "n_outputs": 19,
+    "outputs": [
+      "figures/01_label_distribution.png",
+      "figures/02_name_length_distribution.png",
+      "figures/03_suffix_analysis_by_gender.png",
+      "figures/04_first_word_distribution.png",
+      "figures/05_model_comparison_bars_w.png",
+      "figures/06_params_vs_f1_w.png",
+      "figures/06_training_curves_w.png",
+      "figures/07_confusion_matrix_CharBiGRU_w.png",
+      "figures/08_accuracy_by_name_length_w.png",
+      "figures/12_external_validation.png",
+      "figures/13_attention_entropy_fullval.png",
+      "figures/13_attention_entropy_w.png",
+      "figures/13a_attn_ahmad_fauzan_w.png",
+      "figures/13a_attn_dewi_kartika_w.png",
+      "figures/14_per_year_f1.png",
+      "figures/14_prior_comparison.png",
+      "figures/suffix_heatmap_female.png",
+      "tables/accuracy_by_name_length_weighted.csv",
+      "tables/attention_entropy_weighted.csv"
+    ]
+  },
+  "14": {
+    "folder": "14_summary",
+    "scripts": [
+      "pipeline/collect_results.py",
+      "pipeline/verify_claims.py"
+    ],
+    "python": "C:/ProgramData/anaconda3/python.exe",
+    "ok": true,
+    "minutes": 0.0,
+    "n_outputs": 0,
+    "outputs": []
+  }
+}

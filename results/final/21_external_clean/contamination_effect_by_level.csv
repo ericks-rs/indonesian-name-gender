@@ -1,0 +1,5 @@
+level,external_full,external_clean,external_clean_dedup,drop_pp,drop_dedup_pp
+character,0.9449,0.9364,0.9346,-0.85,-1.03
+classical,0.9352,0.9242,0.9239,-1.1,-1.13
+pretrained,0.9353,0.9249,0.9232,-1.04,-1.21
+word,0.8535,0.8343,0.8362,-1.92,-1.73

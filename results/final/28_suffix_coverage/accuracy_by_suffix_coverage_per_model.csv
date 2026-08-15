@@ -1,0 +1,9 @@
+model,with_marker,without_marker,diff_pp
+CharBiRNN,96.69,94.78,1.92
+CharBiGRU,96.84,95.02,1.81
+CharBiLSTM,96.79,94.98,1.81
+CharTransformer,96.46,94.58,1.89
+WordBiRNN,95.0,91.4,3.6
+WordBiGRU,95.08,91.49,3.6
+WordBiLSTM,95.16,91.58,3.59
+WordTransformer,95.32,91.83,3.49

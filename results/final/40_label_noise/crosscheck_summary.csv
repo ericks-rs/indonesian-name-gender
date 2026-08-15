@@ -1,0 +1,2 @@
+names_checkable,corpus_names,share_of_corpus_checkable_pct,agree,agree_pct,disagree,disagree_pct,registry_female_benchmark_male,registry_male_benchmark_female,disagreements_in_train,disagreements_in_dev,disagreements_in_test,max_effect_on_test_accuracy_pp,benchmark_names_with_two_labels
+333,202134,0.165,327,98.2,6,1.8,2,4,5,0,1,0.0063,1

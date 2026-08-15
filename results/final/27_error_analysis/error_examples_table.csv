@@ -1,0 +1,15 @@
+case,type,category,tokens,ending,ending_n_training,ending_pct_female,true_label,predicted,share_of_all_261_pct,reason
+FN-1,false negative,misleading ending,3,anto,5931,2.4,female,male,71.6,ending is 98 percent male across 5931 training names
+FN-2,false negative,first token overrides the ending,4,ana,4990,39.0,female,male,11.1,"first token is 100 percent male across 6520 training names, against the ending"
+FN-3,false negative,"ending agrees, cause elsewhere",3,ia,3883,78.4,female,male,10.7,"ending is 78 percent female across 3883 training names, which agrees with the true label, so the error comes from elsewhere"
+FN-4,false negative,ending balanced,3,dani,706,53.3,female,male,3.1,ending is balanced at 53 percent female across 706 training names
+FN-5,false negative,no token seen,3,ung,376,30.1,female,male,0.8,no token appears in training
+FN-6,false negative,ending never seen,4,fann,0,,female,male,1.1,ending never seen in training
+FN-7,false negative,ending rare,4,rohm,2,0.0,female,male,1.1,ending seen only 2 times in training
+FP-1,false positive,misleading ending,3,iani,1924,99.1,male,female,71.6,ending is 99 percent female across 1924 training names
+FP-2,false positive,"ending agrees, cause elsewhere",3,tama,1915,3.4,male,female,10.7,"ending is 97 percent male across 1915 training names, which agrees with the true label, so the error comes from elsewhere"
+FP-3,false positive,first token overrides the ending,3,anto,5931,2.4,male,female,11.1,"first token is 98 percent female across 210 training names, against the ending"
+FP-4,false positive,ending balanced,3,ah,9514,50.4,male,female,3.1,ending is balanced at 50 percent female across 9514 training names
+FP-5,false positive,ending rare,2,ngke,3,33.3,male,female,1.1,ending seen only 3 times in training
+FP-6,false positive,ending never seen,4,fikh,0,,male,female,1.1,ending never seen in training
+FP-7,false positive,misleading ending,3,tari,919,95.6,male,female,71.6,ending is 96 percent female across 919 training names

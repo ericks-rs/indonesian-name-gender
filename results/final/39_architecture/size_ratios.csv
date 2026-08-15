@@ -1,0 +1,13 @@
+Model,Family,Params,Disk_MB,params_over_smallest,disk_over_smallest,smallest_model
+CharBiRNN,paper-char,30001,0.12,1,1,CharBiRNN
+CharBiLSTM,paper-char,114097,0.46,4,4,CharBiRNN
+CharBiGRU,paper-char,86065,0.35,3,3,CharBiRNN
+WordBiRNN,paper-word,2432545,9.73,81,81,CharBiRNN
+WordBiLSTM,paper-word,2544289,10.18,85,85,CharBiRNN
+WordBiGRU,paper-word,2507041,10.03,84,84,CharBiRNN
+CharTransformer,paper-char,605953,2.44,20,20,CharBiRNN
+WordTransformer,paper-word,6126721,24.52,204,204,CharBiRNN
+IndoBERT,pretrained-transformer,124442882,497.84,4148,4149,CharBiRNN
+mBERT,pretrained-transformer,177854978,711.47,5928,5929,CharBiRNN
+XLM-R,pretrained-transformer,278045186,1112.23,9268,9269,CharBiRNN
+TF-IDF+SVM,statistical,50000,3.42,2,28,CharBiRNN

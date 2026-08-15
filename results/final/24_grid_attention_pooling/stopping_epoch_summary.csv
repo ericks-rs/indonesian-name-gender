@@ -1,0 +1,9 @@
+Model,mean,min,max
+CharBiGRU,15.8,14,20
+CharBiLSTM,18.4,15,22
+CharBiRNN,19.2,15,22
+CharTransformer,36.6,28,42
+WordBiGRU,16.4,14,22
+WordBiLSTM,14.6,13,16
+WordBiRNN,17.0,15,22
+WordTransformer,14.6,13,17

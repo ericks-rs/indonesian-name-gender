@@ -1,0 +1,40 @@
+row_id,n_tokens,suffix3,type,category,suspected_benchmark_error,registry_says,registry_n,ending,ending_n_training,ending_pct_female,true_label,mean_prob_female,reason
+1,2,tya,false negative,misleading ending,False,,205,itya,331,7.9,female,0.0321,"ending is 8 percent male across 331 training names, against the true label"
+2,3,ani,false positive,misleading ending,False,,6,rani,599,92.3,male,0.9989,"ending is 92 percent female across 599 training names, against the true label"
+3,3,iwi,false positive,benchmark label disputed,True,female,122,tiwi,682,99.7,male,0.9979,"ending is 100 percent female across 682 training names, against the true label"
+4,3,wan,false negative,misleading ending,False,,48,awan,4117,4.6,female,0.01,"ending is 5 percent male across 4,117 training names, against the true label"
+5,2,rdi,false negative,misleading ending,False,,48,ardi,373,10.2,female,0.0578,"ending is 10 percent male across 373 training names, against the true label"
+6,2,aty,false positive,benchmark label disputed,True,female,69,waty,178,99.4,male,0.9994,"ending is 99 percent female across 178 training names, against the true label"
+7,1,rah,false positive,misleading ending,False,,0,irah,93,96.8,male,0.9971,"ending is 97 percent female across 93 training names, against the true label"
+8,1,rah,false positive,misleading ending,False,,0,irah,93,96.8,male,0.9971,"ending is 97 percent female across 93 training names, against the true label"
+9,2,ini,false positive,misleading ending,False,,973,ini,1622,95.2,male,0.9867,"ending is 95 percent female across 1,622 training names, against the true label"
+10,2,kah,false positive,ending balanced,False,,7,kah,77,53.2,male,0.9796,ending is balanced at 53 percent female across 77 training names
+11,3,ani,false positive,benchmark label disputed,True,female,129,dani,706,53.3,male,0.999,ending is balanced at 53 percent female across 706 training names
+12,1,nah,false positive,misleading ending,False,,0,inah,116,96.6,male,0.9993,"ending is 97 percent female across 116 training names, against the true label"
+13,2,nti,false positive,misleading ending,False,,20,anti,3654,99.3,male,0.9981,"ending is 99 percent female across 3,654 training names, against the true label"
+14,3,ila,false positive,benchmark label disputed,True,female,78,hila,53,66.0,male,0.9976,"ending is 66 percent female across 53 training names, which agrees with the true label"
+15,2,ina,false positive,misleading ending,False,,0,tina,305,97.4,male,0.9994,"ending is 97 percent female across 305 training names, against the true label"
+16,2,ani,false positive,"ending agrees, cause elsewhere",False,,14,hani,630,60.5,male,0.9984,"ending is 60 percent female across 630 training names, which agrees with the true label"
+17,1,ini,false positive,misleading ending,False,,0,ini,1622,95.2,male,0.9905,"ending is 95 percent female across 1,622 training names, against the true label"
+18,3,uti,false positive,benchmark label disputed,True,female,186,tuti,659,99.8,male,0.9994,"ending is 100 percent female across 659 training names, against the true label"
+19,2,ika,false positive,"ending agrees, cause elsewhere",False,,41,nika,82,75.6,male,0.9448,"ending is 76 percent female across 82 training names, which agrees with the true label"
+20,2,ari,false positive,benchmark label disputed,True,female,76,tari,919,95.6,male,0.999,"ending is 96 percent female across 919 training names, against the true label"
+21,1,ati,false positive,misleading ending,False,,1,iati,346,99.1,male,0.9874,"ending is 99 percent female across 346 training names, against the true label"
+22,1,yah,false positive,misleading ending,False,,0,iyah,487,98.2,male,0.9985,"ending is 98 percent female across 487 training names, against the true label"
+23,2,rni,false positive,benchmark label disputed,True,female,484,arni,98,94.9,male,0.9969,"ending is 95 percent female across 98 training names, against the true label"
+24,2,tri,false positive,misleading ending,False,,13,stri,61,96.7,male,0.9913,"ending is 97 percent female across 61 training names, against the true label"
+25,1,rah,false positive,misleading ending,False,,0,irah,93,96.8,male,0.9809,"ending is 97 percent female across 93 training names, against the true label"
+26,2,tri,false positive,misleading ending,False,,21,itri,582,97.4,male,0.9969,"ending is 97 percent female across 582 training names, against the true label"
+27,2,eni,false positive,misleading ending,False,,25,aeni,337,91.4,male,0.9992,"ending is 91 percent female across 337 training names, against the true label"
+28,3,kia,false positive,"ending agrees, cause elsewhere",False,,0,kia,57,66.7,male,0.9408,"ending is 67 percent female across 57 training names, which agrees with the true label"
+29,2,ani,false positive,misleading ending,False,,90,iani,1924,99.1,male,0.9964,"ending is 99 percent female across 1,924 training names, against the true label"
+30,2,tri,false positive,misleading ending,False,,3,utri,1947,99.3,male,0.9832,"ending is 99 percent female across 1,947 training names, against the true label"
+31,1,tin,false positive,"ending agrees, cause elsewhere",False,,0,atin,90,73.3,male,0.8637,"ending is 73 percent female across 90 training names, which agrees with the true label"
+32,1,yem,false negative,ending balanced,False,,0,em,38,50.0,female,0.1316,ending is balanced at 50 percent female across 38 training names
+33,1,jem,false negative,ending balanced,False,,0,em,38,50.0,female,0.0402,ending is balanced at 50 percent female across 38 training names
+34,1,sni,false positive,ending balanced,False,,7,sni,53,47.2,male,0.9158,ending is balanced at 47 percent female across 53 training names
+35,1,nem,false negative,ending balanced,False,,0,em,38,50.0,female,0.0169,ending is balanced at 50 percent female across 38 training names
+36,1,sni,false positive,ending balanced,False,,0,sni,53,47.2,male,0.9491,ending is balanced at 47 percent female across 53 training names
+37,3,ang,false negative,benchmark label disputed,True,male,433,tang,62,21.0,female,0.0272,"ending is 21 percent male across 62 training names, which agrees with the true label"
+38,2,mah,false positive,misleading ending,False,,21,amah,42,83.3,male,0.9249,"ending is 83 percent female across 42 training names, against the true label"
+39,1,jem,false negative,ending balanced,False,,0,em,38,50.0,female,0.1447,ending is balanced at 50 percent female across 38 training names

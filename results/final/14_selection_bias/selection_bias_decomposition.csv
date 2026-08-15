@@ -1,0 +1,4 @@
+effect,mean_pp,sd_pp,ci95_lo_pp,ci95_hi_pp
+"training window, 1990-2023 against 1990-2021",0.201,0.069,0.115,0.287
+"selection signal, 2024-2025 against 2022-2023",0.066,0.065,-0.015,0.147
+both changes together,0.267,0.106,0.135,0.399

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: >-
+  A Cross-Architecture Attention Analysis of Character-Level and Word-Level
+  Models for Gender Classification from Indonesian Names
+message: If you use this software or its results, please cite the paper.
+type: software
+authors:
+  - family-names: Swedia
+    given-names: Ericks Rachmat
+    email: ericks_rs@staff.gunadarma.ac.id
+    affiliation: Universitas Gunadarma
+license: MIT
+version: 1.0.0
+repository-code: "https://github.com/ericks-rs/indonesian-name-gender"

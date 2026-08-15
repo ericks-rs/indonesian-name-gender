@@ -1,0 +1,28 @@
+key,claim,submitted,recomputed,unchanged
+corpus_total,corpus size,"202,134","202,134",yes
+train_n,training names,"186,236","169,329",NO
+dev_n,development names,,"16,882",
+val_n,evaluation names,"16,763","15,923",NO
+split_disjoint,names shared by any two partitions,,0,yes
+split_sums,train + dev + test equals corpus,,"202,134",yes
+tokens_2_5_pct,names with two to five tokens,,96.32%,
+mean_chars,mean name length in characters,,17.52,
+f1_charbigru_5seed,"CharBiGRU F1, five seeds",,0.9593,
+f1_charbilstm_5seed,"CharBiLSTM F1, five seeds",,0.9589,
+f1_charbirnn_5seed,"CharBiRNN F1, five seeds",,0.9574,
+f1_chartransformer_5seed,"CharTransformer F1, five seeds",,0.9554,
+char_f1_lowest,"lowest character-level F1, five seeds",,0.9554,
+char_f1_highest,"highest character-level F1, five seeds",,0.9593,
+char_word_gap_pp,"worst character model over best word model, pp",2.08,1.89,NO
+lift_over_own_baseline_pp,"lift over the majority baseline, worst character model, against 25.69 for reference [11]",4.18 (as a raw gain over 92.25),44.66,NO
+param_reduction_word,"largest word model over smallest character model, parameters",76x,204.22x,NO
+param_ratio_min,"smallest pretrained parameter ratio, character family","1,446",205,NO
+param_ratio_max,"largest pretrained parameter ratio, character family","3,231","9,268",NO
+f1_IndoBERT,"IndoBERT F1, five seeds",,0.9578,
+f1_mBERT,"mBERT F1, five seeds",,0.9608,
+f1_XLM-R,"XLM-R F1, five seeds",,0.9617,
+final_char_mass,"attention on the final character, recurrent character models",,0.1386 to 0.1449,
+final_char_ratio,final character over uniform attention,,2.59x to 2.70x,
+word_first_token,"attention on the first token, word models",,0.4475 to 0.4959,
+chartrf_not_tail,"character Transformer, final character over uniform",,"1.52x, p=0.235",
+uniform_char,uniform attention per character position,,0.0536,

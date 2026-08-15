@@ -1,0 +1,2 @@
+runs,strategies,models,seeds,any_strategy_beats_weighting,cells_favouring_weighting,cells_surviving_holm,largest_gain_pp,largest_loss_pp
+120,3,8,5,False,7,1,0.10144,-1.03588

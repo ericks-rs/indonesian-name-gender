@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riset Nama Gender - Demo</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Klasifikasi Gender dari Nama Indonesia</h1>
+      <p class="subtitle">Char-Embedding vs Word-Embedding: A Comparative Study</p>
+      <p class="meta" id="device-info">Loading...</p>
+    </header>
+
+    <section class="input-section">
+      <div class="input-row">
+        <input
+          type="text"
+          id="name-input"
+          placeholder="Masukkan nama (contoh: Banowati Larasati)"
+          autocomplete="off"
+          autofocus
+        >
+        <button id="predict-btn" class="primary">Prediksi</button>
+      </div>
+      <div class="examples">
+        Contoh:
+        <button class="example" data-name="BANOWATI LARASATI">Banowati Larasati</button>
+        <button class="example" data-name="ANTAREJA NURUDIN">Muhammad Ali</button>
+        <button class="example" data-name="SRIKANDI PALUPI">Srikandi Palupi</button>
+        <button class="example" data-name="BUDI">Budi</button>
+        <button class="example" data-name="WULAN">Wulan</button>
+      </div>
+    </section>
+
+    <section class="tabs">
+      <button class="tab-btn active" data-tab="single">Single Model</button>
+      <button class="tab-btn" data-tab="compare">Compare 8 Models</button>
+      <button class="tab-btn" data-tab="attention">Attention Weights</button>
+    </section>
+
+    <!-- Tab 1: Single Prediction -->
+    <section class="tab-content active" id="tab-single">
+      <div class="result-card" id="single-result">
+        <p class="placeholder">Masukkan nama dan klik <strong>Prediksi</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Tab 2: Compare All 8 Models -->
+    <section class="tab-content" id="tab-compare">
+      <div id="compare-result">
+        <p class="placeholder">Masukkan nama dan klik <strong>Prediksi</strong> untuk membandingkan 8 model.</p>
+      </div>
+    </section>
+
+    <!-- Tab 3: Attention Weights -->
+    <section class="tab-content" id="tab-attention">
+      <div class="attention-controls">
+        <label>Model:</label>
+        <select id="attention-model">
+          <option value="CharBiLSTM" selected>CharBiLSTM</option>
+          <option value="CharBiRNN">CharBiRNN</option>
+          <option value="CharBiGRU">CharBiGRU</option>
+          <option value="CharTransformer">CharTransformer</option>
+          <option value="WordBiLSTM">WordBiLSTM</option>
+          <option value="WordBiGRU">WordBiGRU</option>
+          <option value="WordBiRNN">WordBiRNN</option>
+          <option value="WordTransformer">WordTransformer</option>
+        </select>
+      </div>
+      <div id="attention-result">
+        <p class="placeholder">Pilih model dan masukkan nama untuk lihat <strong>karakter mana yang paling diperhatikan model</strong>.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Dataset: 202,134 nama Indonesia (1990-2025) &middot;
+        Train 169,329 (1990-2021) &middot; Dev 16,882 (2022-2023) &middot;
+        Uji 15,923 (2024-2025) &middot;
+        F1 model character: <strong>0.9554 sampai 0.9593</strong> (rata-rata 5 seed)
+      </p>
+    </footer>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

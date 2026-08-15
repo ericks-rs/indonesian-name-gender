@@ -1,0 +1,113 @@
+Family,Variant,Model,Level,Config,Params,Dev_F1,Dev_Accuracy,Test_F1,Test_Accuracy,Best_epoch,Train_s
+recurrent,paper config,CharBiRNN,char,h192 e48 L1 d0.3,30001,0.963345,0.964637,0.955549,0.955599,14,65.9
+recurrent,paper config,CharBiLSTM,char,h192 e48 L1 d0.3,114097,0.967356,0.968309,0.95946,0.959241,12,64.9
+recurrent,paper config,CharBiGRU,char,h192 e48 L1 d0.3,86065,0.967923,0.968902,0.960913,0.960623,8,49.1
+recurrent,paper config,WordBiRNN,word,h192 e96 L1 d0.3,2432545,0.938989,0.940706,0.929711,0.929473,10,59.1
+recurrent,paper config,WordBiLSTM,word,h192 e96 L1 d0.3,2544289,0.937771,0.938751,0.934025,0.932927,8,47.9
+recurrent,paper config,WordBiGRU,word,h192 e96 L1 d0.3,2507041,0.937338,0.938337,0.935153,0.934058,8,46.5
+recurrent,lr 5e-4,CharBiRNN,char,h192 e48 L1 d0.3,30001,0.964465,0.965525,0.958523,0.958237,28,110.0
+recurrent,lr 5e-4,CharBiLSTM,char,h192 e48 L1 d0.3,114097,0.965961,0.967125,0.957879,0.957797,15,74.0
+recurrent,lr 5e-4,CharBiGRU,char,h192 e48 L1 d0.3,86065,0.966701,0.967836,0.959294,0.959179,17,79.0
+recurrent,lr 5e-4,WordBiRNN,word,h192 e96 L1 d0.3,2432545,0.93776,0.938811,0.932122,0.931043,20,82.9
+recurrent,lr 5e-4,WordBiLSTM,word,h192 e96 L1 d0.3,2544289,0.936152,0.937389,0.933524,0.932802,18,79.6
+recurrent,lr 5e-4,WordBiGRU,word,h192 e96 L1 d0.3,2507041,0.935803,0.936974,0.933399,0.932362,20,85.0
+recurrent,lr 2e-3,CharBiRNN,char,h192 e48 L1 d0.3,30001,0.963927,0.964874,0.958453,0.958048,9,48.6
+recurrent,lr 2e-3,CharBiLSTM,char,h192 e48 L1 d0.3,114097,0.968101,0.969139,0.961796,0.961628,9,53.1
+recurrent,lr 2e-3,CharBiGRU,char,h192 e48 L1 d0.3,86065,0.967123,0.968132,0.96013,0.959932,5,37.8
+recurrent,lr 2e-3,WordBiRNN,word,h192 e96 L1 d0.3,2432545,0.940349,0.941239,0.935765,0.934748,6,38.3
+recurrent,lr 2e-3,WordBiLSTM,word,h192 e96 L1 d0.3,2544289,0.939644,0.940706,0.934662,0.933681,5,36.5
+recurrent,lr 2e-3,WordBiGRU,word,h192 e96 L1 d0.3,2507041,0.938496,0.939403,0.934634,0.933492,6,39.1
+recurrent,hidden 96,CharBiRNN,char,h96 e48 L1 d0.3,11185,0.959735,0.961142,0.953044,0.952961,17,73.8
+recurrent,hidden 96,CharBiLSTM,char,h96 e48 L1 d0.3,39409,0.96499,0.966118,0.95947,0.959304,17,77.0
+recurrent,hidden 96,CharBiGRU,char,h96 e48 L1 d0.3,30001,0.965446,0.966532,0.958742,0.958488,18,77.4
+recurrent,hidden 96,WordBiRNN,word,h96 e96 L1 d0.3,2409121,0.940574,0.941595,0.935488,0.93456,13,60.5
+recurrent,hidden 96,WordBiLSTM,word,h96 e96 L1 d0.3,2451169,0.939924,0.941832,0.934429,0.934372,11,54.9
+recurrent,hidden 96,WordBiGRU,word,h96 e96 L1 d0.3,2437153,0.938978,0.940232,0.934293,0.933492,9,48.7
+recurrent,hidden 384,CharBiRNN,char,h384 e48 L1 d0.3,95281,0.965366,0.966355,0.958279,0.95786,9,49.7
+recurrent,hidden 384,CharBiLSTM,char,h384 e48 L1 d0.3,374065,0.967378,0.968487,0.960331,0.960246,9,226.1
+recurrent,hidden 384,CharBiGRU,char,h384 e48 L1 d0.3,281137,0.967322,0.968487,0.960206,0.960183,9,112.7
+recurrent,hidden 384,WordBiRNN,word,h384 e96 L1 d0.3,2507041,0.937447,0.938396,0.931822,0.930855,8,46.8
+recurrent,hidden 384,WordBiLSTM,word,h384 e96 L1 d0.3,2841121,0.935519,0.936856,0.930872,0.930164,8,69.1
+recurrent,hidden 384,WordBiGRU,word,h384 e96 L1 d0.3,2729761,0.935511,0.936856,0.929674,0.929033,8,57.4
+recurrent,dropout 0.1,CharBiRNN,char,h192 e48 L1 d0.1,30001,0.963185,0.9644,0.95825,0.958174,13,61.5
+recurrent,dropout 0.1,CharBiLSTM,char,h192 e48 L1 d0.1,114097,0.967518,0.968428,0.959417,0.959053,10,56.2
+recurrent,dropout 0.1,CharBiGRU,char,h192 e48 L1 d0.1,86065,0.967769,0.968665,0.961132,0.960686,8,47.9
+recurrent,dropout 0.1,WordBiRNN,word,h192 e96 L1 d0.1,2432545,0.937644,0.93887,0.93192,0.931043,10,51.0
+recurrent,dropout 0.1,WordBiLSTM,word,h192 e96 L1 d0.1,2544289,0.937703,0.938633,0.933736,0.93255,6,40.0
+recurrent,dropout 0.1,WordBiGRU,word,h192 e96 L1 d0.1,2507041,0.936034,0.93733,0.93268,0.931797,9,49.3
+recurrent,dropout 0.5,CharBiRNN,char,h192 e48 L1 d0.5,30001,0.964471,0.965585,0.957045,0.95698,12,58.0
+recurrent,dropout 0.5,CharBiLSTM,char,h192 e48 L1 d0.5,114097,0.967505,0.968546,0.958122,0.957985,9,52.9
+recurrent,dropout 0.5,CharBiGRU,char,h192 e48 L1 d0.5,86065,0.967534,0.968369,0.960526,0.960058,12,61.4
+recurrent,dropout 0.5,WordBiRNN,word,h192 e96 L1 d0.5,2432545,0.939438,0.941239,0.930676,0.930541,10,51.5
+recurrent,dropout 0.5,WordBiLSTM,word,h192 e96 L1 d0.5,2544289,0.938808,0.940054,0.934535,0.933869,10,53.3
+recurrent,dropout 0.5,WordBiGRU,word,h192 e96 L1 d0.5,2507041,0.936446,0.937744,0.933979,0.933241,10,52.5
+recurrent,embedding halved,CharBiRNN,char,h192 e24 L1 d0.3,24601,0.962705,0.963867,0.955964,0.955599,15,67.7
+recurrent,embedding halved,CharBiLSTM,char,h192 e24 L1 d0.3,94873,0.966128,0.967125,0.959422,0.959116,13,67.1
+recurrent,embedding halved,CharBiGRU,char,h192 e24 L1 d0.3,71449,0.965168,0.966177,0.956815,0.956604,8,48.0
+recurrent,embedding halved,WordBiRNN,word,h192 e48 L1 d0.3,1225873,0.935007,0.936204,0.93434,0.933367,13,62.0
+recurrent,embedding halved,WordBiLSTM,word,h192 e48 L1 d0.3,1309969,0.937869,0.938988,0.932559,0.931483,13,64.0
+recurrent,embedding halved,WordBiGRU,word,h192 e48 L1 d0.3,1281937,0.933583,0.93496,0.931721,0.930855,11,56.4
+recurrent,embedding doubled,CharBiRNN,char,h192 e96 L1 d0.3,40801,0.965259,0.966414,0.958234,0.958174,15,68.7
+recurrent,embedding doubled,CharBiLSTM,char,h192 e96 L1 d0.3,152545,0.968746,0.969672,0.959771,0.95943,12,63.6
+recurrent,embedding doubled,CharBiGRU,char,h192 e96 L1 d0.3,115297,0.966742,0.967836,0.959754,0.959681,15,69.6
+recurrent,embedding doubled,WordBiRNN,word,h192 e192 L1 d0.3,4845889,0.935591,0.936915,0.935004,0.934183,6,39.0
+recurrent,embedding doubled,WordBiLSTM,word,h192 e192 L1 d0.3,5012929,0.938998,0.940291,0.937345,0.93657,8,46.8
+recurrent,embedding doubled,WordBiGRU,word,h192 e192 L1 d0.3,4957249,0.938945,0.939936,0.936265,0.935188,6,40.1
+recurrent,two layers,CharBiRNN,char,h192 e48 L2 d0.3,85681,0.968102,0.969198,0.960733,0.960686,16,75.0
+recurrent,two layers,CharBiLSTM,char,h192 e48 L2 d0.3,336817,0.967071,0.968132,0.961827,0.961691,9,60.7
+recurrent,two layers,CharBiGRU,char,h192 e48 L2 d0.3,253105,0.967534,0.968428,0.961899,0.961502,8,54.2
+recurrent,two layers,WordBiRNN,word,h192 e96 L2 d0.3,2488225,0.936541,0.937804,0.931879,0.93098,9,50.2
+recurrent,two layers,WordBiLSTM,word,h192 e96 L2 d0.3,2767009,0.936317,0.937626,0.931981,0.931357,7,47.3
+recurrent,two layers,WordBiGRU,word,h192 e96 L2 d0.3,2674081,0.935198,0.936323,0.932369,0.931294,6,42.6
+recurrent,three layers,CharBiRNN,char,h192 e48 L3 d0.3,141361,0.969519,0.970442,0.962251,0.962005,24,108.5
+recurrent,three layers,CharBiLSTM,char,h192 e48 L3 d0.3,559537,0.968164,0.969139,0.963158,0.963009,12,84.1
+recurrent,three layers,CharBiGRU,char,h192 e48 L3 d0.3,420145,0.966862,0.967895,0.96169,0.961502,9,67.0
+recurrent,three layers,WordBiRNN,word,h192 e96 L3 d0.3,2543905,0.938148,0.939225,0.931005,0.930038,13,67.0
+recurrent,three layers,WordBiLSTM,word,h192 e96 L3 d0.3,2989729,0.935714,0.937093,0.932339,0.931608,6,47.1
+recurrent,three layers,WordBiGRU,word,h192 e96 L3 d0.3,2841121,0.936077,0.937448,0.930672,0.929976,7,48.6
+recurrent,four layers,CharBiRNN,char,h192 e48 L4 d0.3,197041,0.968261,0.969376,0.960899,0.960874,19,92.8
+recurrent,four layers,CharBiLSTM,char,h192 e48 L4 d0.3,782257,0.967404,0.968309,0.961232,0.960937,12,97.6
+recurrent,four layers,CharBiGRU,char,h192 e48 L4 d0.3,587185,0.968843,0.969731,0.962498,0.96213,9,78.6
+recurrent,four layers,WordBiRNN,word,h192 e96 L4 d0.3,2599585,0.938928,0.939818,0.932364,0.931043,10,58.8
+recurrent,four layers,WordBiLSTM,word,h192 e96 L4 d0.3,3212449,0.936706,0.937744,0.932095,0.931106,14,84.1
+recurrent,four layers,WordBiGRU,word,h192 e96 L4 d0.3,3008161,0.93547,0.93656,0.93025,0.929159,6,48.4
+recurrent,two layers wide,CharBiRNN,char,h384 e48 L2 d0.3,317233,0.967793,0.968665,0.960408,0.959995,12,69.9
+recurrent,two layers wide,CharBiLSTM,char,h384 e48 L2 d0.3,1261873,0.96808,0.968961,0.962109,0.961816,8,400.9
+recurrent,two layers wide,CharBiGRU,char,h384 e48 L2 d0.3,946993,0.967742,0.968783,0.961437,0.961314,6,155.6
+recurrent,two layers wide,WordBiRNN,word,h384 e96 L2 d0.3,2728993,0.937081,0.938337,0.932356,0.931608,10,57.5
+recurrent,two layers wide,WordBiLSTM,word,h384 e96 L2 d0.3,3728929,0.935457,0.936619,0.931766,0.930729,9,104.4
+recurrent,two layers wide,WordBiGRU,word,h384 e96 L2 d0.3,3395617,0.935248,0.936441,0.930555,0.929473,14,100.0
+recurrent,wide and deep,CharBiRNN,char,h384 e96 L3 d0.3,559201,0.969002,0.969909,0.963176,0.962947,12,82.3
+recurrent,wide and deep,CharBiLSTM,char,h384 e96 L3 d0.3,2224993,0.968236,0.969316,0.960822,0.960749,10,680.3
+recurrent,wide and deep,CharBiGRU,char,h384 e96 L3 d0.3,1669729,0.968067,0.969198,0.96206,0.962067,8,261.9
+recurrent,wide and deep,WordBiRNN,word,h384 e192 L3 d0.3,5382721,0.936304,0.937685,0.932198,0.931483,6,45.5
+recurrent,wide and deep,WordBiLSTM,word,h384 e192 L3 d0.3,7159105,0.937428,0.938692,0.932746,0.931922,10,148.3
+recurrent,wide and deep,WordBiGRU,word,h384 e192 L3 d0.3,6566977,0.936727,0.93727,0.934111,0.932613,6,75.4
+transformer,paper config,CharTransformer,char,d128 L3 h8 ff4 d0.3,605953,0.960844,0.961971,0.956381,0.956101,26,244.4
+transformer,paper config,WordTransformer,word,d192 L3 h8 ff4 d0.3,6126721,0.939266,0.94041,0.938583,0.9377,7,63.3
+transformer,lr 5e-4,CharTransformer,char,d128 L3 h8 ff4 d0.3,605953,0.958739,0.959839,0.952008,0.951454,31,283.1
+transformer,lr 5e-4,WordTransformer,word,d192 L3 h8 ff4 d0.3,6126721,0.937455,0.938514,0.936036,0.935,10,74.5
+transformer,lr 2e-3,CharTransformer,char,d128 L3 h8 ff4 d0.3,605953,0.962425,0.963511,0.957272,0.956792,27,252.7
+transformer,lr 2e-3,WordTransformer,word,d192 L3 h8 ff4 d0.3,6126721,0.941638,0.942661,0.938917,0.938077,7,60.3
+transformer,dim halved,CharTransformer,char,d64 L3 h8 ff4 d0.3,155521,0.951528,0.952849,0.94312,0.942473,47,251.0
+transformer,dim halved,WordTransformer,word,d96 L3 h8 ff4 d0.3,2731585,0.940086,0.941061,0.936291,0.935251,19,108.4
+transformer,dim doubled,CharTransformer,char,d256 L3 h8 ff4 d0.3,2391553,0.963763,0.964815,0.956879,0.956541,30,620.4
+transformer,dim doubled,WordTransformer,word,d384 L3 h8 ff4 d0.3,14907649,0.940127,0.94118,0.936908,0.936005,11,118.5
+transformer,one layer,CharTransformer,char,d128 L1 h8 ff4 d0.3,209409,0.954675,0.955752,0.948501,0.948,46,197.6
+transformer,one layer,WordTransformer,word,d192 L1 h8 ff4 d0.3,5236993,0.940181,0.940943,0.937377,0.936067,9,55.0
+transformer,two layers,CharTransformer,char,d128 L2 h8 ff4 d0.3,407681,0.960044,0.961083,0.955507,0.954971,32,203.4
+transformer,two layers,WordTransformer,word,d192 L2 h8 ff4 d0.3,5681857,0.938331,0.939284,0.93824,0.937072,8,57.4
+transformer,six layers,CharTransformer,char,d128 L6 h8 ff4 d0.3,1200769,0.963319,0.964281,0.957428,0.956918,30,522.6
+transformer,six layers,WordTransformer,word,d192 L6 h8 ff4 d0.3,7461313,0.938741,0.940054,0.938135,0.937323,12,118.3
+transformer,heads 4,CharTransformer,char,d128 L3 h4 ff4 d0.3,605953,0.962773,0.963808,0.955586,0.955159,29,239.9
+transformer,heads 4,WordTransformer,word,d192 L3 h4 ff4 d0.3,6126721,0.938956,0.93964,0.937084,0.935816,9,68.9
+transformer,heads 16,CharTransformer,char,d128 L3 h16 ff4 d0.3,605953,0.958887,0.960076,0.952024,0.951705,23,268.4
+transformer,heads 16,WordTransformer,word,d192 L3 h16 ff4 d0.3,6126721,0.939473,0.940588,0.936892,0.936005,10,79.7
+transformer,ff x2,CharTransformer,char,d128 L3 h8 ff2 d0.3,408577,0.962796,0.963926,0.954543,0.954217,38,283.7
+transformer,ff x2,WordTransformer,word,d192 L3 h8 ff2 d0.3,5683201,0.939026,0.939936,0.937901,0.936821,10,72.0
+transformer,ff x8,CharTransformer,char,d128 L3 h8 ff8 d0.3,1000705,0.96375,0.964815,0.957876,0.957546,29,348.5
+transformer,ff x8,WordTransformer,word,d192 L3 h8 ff8 d0.3,7013761,0.939445,0.940291,0.938141,0.937072,13,93.4
+transformer,dropout 0.1,CharTransformer,char,d128 L3 h8 ff4 d0.1,605953,0.95699,0.958358,0.951255,0.951077,18,184.3
+transformer,dropout 0.1,WordTransformer,word,d192 L3 h8 ff4 d0.1,6126721,0.937224,0.938455,0.936336,0.935376,7,60.7
+transformer,dropout 0.5,CharTransformer,char,d128 L3 h8 ff4 d0.5,605953,0.957044,0.958062,0.951426,0.9507,38,336.4
+transformer,dropout 0.5,WordTransformer,word,d192 L3 h8 ff4 d0.5,6126721,0.941651,0.942602,0.938022,0.937135,19,115.0

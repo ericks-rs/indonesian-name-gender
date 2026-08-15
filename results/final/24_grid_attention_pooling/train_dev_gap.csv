@@ -1,0 +1,9 @@
+Model,train_f1,dev_f1,gap_pp
+CharBiGRU,0.983,0.9657,1.73
+CharBiLSTM,0.9839,0.9652,1.87
+CharBiRNN,0.977,0.9624,1.46
+CharTransformer,0.9786,0.9615,1.71
+WordBiGRU,0.9616,0.9349,2.67
+WordBiLSTM,0.9619,0.9353,2.66
+WordBiRNN,0.9589,0.9355,2.34
+WordTransformer,0.961,0.9383,2.27

@@ -1,0 +1,4 @@
+group,n,share_pct,mean_chars,mean_tokens,pct_female,pct_listed_suffix,pct_all_tokens_unseen,mean_unseen_tokens
+always correct,14158,88.92,19.96,2.9,50.08,24.36,1.82,0.434
+disputed,1504,9.45,19.89,2.87,53.06,18.15,7.58,0.85
+always wrong,261,1.64,19.18,2.83,78.93,23.75,3.07,0.456

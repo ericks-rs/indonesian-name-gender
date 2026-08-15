@@ -1,0 +1,9 @@
+check,result,ok,boot_seconds
+GET /api/models,"8 models, default CharBiLSTM",True,5.1
+POST /api/predict,Perempuan at 0.9282,True,5.1
+POST /api/compare,8 models answered,True,5.1
+POST /api/attention,8 weights summing to 1.0000,True,5.1
+GET /,"200, 3462 bytes",True,5.1
+GET /static/style.css,"200, 7582 bytes",True,5.1
+GET /static/script.js,"200, 9210 bytes",True,5.1
+"predictions against stored, first 200 names",200 of 200 agree,True,5.1

@@ -1,0 +1,11 @@
+row_id,n_tokens,suffix3,type,category,suspected_benchmark_error,registry_says,registry_n,ending,ending_n_training,ending_pct_female,true_label,mean_prob_female,reason,share_of_all_pct
+1,1,yem,false negative,ending balanced,False,,0,em,38,50.0,female,0.1316,ending is balanced at 50 percent female across 38 training names,22.6
+2,3,wan,false negative,misleading ending,False,,48,awan,4117,4.6,female,0.01,"ending is 5 percent male across 4,117 training names, against the true label",64.5
+3,2,rdi,false negative,misleading ending,False,,48,ardi,373,10.2,female,0.0578,"ending is 10 percent male across 373 training names, against the true label",64.5
+4,2,tya,false negative,misleading ending,False,,205,itya,331,7.9,female,0.0321,"ending is 8 percent male across 331 training names, against the true label",64.5
+5,2,nti,false positive,misleading ending,False,,20,anti,3654,99.3,male,0.9981,"ending is 99 percent female across 3,654 training names, against the true label",64.5
+6,2,ani,false positive,"ending agrees, cause elsewhere",False,,14,hani,630,60.5,male,0.9984,"ending is 60 percent female across 630 training names, which agrees with the true label",12.9
+7,2,kah,false positive,ending balanced,False,,7,kah,77,53.2,male,0.9796,ending is balanced at 53 percent female across 77 training names,22.6
+8,2,tri,false positive,misleading ending,False,,3,utri,1947,99.3,male,0.9832,"ending is 99 percent female across 1,947 training names, against the true label",64.5
+9,1,tin,false positive,"ending agrees, cause elsewhere",False,,0,atin,90,73.3,male,0.8637,"ending is 73 percent female across 90 training names, which agrees with the true label",12.9
+10,1,sni,false positive,ending balanced,False,,7,sni,53,47.2,male,0.9158,ending is balanced at 47 percent female across 53 training names,22.6

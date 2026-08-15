@@ -1,0 +1,5 @@
+partition,names,records,male,female,male_pct,female_pct,male_to_female,first_year_from,first_year_to,last_year_max,names_recorded_again_later,pct_recorded_again,mean_freq_recurring,mean_freq_single
+train,169329,193794,103281,66048,60.99,39.01,1.56,1990,2021,2023,11236,6.64,2.85,1.02
+dev,16882,16927,8652,8230,51.25,48.75,1.05,2022,2023,2023,21,0.12,2.05,1.0
+test,15923,15976,7828,8095,49.16,50.84,0.97,2024,2025,2025,22,0.14,2.0,1.0
+total,202134,226697,119761,82373,59.25,40.75,1.45,1990,2025,2025,11279,5.58,2.85,1.02

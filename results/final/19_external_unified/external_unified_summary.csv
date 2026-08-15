@@ -1,0 +1,15 @@
+Family,Model,internal,internal_sd,external,external_sd,drop_pp
+from scratch,CharBiLSTM,0.9589,0.0007,0.9476,0.0025,1.13
+from scratch,CharTransformer,0.9554,0.0018,0.9474,0.0017,0.8
+classical,TF-IDF+SVM,0.9628,0.0,0.946,0.0,1.68
+from scratch,CharBiGRU,0.9593,0.0012,0.9449,0.0017,1.44
+classical,TF-IDF+LR,0.9602,0.0,0.944,0.0,1.62
+from scratch,CharBiRNN,0.9574,0.001,0.9396,0.0048,1.78
+pretrained,XLM-R,0.9617,0.0012,0.9368,0.0033,2.49
+pretrained,mBERT,0.9608,0.0013,0.9353,0.0057,2.55
+pretrained,IndoBERT,0.9578,0.0006,0.9339,0.0027,2.39
+classical,TF-IDF+RF,0.9196,0.0024,0.9157,0.0026,0.39
+from scratch,WordTransformer,0.9365,0.0014,0.8554,0.002,8.11
+from scratch,WordBiRNN,0.9323,0.0034,0.8532,0.0026,7.91
+from scratch,WordBiLSTM,0.9344,0.0011,0.8529,0.0018,8.15
+from scratch,WordBiGRU,0.9335,0.0011,0.8525,0.0023,8.1

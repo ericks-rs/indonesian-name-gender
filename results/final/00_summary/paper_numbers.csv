@@ -1,0 +1,60 @@
+quantity,value
+"split unit, names against records as partitioned","404,268 distinct names over 453,394 records"
+training names recorded again in 2022 or 2023,"1,122 of 169,329, and none in 2024 or 2025"
+records removed so the evaluation names are novel,"901 of 16,877 in the 2024 to 2025 window, 813 names affected"
+names removed for carrying both labels,"198 names over 915 records, 0.400 percent of the raw total, 1 in the evaluation window"
+evaluation names,"15,923"
+uniform attention per character position,5.36 percent on a name of 19.9 characters
+"final character, three recurrent models",13.86 to 14.49 percent
+final character over uniform,2.59 to 2.70 times
+"p, final versus uniform, three recurrent",0.00007 to 0.00369
+"character Transformer, final over uniform","1.52 times, p = 0.235"
+"word models, first token",44.75 to 49.59 percent
+"word models, last token",27.20 to 35.16 percent
+"word models, first minus last",10.3 to 22.4 points
+"character over word F1, matched pairs",1.89 to 2.59 points
+"entropy, three recurrent character models",3.08/3.37/3.59 bits
+"F1, three recurrent character models",0.9574/0.9593/0.9589
+character Transformer entropy,"3.41 bits, rank 2 of four"
+"Transformer F1, mean pooling to attention pooling","CharTransformer 0.9534 to 0.9554 (+0.20 pp), WordTransformer 0.9359 to 0.9365 (+0.05 pp)"
+attention pooling parameter cost,"CharTransformer +128, WordTransformer +192"
+"entropy pairs separated, seed level",2 of 12
+"entropy pairs separated, name level",12 of 12
+character entropy rank of the Transformer per seed,"3, 2, 4, 2, 4"
+"train to dev gap, character models",1.46 to 1.87 points
+"sweep, how far the reported setting trails the best variant on dev","CharBiGRU -0.09, CharBiLSTM -0.14, CharBiRNN -0.62, CharTransformer -0.29, WordBiGRU -0.16, WordBiLSTM -0.22, WordBiRNN -0.16, WordTransformer -0.24"
+"sweep spread against seed spread, per architecture","CharBiGRU 0.37 vs 0.29, CharBiLSTM 0.38 vs 0.16, CharBiRNN 0.98 vs 0.26, CharTransformer 1.22 vs 0.46, WordBiGRU 0.54 vs 0.26, WordBiLSTM 0.45 vs 0.31, WordBiRNN 0.56 vs 0.75, WordTransformer 0.44 vs 0.36"
+"sweep on development, configurations and the gap","112 runs, worst character 0.9515, best word 0.9417, gap 0.99 pp"
+"sweep on the test partition, reported post hoc only","worst character 0.9431, best word 0.9389, gap 0.42 pp"
+"sweep, agreement between the two partitions","correlation 0.992 overall, 0.961 within character, 0.643 within word"
+"character over word on the clean benchmark, one row per name","9.32 to 10.27 points, lowest bound 8.66, over 1,464 names"
+the same on the uncontaminated rows before deduplication,"9.60 to 10.67 points, over 1,551 rows, reported only as a comparison"
+names all twenty fits get right,"14,158 of 15,923 (88.92 percent)"
+names all twenty fits get wrong,261 (1.64 percent)
+"female share, always correct against always wrong",50.08 against 78.93 percent
+"always wrong, false positives and false negatives","55 false positives, 206 false negatives"
+"female skew, how it moves with the cutoff","20/20 78.93%, 19/20 74.00%, 18/20 71.30%, 16/20 68.22%, 15/20 66.82%, 10/20 62.91%, 5/20 59.35%, 1/20 56.88%"
+McNemar pairs that separate in every seed,"26 of 46, 15 separate in some seeds only"
+"always wrong, by category","misleading ending 187, first token overrides the ending 29, ending agrees, cause elsewhere 28, ending balanced 8, ending rare 3, ending never seen 3, no token seen 2, ends in an initial 1"
+marker endings found in training,"89 patterns, 90,720 training names"
+evaluation names ending in a marker,"7,775 of 15,923 carry one (48.83 percent), 8,148 do not (51.17 percent)"
+"serving cost, character models against the pretrained encoders","0.3952 to 1.3433 ms against 58.14 to 59.85 ms, single thread CPU"
+"serving cost, the ratio and how much it moves","45 to 151 times, widest trial spread 5.3 percent"
+"why CharBiGRU fell from the submitted figure, decomposed","training window +0.201 pp [+0.115, +0.287], selection signal +0.066 pp [-0.015, +0.147], both changes together +0.267 pp [+0.135, +0.399]"
+selection arm matching the reported protocol against the grid,"0.9595 against 0.9593, 0.02 pp apart"
+"AUC, character against word","0.9823 to 0.9830 against 0.9756 to 0.9768, no overlap"
+"Brier, character against word","0.0341 to 0.0382 against 0.0508 to 0.0528, lower is better"
+threshold-free paired tests,"8 of 8 favour character, every interval clear of zero"
+the strongest baseline on the internal partition,"TF-IDF+SVM leads the four character models by 0.35 to 0.75 points, all separating after correction"
+the same baseline on the clean external benchmark,"4 of 4 comparisons show no difference, CharBiLSTM ahead by +0.21 points"
+what a rerun from the same seed returns,"weights differ by up to 1.6e-03, development F1 by up to 0.0048 points, 3 of 4 identical at four decimals"
+the machine every timing was taken on,"NVIDIA GeForce RTX 5080 Laptop GPU, CUDA 12.8, PyTorch 2.11.0+cu128, Python 3.11.15, one pinned CPU thread"
+"epoch budgets, whether either family ran out of them","grid stops at 42 of 50 at the latest, the pretrained encoders at 6 of 10, nothing reaches its ceiling"
+"selection signal, both families","the 2022 to 2023 development partition for every model in the comparison, with the 2024 to 2025 partition scored once"
+our labels against the independent source,"327 of 333 agree, 98.20 percent, on the 0.165 percent of the corpus a second source can examine, 1 disagreement in evaluation, at most 0.0063 points"
+external errors that survive every character fit,"39 of 1,551 clean names, 8 of them disputed by independent registry evidence"
+"external benchmark, what is in it","1,960 rows over 1,795 distinct names, 139 repeated up to 6 times, 1 carrying both labels, 866 female"
+"external gap, published rows against one row per name","as published 9.60 to 10.67 pp, deduplicated 9.32 to 10.27 pp, on the clean subset"
+accuracy with and without a marker ending,"character 96.70 against 94.84 (+1.86), word 95.14 against 91.57 (+3.57)"
+"error rate, single-token against multi-token names",15.25 against 3.71 percent
+"train to dev gap, word models",2.27 to 2.67 points

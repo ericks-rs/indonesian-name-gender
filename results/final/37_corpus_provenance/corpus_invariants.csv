@@ -1,0 +1,13 @@
+rule,holds,detail
+one row per distinct name,True,0 duplicates
+names are upper case,True,0 exceptions
+"single spaces, no leading or trailing",True,"0 untrimmed, 0 with double spaces"
+no digits,True,0 with digits
+characters outside A to Z and space are punctuation only,True,"observed ' , - ., in 3036 names"
+labels are L or P only,True,"['L', 'P']"
+FIRST_YEAR within 1990 to 2025,True,0 outside
+LAST_YEAR never before FIRST_YEAR,True,0 inverted
+FREQ at least one,True,0 below one
+no ambiguous name survives in the corpus,True,checked against the audit file
+every ambiguous row really carries both labels,True,0 do not
+ambiguous counts sum to their frequency,True,0 disagree

@@ -1,0 +1,21 @@
+item,value
+python,3.10.9
+platform,Windows 10
+machine,AMD64
+processor,"Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+gpu memory,17.1 GB
+gpu,NVIDIA GeForce RTX 5080 Laptop GPU
+cuda,12.8
+torch,2.8.0+cu128
+numpy,1.23.5
+pandas,1.5.3
+scikit-learn,1.2.1
+scipy,1.10.0
+matplotlib,3.7.0
+seaborn,0.13.2
+transformers,4.24.0
+fastapi,not installed
+uvicorn,not installed
+pydantic,2.13.3
+imbalanced-learn,0.10.1
+requests,2.33.1

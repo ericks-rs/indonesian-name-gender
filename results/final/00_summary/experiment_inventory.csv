@@ -1,0 +1,16 @@
+Block,Design,Kind,Fits_done,Fits_planned,Status
+"Main grid, class weighting","8 architectures, seed 42",neural,8,8,complete
+"Seed repetition, grid",8 architectures x 5 seeds,neural,40,40,complete
+"Seed repetition, TF-IDF",3 classifiers x 5 seeds,classical,15,15,complete
+"Seed repetition, pretrained",3 encoders x 5 seeds,pretrained,15,15,complete
+"Sensitivity, recurrent, test only",6 architectures x 14 settings,neural,84,84,complete
+"Sensitivity, dev and test",8 architectures x 14 settings,neural,112,112,complete
+"Imbalance, class balancing",8 architectures,neural,8,8,complete
+"Imbalance, oversampling",8 architectures,neural,8,8,complete
+"Imbalance, SMOTE",8 architectures,neural,8,8,complete
+"Imbalance, generated names",8 architectures,neural,8,8,complete
+Temporal coverage,3 training windows,neural,3,3,complete
+"Cross-dataset, TF-IDF refit",3 classifiers x 5 seeds,classical,15,15,complete
+Grid rerun keeping predictions,8 architectures x 5 seeds,neural,40,40,complete
+Grid with attention pooling,8 architectures x 5 seeds,neural,40,40,complete
+Selection and window decomposition,"CharBiGRU, 3 arms x 5 seeds",neural,15,15,complete

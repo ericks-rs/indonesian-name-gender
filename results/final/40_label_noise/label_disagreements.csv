@@ -1,0 +1,7 @@
+row_id,n_tokens,suffix3,registry,benchmark,FREQ,FIRST_YEAR,partition
+1,1,ani,male,female,1,2009,train
+2,1,nti,female,male,1,2013,train
+3,1,hni,male,female,1,2002,train
+4,2,tya,male,female,1,2024,test
+5,1,mah,female,male,1,2013,train
+6,1,tin,male,female,1,2000,train

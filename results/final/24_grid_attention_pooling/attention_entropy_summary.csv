@@ -1,0 +1,9 @@
+level,mechanism,Model,entropy,entropy_sd,norm
+char,pooling attention,CharBiGRU,3.3735,0.2421,0.7888
+char,pooling attention,CharBiLSTM,3.5851,0.1649,0.8384
+char,pooling attention,CharBiRNN,3.085,0.1386,0.7219
+char,pooling attention,CharTransformer,3.4131,0.2782,0.7997
+word,pooling attention,WordBiGRU,0.8379,0.1908,0.5706
+word,pooling attention,WordBiLSTM,0.9361,0.2404,0.6371
+word,pooling attention,WordBiRNN,0.7043,0.1087,0.474
+word,pooling attention,WordTransformer,1.2832,0.0682,0.8616

@@ -1,0 +1,15 @@
+setting,value
+optimizer,Adam
+initial_learning_rate,0.001
+batch_size,512
+max_epochs,50
+early_stopping_patience_epochs,6
+scheduler,ReduceLROnPlateau
+scheduler_patience_epochs,2
+scheduler_factor,0.5
+scheduler_monitors,development loss
+selection_metric,development F1
+loss,BCEWithLogitsLoss with pos_weight
+seeds,"42, 7, 123, 2024, 777"
+n_seeds,5
+mixed_precision,not used

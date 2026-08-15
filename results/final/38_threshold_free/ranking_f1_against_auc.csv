@@ -1,0 +1,9 @@
+by_f1,by_auc
+CharBiGRU,CharBiGRU
+CharBiLSTM,CharBiLSTM
+CharBiRNN,CharBiRNN
+CharTransformer,CharTransformer
+WordTransformer,WordTransformer
+WordBiLSTM,WordBiLSTM
+WordBiGRU,WordBiRNN
+WordBiRNN,WordBiGRU

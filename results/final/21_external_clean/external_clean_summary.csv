@@ -1,0 +1,15 @@
+Family,Model,full,clean,clean_dedup,clean_dedup_sd,clean_sd,delta_pp,delta_dedup_pp
+from scratch,CharBiLSTM,0.9476,0.9398,0.9375,0.0024,0.0026,-0.78,-1.01
+from scratch,CharTransformer,0.9474,0.9384,0.9368,0.002,0.0024,-0.9,-1.06
+classical,TF-IDF+SVM,0.946,0.9377,0.9358,0.0,0.0,-0.83,-1.02
+from scratch,CharBiGRU,0.9449,0.9366,0.9345,0.0031,0.0031,-0.83,-1.04
+classical,TF-IDF+LR,0.944,0.9343,0.9338,0.0,0.0,-0.97,-1.02
+from scratch,CharBiRNN,0.9395,0.9306,0.9297,0.0045,0.0056,-0.89,-0.98
+pretrained,XLM-R,0.9368,0.9266,0.9257,0.0034,0.004,-1.02,-1.11
+pretrained,mBERT,0.9353,0.9248,0.9228,0.0056,0.0067,-1.05,-1.25
+pretrained,IndoBERT,0.9339,0.9233,0.9211,0.0026,0.0028,-1.06,-1.28
+classical,TF-IDF+RF,0.9157,0.9006,0.9021,0.0032,0.0033,-1.51,-1.36
+from scratch,WordTransformer,0.8554,0.8358,0.838,0.0022,0.0024,-1.96,-1.74
+from scratch,WordBiRNN,0.8532,0.8346,0.8365,0.0024,0.0024,-1.86,-1.67
+from scratch,WordBiGRU,0.8525,0.8335,0.8357,0.003,0.0028,-1.9,-1.68
+from scratch,WordBiLSTM,0.8529,0.8331,0.8347,0.0024,0.0023,-1.98,-1.82

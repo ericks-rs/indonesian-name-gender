@@ -1,0 +1,5 @@
+Model,identical,largest_weight_difference,dev_f1_run_a,dev_f1_run_b,dev_f1_difference_pp
+CharBiGRU,False,3.100186586380005e-05,0.904776,0.904776,0.0
+CharBiLSTM,False,9.512901306152344e-05,0.896775,0.896775,0.0
+CharBiRNN,False,2.740323543548584e-05,0.906579,0.906579,0.0
+CharTransformer,False,0.0016016395529732108,0.795586,0.795538,0.0048

@@ -1,0 +1,15 @@
+case,row_id,n_tokens,suffix3
+FN-1,1,3,nto
+FN-2,2,4,ana
+FN-3,3,3,gia
+FN-4,4,3,ani
+FN-5,5,3,ung
+FN-6,6,4,ann
+FN-7,7,4,ohm
+FP-1,8,3,ani
+FP-2,9,3,ama
+FP-3,10,3,nto
+FP-4,11,3,aah
+FP-5,12,2,gke
+FP-6,13,4,ikh
+FP-7,14,3,ari

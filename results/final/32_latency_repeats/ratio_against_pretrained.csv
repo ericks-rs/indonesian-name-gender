@@ -1,0 +1,5 @@
+character_model,character_ms,slowest_pretrained_ms,ratio
+CharBiGRU,1.3433,59.8489,44.6
+CharBiLSTM,0.3952,59.8489,151.4
+CharBiRNN,0.5238,59.8489,114.3
+CharTransformer,1.1456,59.8489,52.2
