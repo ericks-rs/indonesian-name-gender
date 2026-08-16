@@ -77,6 +77,9 @@ def main() -> int:
     axes[0].legend(handles=handles, fontsize=5.6, frameon=False, ncol=2,
                    loc="lower right", columnspacing=1.0)
     fig.tight_layout(pad=0.7)
+    for ax, lab in zip(axes, ("(a)", "(b)")):
+        p = ax.get_position()
+        ax.set_title(lab, fontsize=7.6, loc="left", x=(0.004 - p.x0) / p.width)
     for ext in ("png", "pdf"):
         fig.savefig(FIGS / f"fig_training_curves.{ext}", dpi=600, bbox_inches="tight")
     plt.close(fig)

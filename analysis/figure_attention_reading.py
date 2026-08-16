@@ -51,11 +51,14 @@ def main() -> int:
     vmax_w = max(weights_of(df, n, m).max() for n, _, _ in examples for m in WORD)
 
     cw = 0.92 / maxlen
+    S = 1 / (1 - 0.087)
+    y_cap = (0.925 - 0.087) * S
+    h, pad, top = 0.082 * S, 0.013 * S, (0.800 - 0.087) * S
     for fname, batch in (("fig_attention_reading_one.png", examples[:2]),
                          ("fig_attention_reading_two.png", examples[2:])):
         fig = plt.figure(figsize=(COL, 4.8))
-        gs = fig.add_gridspec(2, 1, hspace=0.26, left=0.11, right=0.985,
-                              top=0.955, bottom=0.135)
+        gs = fig.add_gridspec(2, 1, hspace=0.10, left=0.11, right=0.985,
+                              top=0.955, bottom=0.10)
         for k, (name, gender, suf) in enumerate(batch):
             ax = fig.add_subplot(gs[k, 0])
             ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off")
@@ -67,10 +70,8 @@ def main() -> int:
             ax.text(0.5, 0.995, name, ha="center", va="top", fontsize=8.2, weight="bold",
                     color="#23211f", family="DejaVu Sans Mono")
             cap = f"{gender}, suffix -{suf}" if suf else f"{gender}, no suffix marker"
-            ax.text(0.5, 0.925, cap, ha="center", va="top", fontsize=6.2, color=tint)
+            ax.text(0.5, y_cap, cap, ha="center", va="top", fontsize=6.2, color=tint)
 
-            h, pad = 0.082, 0.013
-            top = 0.800
             for i, m in enumerate(CHAR):
                 yy = top - i * (h + pad)
                 strip(ax, chars, weights_of(df, name, m), vmax_c, yy, h, x0, cw, 5.4)
@@ -79,23 +80,24 @@ def main() -> int:
 
             if suf:
                 sx = x0 + (n - len(suf)) * cw
-                ax.add_patch(Rectangle((sx + 0.02 * cw, top - 3 * (h + pad) - 0.014),
-                                       len(suf) * cw - 0.04 * cw, 4 * h + 3 * pad + 0.028,
+                ax.add_patch(Rectangle((sx + 0.02 * cw, top - 3 * (h + pad) - 0.014 * S),
+                                       len(suf) * cw - 0.04 * cw,
+                                       4 * h + 3 * pad + 0.028 * S,
                                        fill=False, edgecolor=tint, linewidth=1.3,
                                        linestyle=(0, (3.5, 2))))
-                ax.text(sx + len(suf) * cw / 2, top + h + 0.016, f"-{suf}", ha="center",
+                ax.text(sx + len(suf) * cw / 2, top + h + 0.016 * S, f"-{suf}", ha="center",
                         va="bottom", fontsize=6.4, color=tint, weight="bold")
 
-            yw = top - 4 * (h + pad) - 0.048
+            yw = top - 4 * (h + pad) - 0.048 * S
             tw = n * cw / len(toks)
             for i, m in enumerate(WORD):
                 yy = yw - i * (h + pad)
                 strip(ax, toks, weights_of(df, name, m), vmax_w, yy, h, x0, tw, 6.2)
                 ax.text(x0 - 0.012, yy + h / 2, m.replace("Word", ""), ha="right",
                         va="center", fontsize=6.0, color="#6a6a6a")
-            ax.text(x0 - 0.012, top + h + 0.02, "character level", ha="right", va="bottom",
-                    fontsize=5.6, color="0.45", style="italic")
-            ax.text(x0 - 0.012, yw + h + 0.014, "word level", ha="right", va="bottom",
+            ax.text(x0 - 0.012, top + h + 0.02 * S, "character level", ha="right",
+                    va="bottom", fontsize=5.6, color="0.45", style="italic")
+            ax.text(x0 - 0.012, yw + h + 0.014 * S, "word level", ha="right", va="bottom",
                     fontsize=5.6, color="0.45", style="italic")
 
         sm = plt.cm.ScalarMappable(cmap=CMAP, norm=plt.Normalize(0, 1))

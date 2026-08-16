@@ -78,10 +78,11 @@ def fig5(df):
             for yi, vi in zip(y, v):
                 ax.annotate(f"{vi:.1f}", (vi, yi), xytext=(2.4, -1.8),
                             textcoords="offset points", fontsize=5.2)
-        handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=k) for k, c in col.items()]
-        axes[0].legend(handles=handles, fontsize=5.6, frameon=False, ncol=2,
-                       loc="lower right")
         fig.tight_layout(pad=0.5)
+        handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=k) for k, c in col.items()]
+        fig.legend(handles=handles, fontsize=5.6, frameon=False, ncol=4,
+                   loc="lower center", bbox_to_anchor=(0.5, 1.004),
+                   handlelength=1.1, handletextpad=0.4, columnspacing=1.1)
         save(fig, name)
 
 def fig6(df):
@@ -90,19 +91,21 @@ def fig6(df):
     err = d.f1_sd.values * 100 * T_CRIT / np.sqrt(len(SEEDS))
     fig, ax = plt.subplots(figsize=(COL, 3.0))
     colors = [CCHAR if f == "character" else CWORD for f in d.family]
-    ax.hlines(y, d.f1.min() * 100 - 0.6, d.f1.values * 100, color=colors,
+    left = (d.f1.values * 100 - err).min() - 0.25
+    ax.hlines(y, left, d.f1.values * 100, color=colors,
               linewidth=1.1, alpha=0.55)
     ax.errorbar(d.f1.values * 100, y, xerr=err, fmt="none", ecolor="0.35",
                 elinewidth=0.9, capsize=2.4)
     ax.scatter(d.f1.values * 100, y, s=46, color=colors, zorder=3,
                edgecolor="white", linewidth=0.7)
-    for yi, vi in zip(y, d.f1.values * 100):
-        ax.annotate(f"{vi:.2f}", (vi, yi), xytext=(6, -2.0),
+    lab = d.f1.values * 100 + err
+    for yi, xi, vi in zip(y, lab, d.f1.values * 100):
+        ax.annotate(f"{vi:.2f}", (xi, yi), xytext=(4.5, -2.0),
                     textcoords="offset points", fontsize=6)
     ax.set_yticks(y)
     ax.set_yticklabels(d.model, fontsize=6.2)
     ax.set_xlabel("F1 on the 2024 to 2025 partition (%), five seeds")
-    ax.set_xlim(d.f1.min() * 100 - 0.6, d.f1.max() * 100 + 1.5)
+    ax.set_xlim(left, lab.max() + 0.75)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="x", color="0.92", linewidth=0.6)
     ax.set_axisbelow(True)
@@ -175,11 +178,13 @@ def fig9(pred, names):
     ax.set_xticklabels(["1", "2", "3", "4", "5+"])
     ax.set_xlabel("tokens in the name")
     ax.set_ylabel("accuracy (%)")
-    ax.legend(frameon=False, loc="lower right")
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", color="0.92", linewidth=0.6)
     ax.set_axisbelow(True)
     fig.tight_layout(pad=0.6)
+    fig.legend(*ax.get_legend_handles_labels(), frameon=False, ncol=2,
+               loc="lower center", bbox_to_anchor=(0.5, 1.004),
+               handletextpad=0.4, columnspacing=1.4)
     save(fig, "fig_accuracy_by_token_count.png")
 
 def fig13():
@@ -211,11 +216,13 @@ def fig13():
     ax.invert_yaxis()
     ax.set_xlabel("F1 (%)")
     ax.set_xlim(80, 100)
-    ax.legend(frameon=False, ncol=1, loc="lower left", fontsize=5.6)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="x", color="0.92", linewidth=0.6)
     ax.set_axisbelow(True)
     fig.tight_layout(pad=0.5)
+    fig.legend(*ax.get_legend_handles_labels(), frameon=False, ncol=2,
+               loc="lower center", bbox_to_anchor=(0.5, 1.004), fontsize=5.6,
+               handletextpad=0.4, columnspacing=1.2)
     save(fig, "fig_external_validation.png")
 
 def main() -> int:

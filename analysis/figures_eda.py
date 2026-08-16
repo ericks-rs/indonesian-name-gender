@@ -33,6 +33,13 @@ def save(fig, name: str) -> Path:
     plt.close(fig)
     return p
 
+def letters_left(axes) -> None:
+    for pi, ax in enumerate(axes):
+        p = ax.get_position()
+        ax.set_title(f"({chr(97 + pi)})", fontsize=7.6, loc="left",
+                     x=(0.004 - p.x0) / p.width)
+
+
 def suffix3(name: str) -> str:
     last = name.strip().split()[-1]
     return last[-3:].lower() if len(last) >= 3 else last.lower()
@@ -85,6 +92,7 @@ def main() -> int:
         ax.legend(frameon=False, ncol=2)
         ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(pad=0.5)
+    letters_left(axes)
     made.append(save(fig, "02_name_length_distribution"))
 
     tr = tr.assign(SUFFIX3=tr.NAMA.apply(suffix3))
@@ -108,6 +116,7 @@ def main() -> int:
             ax.text(ratio + 0.012, i, f"n={total:,}", va="center", fontsize=5.6)
         ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(pad=0.5)
+    letters_left(axes)
     made.append(save(fig, "03_suffix_analysis_by_gender"))
 
     top_f = sg.nlargest(15, "P_RATIO")[["P_RATIO", "TOTAL"]].reset_index()

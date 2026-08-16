@@ -120,7 +120,8 @@ def main() -> int:
             edgecolor="white", linewidth=0.5, label="last token", error_kw={"lw": 0.8})
     ax2.axhline(uw * 100, color="0.35", linestyle=":", linewidth=1.1)
     ax2.annotate(f"uniform, {uw*100:.1f}%", xy=(2.55, uw * 100), xytext=(0, 4),
-                 textcoords="offset points", fontsize=5.6, color="0.3")
+                 textcoords="offset points", fontsize=5.6, color="0.3",
+                 fontweight="bold")
     ax2.set_xticks(idx)
     ax2.set_xticklabels([m.replace("Word", "") for m in WORD], fontsize=6)
     ax2.set_ylabel("mean attention weight (%)")
@@ -132,6 +133,9 @@ def main() -> int:
     ax2.spines[["top", "right"]].set_visible(False)
 
     fig.tight_layout(pad=0.7)
+    for ax, lab in ((ax1, "(a)"), (ax2, "(b)")):
+        p = ax.get_position()
+        ax.set_title(lab, fontsize=7.6, loc="left", x=(0.004 - p.x0) / p.width)
     for ext in ("png", "pdf"):
         fig.savefig(FIGS / f"fig_attention_position.{ext}", dpi=600, bbox_inches="tight")
     plt.close(fig)

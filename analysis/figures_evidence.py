@@ -7,6 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.transforms import Bbox
 
 ROOT = Path(__file__).parent.parent
 FINAL = ROOT / "results" / "final"
@@ -33,6 +34,40 @@ def save(fig, name):
                 facecolor="white", pad_inches=0.08)
     plt.close(fig)
     print(f"  {name}")
+
+def place_labels(fig, ax, pts, fontsize=5.2, colour="0.3", avoid=()):
+    cand = [(3.4, -1.2, "left", "baseline"), (-3.4, -1.2, "right", "baseline"),
+            (0, 4.4, "center", "bottom"), (0, -4.8, "center", "top"),
+            (3.4, 4.4, "left", "bottom"), (3.4, -4.8, "left", "top"),
+            (-3.4, 4.4, "right", "bottom"), (-3.4, -4.8, "right", "top")]
+    fig.canvas.draw()
+    r = fig.canvas.get_renderer()
+    frame = ax.get_window_extent(r)
+    taken = [a.get_window_extent(r) for a in avoid]
+    marks = []
+    for x, y, _ in pts:
+        px, py = ax.transData.transform((x, y))
+        marks.append(Bbox.from_bounds(px - 3.4, py - 3.4, 6.8, 6.8))
+    placed = []
+    for i in sorted(range(len(pts)), key=lambda k: -pts[k][1]):
+        x, y, txt = pts[i]
+        blocked = [m for j, m in enumerate(marks) if j != i] + placed + taken
+        boxes = []
+        for dx, dy, ha, va in cand:
+            a = ax.annotate(txt, (x, y), xytext=(dx, dy), textcoords="offset points",
+                            fontsize=fontsize, color=colour, ha=ha, va=va)
+            boxes.append(a.get_window_extent(r).expanded(1.04, 1.10))
+            a.remove()
+        clear = [k for k, bb in enumerate(boxes)
+                 if not any(bb.overlaps(o) for o in blocked)]
+        inside = [k for k in clear
+                  if boxes[k].x0 >= frame.x0
+                  and boxes[k].y0 >= frame.y0 and boxes[k].y1 <= frame.y1]
+        k = (inside or clear or [0])[0]
+        dx, dy, ha, va = cand[k]
+        ax.annotate(txt, (x, y), xytext=(dx, dy), textcoords="offset points",
+                    fontsize=fontsize, color=colour, ha=ha, va=va)
+        placed.append(boxes[k])
 
 def fig_sensitivity():
     d = pd.read_csv(FINAL / "31_sensitivity_dev" / "sensitivity_dev_and_test.csv")
@@ -74,7 +109,7 @@ def fig_forest():
 
     for name, d, col in (("fig_paired_forest_test.png", a, CCHAR),
                          ("fig_paired_forest_external.png", b, "#5b7c99")):
-        fig, ax = plt.subplots(figsize=(COL, 2.2))
+        fig, ax = plt.subplots(figsize=(COL, 3.0))
         d = d.iloc[::-1].reset_index(drop=True)
         y = np.arange(len(d))
         ax.hlines(y, d.ci95_lo_pp, d.ci95_hi_pp, color=col, linewidth=2.0)
@@ -118,27 +153,37 @@ def fig_efficiency():
     d = pd.DataFrame(pts)
     col = {"character": CCHAR, "word": CWORD, "pretrained": CPRE}
 
-    for name, xcol, xlab in (("fig_efficiency_latency.png", "cpu_ms",
-                              "CPU latency per name (ms, log scale)"),
-                             ("fig_efficiency_params.png", "params",
-                              "parameters (log scale)")):
-        fig, ax = plt.subplots(figsize=(COL, 2.9))
+    for name, xcol, xlab, fh, inside_legend in (
+            ("fig_efficiency_latency.png", "cpu_ms",
+             "CPU latency per name (ms, log scale)", 2.5, True),
+            ("fig_efficiency_params.png", "params",
+             "parameters (log scale)", 2.9, False)):
+        fig, ax = plt.subplots(figsize=(COL, fh))
         for fam, gg in d.groupby("family"):
             ax.scatter(gg[xcol], gg.f1, s=26, color=col[fam], label=fam,
                        edgecolor="white", linewidth=0.5, zorder=3)
-        for r in d.itertuples():
-            ax.annotate(r.model.replace("Char", "").replace("Word", ""),
-                        (getattr(r, xcol), r.f1), xytext=(3.4, -1.2),
-                        textcoords="offset points", fontsize=5.2, color="0.3")
         ax.set_xscale("log")
         ax.set_xlabel(xlab)
         ax.set_ylabel("F1 (%)")
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(color="0.93", linewidth=0.6)
         ax.set_axisbelow(True)
-        ax.legend(frameon=False, loc="lower right", title="tokenization",
-                  title_fontsize=6)
         fig.tight_layout(pad=0.5)
+        h, lab = ax.get_legend_handles_labels()
+        keep = [f for f in ("character", "word", "pretrained") if f in lab]
+        hs = [h[lab.index(f)] for f in keep]
+        if inside_legend:
+            lg = ax.legend(hs, keep, frameon=False, loc="lower right", ncol=1,
+                           fontsize=5.8, title="tokenization", title_fontsize=6,
+                           handletextpad=0.3, borderaxespad=0.6)
+        else:
+            lg = fig.legend(hs, keep, frameon=False, loc="lower center",
+                            bbox_to_anchor=(0.5, 1.004), ncol=len(keep),
+                            title="tokenization", title_fontsize=6,
+                            handletextpad=0.3, columnspacing=1.2)
+        place_labels(fig, ax, [(getattr(r, xcol), r.f1,
+                                r.model.replace("Char", "").replace("Word", ""))
+                               for r in d.itertuples()], avoid=(lg,))
         save(fig, name)
 
 def fig_errors():
@@ -265,7 +310,7 @@ def fig_imbalance():
     ax.set_yticklabels(order, fontsize=6)
     ax.invert_yaxis()
     ax.set_xlabel("F1 change against class weighting (percentage points)")
-    ax.legend(frameon=False, ncol=1, loc="lower left", fontsize=5.8)
+    ax.legend(frameon=False, ncol=1, loc="upper left", fontsize=5.8)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="x", color="0.93", linewidth=0.6)
     ax.set_axisbelow(True)
