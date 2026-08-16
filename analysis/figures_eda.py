@@ -45,6 +45,14 @@ def suffix3(name: str) -> str:
     return last[-3:].lower() if len(last) >= 3 else last.lower()
 
 def main() -> int:
+    # These four figures describe the corpus itself, so they need the splits
+    # rather than the result tables. The corpus is not redistributable, so a
+    # clone does not carry them and the four are shipped as artwork instead.
+    if not (DATA / "train_1990_2021.csv").exists():
+        print(f"the corpus splits are not in this clone, so figures 1 to 4 "
+              f"cannot be drawn here.\nexpected them under {DATA}\n"
+              f"see docs/DATA.md. the figures themselves are in results/figures.")
+        return 0
     tr = pd.read_csv(DATA / "train_1990_2021.csv")
     dv = pd.read_csv(DATA / "dev_2022_2023.csv")
     va = pd.read_csv(DATA / "val_2024_2025.csv")

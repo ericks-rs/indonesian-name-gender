@@ -152,9 +152,11 @@ def fig8(pred):
     d.to_csv(MIRROR / "tables" / "confusion_counts.csv", index=False)
     print(d.to_string(index=False))
 
-def fig9(pred, names):
-    ntok = np.array([len(str(s).lower().split()) for s in names])
-    bins = np.clip(ntok, 1, 5)
+def fig9(pred):
+    # The names themselves are not published, so val_predictions.csv carries the
+    # token count of each name instead. Counting whitespace on the name gives
+    # the same five groups, 141, 3810, 9752, 2067 and 153.
+    bins = np.clip(pred.n_tokens.values, 1, 5)
     y = pred.label.values
     fig, ax = plt.subplots(figsize=(COL, 2.7))
     for models, colour, label in ((CHAR, CCHAR, "character"), (WORD, CWORD, "word")):
@@ -233,7 +235,7 @@ def main() -> int:
     fig5(df)
     fig6(df)
     fig8(pred)
-    fig9(pred, pred.name.values)
+    fig9(pred)
     fig13()
     return 0
 

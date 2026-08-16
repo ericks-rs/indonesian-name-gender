@@ -45,6 +45,14 @@ def main() -> int:
     FIGS.mkdir(parents=True, exist_ok=True)
     MIRROR.mkdir(parents=True, exist_ok=True)
     df = pd.read_csv(SRC)
+    # This figure prints the name one character to a cell and shades each cell
+    # by the weight it drew, so it needs the name itself and not a summary of
+    # it. Published attention tables carry the token count and the suffix only.
+    if "name" not in df.columns:
+        print(f"{SRC.name} in this clone does not carry the names, so figures "
+              f"14 and 15 cannot be drawn here.\nsee docs/DATA.md. the figures "
+              f"themselves are in results/figures.")
+        return 0
     examples = df[["name", "gender", "suffix"]].drop_duplicates().fillna("").values.tolist()
     maxlen = max(len(n.lower()) for n, _, _ in examples)
     vmax_c = max(weights_of(df, n, m).max() for n, _, _ in examples for m in CHAR)
