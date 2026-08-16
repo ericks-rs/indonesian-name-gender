@@ -16,3 +16,9 @@ Thumbs.db
 # Anchored, because src/indonamegender/data/ carries the packaged model.
 /data/
 *.parquet
+
+# markdown under results/ is written by the analysis scripts rather than by
+# hand, an index or a table dumped beside the figure it describes. Anchored and
+# scoped, because every document a reader needs sits in the root, docs/, demo/
+# or experiments/, and none of those are touched.
+/results/**/*.md
