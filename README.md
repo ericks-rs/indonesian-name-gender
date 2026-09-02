@@ -84,6 +84,33 @@ GenderPredictor("CharBiGRU")        # bundled? no, downloaded once
 GenderPredictor("WordTransformer")  # same
 ```
 
+### Choosing a model
+
+Every model here answers on CPU, so none of them needs a GPU to serve.
+Latency is the median of seven trials of 200 single-thread calls at a fixed
+serving shape. F1 internal is the 2024 to 2025 partition averaged over five
+seeds. F1 external is the public benchmark reduced to the 1,464 names that do
+not appear in training, and that is the column to read when the names are
+ones the model has never seen.
+
+| model | parameters | size | CPU ms per name | F1 internal | F1 external |
+|---|---|---|---|---|---|
+| `CharBiLSTM` (bundled) | 114,097 | 0.46 MB | 0.3952 | 0.9589 | 0.9375 |
+| `CharTransformer` | 605,953 | 2.44 MB | 1.1456 | 0.9554 | 0.9368 |
+| `CharBiGRU` | 86,065 | 0.35 MB | 1.3433 | 0.9593 | 0.9345 |
+| `CharBiRNN` | 30,001 | 0.12 MB | 0.5238 | 0.9574 | 0.9297 |
+| `WordTransformer` | 6,126,721 | 24.52 MB | 0.7702 | 0.9365 | 0.8380 |
+| `WordBiRNN` | 2,432,545 | 9.73 MB | 0.1854 | 0.9323 | 0.8365 |
+| `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3388 | 0.9335 | 0.8357 |
+| `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2518 | 0.9344 | 0.8347 |
+
+Every character model scores at least 9.17 points of external F1 above every
+word model, which is the finding of the paper restated as a serving decision.
+Internal F1 separates the two levels by about 2 points, so a model picked on
+the internal column alone looks far safer than it is. `CharBiRNN` is the
+smallest at 0.12 MB and 30,001 parameters, and costs 0.78 points of external
+F1 against the bundled model.
+
 ## Layout
 
 ```
