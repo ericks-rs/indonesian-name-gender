@@ -111,6 +111,18 @@ the internal column alone looks far safer than it is. `CharBiRNN` is the
 smallest at 0.12 MB and 30,001 parameters, and costs 0.78 points of external
 F1 against the bundled model.
 
+Parameter count does not predict latency here, so read the two columns
+separately. Names are padded to 50 character positions and 8 word positions,
+and a recurrent layer walks those positions one at a time, so every character
+model pays 50 sequential steps whatever the name. That is why `WordBiRNN`
+answers in a third of the time of `CharBiRNN` while carrying 81 times the
+parameters. Inside the character group the three recurrent cells share every
+dimension and differ only in gate count, and at a hidden size of 192 the
+matrices are small enough that the per-step cost is the kernel rather than the
+arithmetic. `CharBiLSTM` runs four gates per step and still beats the
+single-gate `CharBiRNN`, which is why the smallest model in the table is not
+the quickest one.
+
 ## Layout
 
 ```
