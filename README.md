@@ -88,12 +88,12 @@ GenderPredictor("WordTransformer")  # same
 
 Every model here answers on CPU, so none of them needs a GPU to serve.
 Latency is the median of seven trials of 200 single-thread calls at a fixed
-serving shape. F1 internal is the 2024 to 2025 partition averaged over five
-seeds. F1 external is the public benchmark reduced to the 1,464 names that do
-not appear in training, and that is the column to read when the names are
-ones the model has never seen.
+serving shape. Internal F1 is measured on the 2024–2025 partition and
+averaged over five seeds. External F1 is measured on the 1,464 names from the
+public benchmark that do not appear in the training data. Use this column when
+evaluating performance on unseen names.
 
-| model | parameters | size | CPU ms per name | F1 internal | F1 external |
+| model | parameters | size | CPU ms per name | internal F1 | external F1 |
 |---|---|---|---|---|---|
 | `CharBiLSTM` (bundled) | 114,097 | 0.46 MB | 0.3952 | 0.9589 | 0.9375 |
 | `CharTransformer` | 605,953 | 2.44 MB | 1.1456 | 0.9554 | 0.9368 |
@@ -104,12 +104,12 @@ ones the model has never seen.
 | `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3388 | 0.9335 | 0.8357 |
 | `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2518 | 0.9344 | 0.8347 |
 
-Every character model scores at least 9.17 points of external F1 above every
-word model, which is the finding of the paper restated as a serving decision.
-Internal F1 separates the two levels by about 2 points, so a model picked on
-the internal column alone looks far safer than it is. `CharBiRNN` is the
-smallest at 0.12 MB and 30,001 parameters, and costs 0.78 points of external
-F1 against the bundled model.
+Every character-level model exceeds every word-level model by at least 9.17
+external F1 points, which is the finding of the paper restated as a serving
+decision. Internal F1 separates the two representation levels by only about
+2 points, so selecting a model from the internal results alone understates the
+generalization gap. `CharBiRNN` is the smallest at 0.12 MB and 30,001
+parameters, and costs 0.78 points of external F1 against the bundled model.
 
 Parameter count does not predict latency here, so read the two columns
 separately. Names are padded to 50 character positions and 8 word positions,
@@ -117,9 +117,9 @@ and a recurrent layer walks those positions one at a time, so every character
 model pays 50 sequential steps whatever the name. That is why `WordBiRNN`
 answers in a third of the time of `CharBiRNN` while carrying 81 times the
 parameters. Inside the character group the three recurrent cells share every
-dimension and differ only in gate count, and at a hidden size of 192 the
-matrices are small enough that the per-step cost is the kernel rather than the
-arithmetic. `CharBiLSTM` runs four gates per step and still beats the
+dimension and differ only in gate count. At a hidden size of 192, kernel-launch
+and sequential execution overhead can dominate the relatively small matrix
+operations. `CharBiLSTM` runs four gates per step and still beats the
 single-gate `CharBiRNN`, which is why the smallest model in the table is not
 the quickest one.
 
