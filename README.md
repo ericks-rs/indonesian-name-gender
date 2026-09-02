@@ -88,7 +88,7 @@ GenderPredictor("WordTransformer")  # same
 
 Every model here answers on CPU, so none of them needs a GPU to serve.
 Latency is the median of seven trials of 200 single-thread calls at a fixed
-serving shape. Internal F1 is measured on the 2024–2025 partition and
+serving shape. Internal F1 is measured on the 2024 to 2025 partition and
 averaged over five seeds. External F1 is measured on the 1,464 names from the
 public benchmark that do not appear in the training data. Use this column when
 evaluating performance on unseen names.
