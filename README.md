@@ -2,6 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/indonamegender)](https://pypi.org/project/indonamegender/)
 [![Downloads](https://img.shields.io/pypi/dm/indonamegender)](https://pypistats.org/packages/indonamegender)
+[![GitHub Release](https://img.shields.io/github/v/release/ericks-rs/indonesian-name-gender)](https://github.com/ericks-rs/indonesian-name-gender/releases)
 [![Python](https://img.shields.io/pypi/pyversions/indonamegender)](https://pypi.org/project/indonamegender/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
