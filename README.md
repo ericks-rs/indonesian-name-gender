@@ -105,10 +105,10 @@ evaluating performance on unseen names.
 | `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2518 | 0.9344 | 0.8347 |
 
 Every character-level model exceeds every word-level model by at least 9.17
-external F1 points, which is the finding of the paper restated as a serving
-decision. Internal F1 separates the two representation levels by only about
-2 points, so selecting a model from the internal results alone understates the
-generalization gap. `CharBiRNN` is the smallest at 0.12 MB and 30,001
+external F1 points, which translates the paper's main finding into a practical
+serving decision. Internal F1 separates the two representation levels by only
+about 2 points, so selecting a model from the internal results alone understates
+the generalization gap. `CharBiRNN` is the smallest at 0.12 MB and 30,001
 parameters, and costs 0.78 points of external F1 against the bundled model.
 
 Parameter count does not predict latency here, so read the two columns
