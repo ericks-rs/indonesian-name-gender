@@ -1,5 +1,10 @@
 # Gender classification from Indonesian personal names
 
+[![PyPI](https://img.shields.io/pypi/v/indonamegender)](https://pypi.org/project/indonamegender/)
+[![Downloads](https://img.shields.io/pypi/dm/indonamegender)](https://pypistats.org/packages/indonamegender)
+[![Python](https://img.shields.io/pypi/pyversions/indonamegender)](https://pypi.org/project/indonamegender/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 Code, trained checkpoints and result tables for *A Cross-Architecture Attention
 Analysis of Character-Level and Word-Level Models for Gender Classification from
 Indonesian Names*.
@@ -141,4 +146,9 @@ nowhere in the corpus.
 
 ## Citation
 
-See `CITATION.cff`. Licensed MIT.
+The manuscript associated with this repository is currently under revision.
+Final publication details and DOI will be added after publication.
+
+See `CITATION.cff` for the current citation metadata.
+
+Licensed MIT.
