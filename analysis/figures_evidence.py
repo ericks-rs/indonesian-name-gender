@@ -243,12 +243,20 @@ def fig_errors():
     save(fig, "fig_error_by_token.png")
 
 def fig_temporal():
-    y = pd.read_csv(FINAL / "10_temporal_drift" / "tables" / "temporal" / "per_year_f1.csv")
+    """Accuracy year by year, and what training only on older records costs."""
+    # rata-rata lima seed dari grid final (pipeline/per_year_f1_grid.py). File lama di
+    # 10_temporal_drift berasal dari checkpoint satu seed dengan Transformer mean pooling.
+    y = pd.read_csv(FINAL / "43_per_year_f1_grid" / "per_year_f1.csv")
     c = pd.read_csv(FINAL / "10_temporal_drift" / "tables" / "temporal" /
                     "cross_decade_results.csv")
-    fig, axes = plt.subplots(2, 1, figsize=(COL, 4.6))
+    # Side by side, so the figure does not take most of a column on its own.
+    fig, axes = plt.subplots(1, 2, figsize=(COL, 1.30))
     ax = axes[0]
-
+    # The per-year file holds one row per model per year, eight models across
+    # two years. Handing all sixteen rows to a single plot call joined them into
+    # one zigzag with a fractional year axis, which described nothing. The
+    # measurement is a paired change per model, so it is drawn as one line per
+    # model between the two years.
     ycol = [c_ for c_ in y.columns if c_.lower() == "f1"][0]
     scale = 100 if y[ycol].max() <= 1 else 1
     for m, g in y.groupby("Model"):
@@ -258,12 +266,19 @@ def fig_temporal():
                 markersize=3.0, linewidth=1.0, alpha=0.85)
     ax.set_xticks(sorted(y.Year.unique()))
     ax.set_xlim(min(y.Year) - 0.12, max(y.Year) + 0.12)
-    ax.set_xlabel("year the name first appears")
+    # Shortened for the half-column panel. The caption carries the full wording,
+    # "the year a name was first recorded".
+    ax.set_xlabel("year first recorded")
     ax.set_ylabel("F1 (%)")
     ax.set_title("(a)", fontsize=7.6, loc="left")
     handles = [plt.Line2D([], [], color=CCHAR, label="character"),
                plt.Line2D([], [], color=CWORD, label="word")]
-    ax.legend(handles=handles, frameon=False, ncol=2, loc="lower left")
+    # The band between the character and word curves is the only empty part of
+    # the panel once it is half a column wide. Lower left sat on a word curve.
+    # Dengan rata-rata grid final, garis char terbawah lewat di kiri tengah, jadi
+    # legend pindah ke kanan tengah, celah antara kelompok char dan word di 2025.
+    ax.legend(handles=handles, frameon=False, ncol=1, loc="center right",
+              fontsize=5.6, handlelength=1.2, labelspacing=0.25, borderaxespad=0.3)
     ax = axes[1]
     lab = c.iloc[:, 0].astype(str).values
     val = c[[cc for cc in c.columns if "f1" in cc.lower()][0]].values
@@ -275,7 +290,7 @@ def fig_temporal():
     ax.set_yticks(np.arange(len(lab)))
     ax.set_yticklabels([l.replace("_full", ", full") for l in lab], fontsize=6)
     ax.set_xlim(min(val) - 1.2, max(val) + 1.8)
-    ax.set_xlabel("F1 on the 2024 to 2025 partition (%)")
+    ax.set_xlabel("test F1 (%)")
     ax.set_title("(b)", fontsize=7.6, loc="left")
     for ax in axes:
         ax.spines[["top", "right"]].set_visible(False)
@@ -309,7 +324,7 @@ def fig_imbalance():
     ax.set_yticks(yy)
     ax.set_yticklabels(order, fontsize=6)
     ax.invert_yaxis()
-    ax.set_xlabel("F1 change against class weighting (percentage points)")
+    ax.set_xlabel("ΔF1 (percentage points)")
     ax.legend(frameon=False, ncol=1, loc="upper left", fontsize=5.8)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="x", color="0.93", linewidth=0.6)

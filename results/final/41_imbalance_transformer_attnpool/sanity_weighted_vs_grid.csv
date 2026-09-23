@@ -1,0 +1,11 @@
+Model,Seed,F1_rerun,F1_grid24,diff_pp
+CharTransformer,42,0.956272,0.956787,-0.0515
+CharTransformer,7,0.956128,0.955922,0.0206
+CharTransformer,123,0.956235,0.95547,0.0765
+CharTransformer,2024,0.95552,0.956386,-0.0866
+CharTransformer,777,0.9535,0.952185,0.1315
+WordTransformer,42,0.938583,0.938583,0.0
+WordTransformer,7,0.936338,0.936462,-0.0124
+WordTransformer,123,0.934998,0.934998,0.0
+WordTransformer,2024,0.935556,0.935668,-0.0112
+WordTransformer,777,0.936659,0.936601,0.0058

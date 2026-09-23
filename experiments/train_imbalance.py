@@ -124,15 +124,18 @@ class TransformerClf(nn.Module):
                                            dropout=dropout, activation="gelu",
                                            batch_first=True, norm_first=True)
         self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
-        self.norm = nn.LayerNorm(d); self.dropout = nn.Dropout(dropout); self.fc = nn.Linear(d, 1)
+        # attention pooling, sama dengan model yang dilaporkan (grid final); urutan
+        # konstruksi layer dijaga supaya inisialisasi per seed identik
+        self.norm = nn.LayerNorm(d)
+        self.attention = Attention(d)
+        self.dropout = nn.Dropout(dropout); self.fc = nn.Linear(d, 1)
     def forward(self, x):
         B, T = x.shape
         pos = torch.arange(T, device=x.device).unsqueeze(0).expand(B, T)
         pad = (x == 0)
         out = self.encoder(self.tok_emb(x) + self.pos_emb(pos), src_key_padding_mask=pad)
-        nz = (~pad).float().unsqueeze(-1)
-        pooled = (out * nz).sum(1) / nz.sum(1).clamp(min=1)
-        return self.fc(self.dropout(self.norm(pooled))).squeeze(1)
+        pooled = self.attention(self.norm(out), (~pad).float())
+        return self.fc(self.dropout(pooled)).squeeze(1)
 
 SPECS_RNN = {
     "CharBiRNN":  (char_tok.vocab_size, CFG["CHAR_EMB_DIM"], "rnn",  "char_ids"),

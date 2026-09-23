@@ -1,0 +1,9 @@
+Model,delta_pp,min_seed_pp,max_seed_pp,seeds_higher_2025
+CharBiRNN,0.941,0.759,1.136,5
+CharBiLSTM,0.975,0.896,1.050,5
+CharBiGRU,1.006,0.873,1.100,5
+CharTransformer,0.746,0.590,1.061,5
+WordBiRNN,0.461,0.212,0.769,5
+WordBiLSTM,0.235,0.059,0.524,5
+WordBiGRU,0.216,0.096,0.387,5
+WordTransformer,0.139,-0.065,0.353,3
