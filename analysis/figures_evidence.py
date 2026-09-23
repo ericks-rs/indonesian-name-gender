@@ -195,8 +195,8 @@ def fig_errors():
     counts = e.n_wrong_of_20.value_counts().sort_index()
     ax.bar(counts.index, counts.values, color="#41618c", edgecolor="white", linewidth=0.4)
     ax.set_yscale("log")
-    ax.set_xlabel("fits that get the name wrong, out of twenty")
-    ax.set_ylabel("names (log scale)")
+    ax.set_xlabel("Fits that get the name wrong, out of twenty")
+    ax.set_ylabel("Names (log scale)")
     ax.set_title("(a)", fontsize=7.6, loc="left")
     ax.annotate(f"{int(counts.get(0, 0)):,} always correct", (0, counts.get(0, 1)),
                 xytext=(4, -3), textcoords="offset points", fontsize=5.8, color="0.3")
@@ -207,15 +207,15 @@ def fig_errors():
     ax = axes[1]
     g = prof.set_index("group").loc[["always correct", "disputed", "always wrong"]]
     x = np.arange(3)
-    ax.bar(x, g.pct_female, 0.62, color=["#7f9dbd", "#c98b3a", "#8b1a1a"],
+    ax.bar(x, g.pct_female, 0.62, color=["#bdbdbd", "#8c8c8c", "#8b1a1a"],
            edgecolor="white", linewidth=0.5)
     ax.axhline(50, color="0.4", linestyle=":", linewidth=1.0)
     for xi, v in zip(x, g.pct_female):
-        ax.annotate(f"{v:.1f}%", (xi, v), xytext=(0, 2.4), textcoords="offset points",
+        ax.annotate(f"{v:.2f}%", (xi, v), xytext=(0, 2.4), textcoords="offset points",
                     ha="center", fontsize=6.2)
     ax.set_xticks(x)
     ax.set_xticklabels(["always\ncorrect", "disputed", "always\nwrong"])
-    ax.set_ylabel("female names (%)")
+    ax.set_ylabel("Female names (%)")
     ax.set_ylim(0, 92)
     ax.set_title("(b)", fontsize=7.6, loc="left")
 
@@ -268,7 +268,7 @@ def fig_temporal():
     ax.set_xlim(min(y.Year) - 0.12, max(y.Year) + 0.12)
     # Shortened for the half-column panel. The caption carries the full wording,
     # "the year a name was first recorded".
-    ax.set_xlabel("year first recorded")
+    ax.set_xlabel("Year first recorded")
     ax.set_ylabel("F1 (%)")
     ax.set_title("(a)", fontsize=7.6, loc="left")
     handles = [plt.Line2D([], [], color=CCHAR, label="character"),
@@ -288,9 +288,9 @@ def fig_temporal():
         ax.annotate(f"{v:.2f}", (v, i), xytext=(3.4, -1.8), textcoords="offset points",
                     fontsize=6)
     ax.set_yticks(np.arange(len(lab)))
-    ax.set_yticklabels([l.replace("_full", ", full") for l in lab], fontsize=6)
+    ax.set_yticklabels([l.replace("_full", ", full").replace("-", "–") for l in lab], fontsize=6)
     ax.set_xlim(min(val) - 1.2, max(val) + 1.8)
-    ax.set_xlabel("test F1 (%)")
+    ax.set_xlabel("Test F1 (%)")
     ax.set_title("(b)", fontsize=7.6, loc="left")
     for ax in axes:
         ax.spines[["top", "right"]].set_visible(False)
@@ -308,7 +308,7 @@ def fig_imbalance():
     order = CHAR + WORD
     strategies = [s for s in ("unweighted", "oversampling", "balanced")
                   if s in set(d.Strategy)]
-    cols = {"unweighted": "#7f9dbd", "oversampling": "#c98b3a", "balanced": "#5b8c5a"}
+    cols = {"unweighted": "#8c8c8c", "oversampling": "#7b5ea7", "balanced": "#2a9d8f"}
     fig, ax = plt.subplots(figsize=(COL, 3.8))
     yy = np.arange(len(order))
     w = 0.8 / max(len(strategies), 1)

@@ -60,7 +60,7 @@ def main() -> int:
     for ax, models, title in ((axes[0], CHAR, "(a)"), (axes[1], WORD, "(b)")):
         band(ax, h, models, tcol, "-", "")
         band(ax, h, models, "dev_f1", "--", "")
-        ax.set_xlabel("epoch")
+        ax.set_xlabel("Epoch")
         ax.set_title(title, fontsize=7.6, loc="left")
         ax.tick_params(labelsize=7.5)
         ax.spines[["top", "right"]].set_visible(False)
