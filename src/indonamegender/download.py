@@ -2,7 +2,7 @@ import os
 import urllib.request
 from pathlib import Path
 
-WEIGHTS_TAG = "v1.0.0"
+WEIGHTS_TAG = "v1.1.0"
 GITHUB_RELEASE_BASE = (
     f"https://github.com/ericks-rs/indonesian-name-gender/releases/download/{WEIGHTS_TAG}/"
 )

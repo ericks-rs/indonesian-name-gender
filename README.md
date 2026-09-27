@@ -75,7 +75,7 @@ leads CharBiGRU internally by 0.06 points, a difference the paper reports as
 not separable.
 
 The other seven are under `models/` in a clone. From a pip install they are
-fetched once from the `v1.0.0` release and cached under
+fetched once from the `v1.1.0` release and cached under
 `~/.cache/indonamegender/`, so any architecture in the grid can be asked for by
 name.
 

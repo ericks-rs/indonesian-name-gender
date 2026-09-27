@@ -13,7 +13,7 @@ RESULTS_DIR = HERE.parent / "results"
 app = FastAPI(
     title="Riset Nama Gender - Demo API",
     description="Klasifikasi gender berdasarkan nama Indonesia.",
-    version="1.0.0",
+    version="1.1.0",
 )
 
 app.add_middleware(
