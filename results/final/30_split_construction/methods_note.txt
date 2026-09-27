@@ -1,0 +1,7 @@
+The split is by first year of appearance over a name-deduplicated corpus.
+Training holds names first recorded between 1990 and 2021, of which 993 (0.59 percent) were recorded again in 2022 or 2023 and none in 2024, 2025, or 2026.
+Those later records are not in the evaluation partitions, because a name belongs to the partition of its first year.
+The evaluation partition therefore contains only names absent from training in every year, which is a novel-name temporal split rather than a random record split.
+Frequency and year are columns in the files, not inputs. Each model receives the name string and the label and nothing else.
+Two record totals exist and only one belongs in the manuscript. strict_clean_1990_2026.csv keeps the frequency each name carried before the split was built, and its FREQ column sums to 230,672. The three partition files carry the trimmed frequency and sum to 230,672, which is the figure the paper states. The difference of 0 is the re-registrations dropped so that every evaluation name is novel.
+Before any of that, 198 names appearing in the registry under both labels were removed, 915 records or 0.395 percent of the raw total. A name with two labels cannot be scored. 106 of them split evenly and 1 would have fallen in the evaluation partition, so the reported figures are effectively unaffected. The corpus is nonetheless a cleaned one and the paper should say so rather than leave it to the filename.

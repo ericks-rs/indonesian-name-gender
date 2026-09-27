@@ -5,7 +5,7 @@ than assumed.
 
 ## Loading a checkpoint is exact
 
-The bundled `CharBiLSTM` reproduces the stored seed-42 prediction on all 15,923
+The bundled `CharBiLSTM` reproduces the stored seed-42 prediction on all 18,882
 evaluation names, with no disagreement. Anything that only loads and predicts is
 deterministic.
 

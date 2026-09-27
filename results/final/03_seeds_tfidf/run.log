@@ -1,0 +1,26 @@
+
+### pipeline/seeds_tfidf.py
+Train 169,329 | Val 15,923
+TF-IDF fitted: 50,000 features in 4.3s
+  TF-IDF+SVM   seed 42    F1=0.9628  (1.2s)
+  TF-IDF+LR    seed 42    F1=0.9602  (1.8s)
+  TF-IDF+RF    seed 42    F1=0.9178  (10.3s)
+  TF-IDF+SVM   seed 7     F1=0.9628  (1.2s)
+  TF-IDF+LR    seed 7     F1=0.9602  (1.6s)
+  TF-IDF+RF    seed 7     F1=0.9195  (11.5s)
+  TF-IDF+SVM   seed 123   F1=0.9628  (1.2s)
+  TF-IDF+LR    seed 123   F1=0.9602  (1.8s)
+  TF-IDF+RF    seed 123   F1=0.9172  (11.4s)
+  TF-IDF+SVM   seed 2024  F1=0.9628  (1.2s)
+  TF-IDF+LR    seed 2024  F1=0.9602  (1.7s)
+  TF-IDF+RF    seed 2024  F1=0.9232  (10.7s)
+  TF-IDF+SVM   seed 777   F1=0.9628  (1.1s)
+  TF-IDF+LR    seed 777   F1=0.9602  (1.6s)
+  TF-IDF+RF    seed 777   F1=0.9201  (10.8s)
+
+     Model  n_seeds  f1_mean  f1_std  f1_min  f1_max
+TF-IDF+SVM        5   0.9628  0.0000  0.9628  0.9628
+ TF-IDF+LR        5   0.9602  0.0000  0.9602  0.9602
+ TF-IDF+RF        5   0.9196  0.0024  0.9172  0.9232
+
+Written to D:\MyPaper\RisetNamaGender\results\final\03_seeds_tfidf

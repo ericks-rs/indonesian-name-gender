@@ -1,0 +1,49 @@
+
+### program/temporal_drift/analyze_temporal_patterns.py
+Loading data...
+Train: 186,211 | Val: 15,923
+
+======================================================================
+EKSPERIMEN 1: Per-Year Validation F1 (2024 vs 2025)
+======================================================================
+D:\MyPaper\RisetNamaGender\program\temporal_drift\..\..\demo\inference.py:108: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=n_layers)
+[Predictor] Loaded 8 models (suffix='_weighted') on cuda
+
+  Year 2024: 8,540 names (M=4,127, F=4,413)
+    CharBiGRU          Acc=0.9518 F1=0.9522
+    CharBiLSTM         Acc=0.9564 F1=0.9572
+    CharBiRNN          Acc=0.9543 F1=0.9549
+    CharTransformer    Acc=0.9534 F1=0.9542
+    WordTransformer    Acc=0.9334 F1=0.9352
+    WordBiLSTM         Acc=0.9327 F1=0.9344
+    WordBiGRU          Acc=0.9248 F1=0.9256
+    WordBiRNN          Acc=0.9288 F1=0.9305
+
+  Year 2025: 7,383 names (M=3,701, F=3,682)
+    CharBiGRU          Acc=0.9657 F1=0.9653
+    CharBiLSTM         Acc=0.9646 F1=0.9644
+    CharBiRNN          Acc=0.9634 F1=0.9629
+    CharTransformer    Acc=0.9623 F1=0.9622
+    WordTransformer    Acc=0.9361 F1=0.9363
+    WordBiLSTM         Acc=0.9363 F1=0.9364
+    WordBiGRU          Acc=0.9330 F1=0.9321
+    WordBiRNN          Acc=0.9327 F1=0.9327
+
+  F1 Pivot (Year vs Model):
+Year                 2024      2025  Delta_2025_minus_2024_pp
+Model                                                        
+CharBiGRU        0.952248  0.965281                  1.303214
+CharBiLSTM       0.957241  0.964427                  0.718550
+CharBiRNN        0.954903  0.962912                  0.800922
+CharTransformer  0.954232  0.962167                  0.793475
+WordBiGRU        0.925574  0.932145                  0.657146
+WordBiLSTM       0.934383  0.936401                  0.201734
+WordBiRNN        0.930483  0.932683                  0.220068
+WordTransformer  0.935186  0.936319                  0.113324
+
+======================================================================
+EKSPERIMEN 2: Suffix Trend Per 5-Year Window
+======================================================================
+
+### EXIT 3228369023

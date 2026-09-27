@@ -55,13 +55,13 @@ def main() -> int:
         return 0
     tr = pd.read_csv(DATA / "train_1990_2021.csv")
     dv = pd.read_csv(DATA / "dev_2022_2023.csv")
-    va = pd.read_csv(DATA / "val_2024_2025.csv")
-    full = pd.read_csv(DATA / "strict_clean_1990_2025.csv")
+    va = pd.read_csv(DATA / "val_2024_2026.csv")
+    full = pd.read_csv(DATA / "strict_clean_1990_2026.csv")
     TABLES.mkdir(parents=True, exist_ok=True)
     print(f"Train {len(tr):,} | Dev {len(dv):,} | Test {len(va):,} | Corpus {len(full):,}")
     made = []
 
-    parts = [("Train\n1990-2021", tr), ("Dev\n2022-2023", dv), ("Test\n2024-2025", va)]
+    parts = [("Train\n1990-2021", tr), ("Dev\n2022-2023", dv), ("Test\n2024-2026", va)]
     fig, ax = plt.subplots(figsize=(COL, 2.3))
     x = range(len(parts))
     w = 0.38

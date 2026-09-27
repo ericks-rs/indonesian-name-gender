@@ -1,0 +1,8 @@
+case_r3,case_original,type,category,tokens,ending,ending_n_training,ending_pct_female,true_label,predicted,reason
+FN-1,FN-1,false negative,misleading ending,3,anto,5931,2.4,female,male,ending is 98 percent male across 5931 training names
+FN-2,FN-2,false negative,first token conflicts with the label,4,ana,4990,39.0,female,male,"first token is 100 percent male across 6520 training names, against the recorded label"
+FP-1,FP-2,false positive,ending not a marker against the label,3,tama,1915,3.4,male,female,"ending is 97 percent male across 1915 training names, which agrees with the recorded label, so the error comes from elsewhere"
+FP-2,FP-4,false positive,ending balanced,3,ah,9514,50.4,male,female,ending is balanced at 50 percent female across 9514 training names
+FN-3,FN-5,false negative,no token seen,3,ung,376,30.1,female,male,no token appears in training
+FP-3,FP-6,false positive,ending never seen,4,fikh,0,,male,female,ending never seen in training
+FN-4,FN-7,false negative,ending rare,4,rohm,2,0.0,female,male,ending seen only 2 times in training

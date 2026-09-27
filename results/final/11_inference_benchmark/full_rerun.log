@@ -1,0 +1,573 @@
+PyTorch 2.11.0+cu128 | GPU NVIDIA GeForce RTX 5080 Laptop GPU | probe 'BANOWATI LARASATI'
+D:\MyPaper\RisetNamaGender\demo\inference.py:136: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=n_layers)
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+  CharBiRNN           30,001 | GPU 0.3492 | CPU 0.5264 | CPU tp 19632.5
+  CharBiLSTM         114,097 | GPU 0.3535 | CPU 0.4009 | CPU tp 7105.2
+  CharBiGRU           86,065 | GPU 0.347 | CPU 1.3541 | CPU tp 8593.6
+  WordBiRNN        2,432,545 | GPU 0.3422 | CPU 0.1851 | CPU tp 120973.0
+  WordBiLSTM       2,544,289 | GPU 0.3544 | CPU 0.2562 | CPU tp 39867.1
+  WordBiGRU        2,507,041 | GPU 0.3502 | CPU 0.3423 | CPU tp 49085.5
+  CharTransformer    605,953 | GPU 1.1343 | CPU 1.1677 | CPU tp 1157.8
+  WordTransformer  6,126,721 | GPU 1.1347 | CPU 0.7715 | CPU tp 5236.4
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 36128.06it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  IndoBERT         124,442,882 | GPU 5.0599 | CPU 61.7078
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5335.38it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  mBERT            177,854,978 | GPU 5.2953 | CPU 57.3931
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5241.28it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  XLM-R            278,045,186 | GPU 5.7422 | CPU 57.9442
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 4998.01it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  CANINE-s         132,084,482 | GPU 7.4524 | CPU 68.4361
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 31902.35it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  ByT5-small       217,660,418 | GPU 8.0502 | CPU 233.6044
+
+=== seven-trial repeated CPU ===
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 30457.83it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5157.93it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5536.53it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 5682.96it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 34137.20it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  trial 1/7 done
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 49765.47it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5151.50it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5366.07it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 5418.37it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 27227.85it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  trial 2/7 done
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 39802.88it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5073.74it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5813.66it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 5581.06it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 29856.49it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  trial 3/7 done
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 39537.04it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5214.84it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 8361.19it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 5876.25it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 44654.19it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  trial 4/7 done
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 28415.15it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 4358.94it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5612.31it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 5085.88it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 31885.02it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  trial 5/7 done
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 29943.19it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 5120.28it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5537.87it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 5914.89it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 37306.39it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  trial 6/7 done
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+[Predictor] Loaded 8 models (suffix='__seed42') on cuda
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 36109.30it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 4217.19it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5850.29it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/246 [00:00<?, ?it/s]Loading weights: 100%|##########| 246/246 [00:00<00:00, 5630.92it/s]
+[transformers] [1mCanineForSequenceClassification LOAD REPORT[0m from: google/canine-s
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Loading weights:   0%|          | 0/112 [00:00<?, ?it/s]Loading weights: 100%|##########| 112/112 [00:00<00:00, 56004.06it/s]
+[transformers] [1mT5EncoderModel LOAD REPORT[0m from: google/byt5-small
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  trial 7/7 done
+
+          Model                 Family  Params_M  Disk_MB  GPU_fwd_ms  GPU_throughput_nps  GPU_peak_mem_MB  CPU_fwd_ms_repeated  CPU_fwd_ms_spread_pct
+      CharBiRNN             paper-char    0.0300     0.12      0.3492            693053.2            161.7               0.5342                    2.8
+     CharBiLSTM             paper-char    0.1141     0.46      0.3535            384021.1            252.2               0.3987                    7.2
+      CharBiGRU             paper-char    0.0861     0.35      0.3470            436908.5            220.0               1.3727                    5.2
+      WordBiRNN             paper-word    2.4325     9.73      0.3422            714056.6             97.3               0.1843                    6.6
+     WordBiLSTM             paper-word    2.5443    10.18      0.3544            652478.7            103.9               0.2546                    4.2
+      WordBiGRU             paper-word    2.5070    10.03      0.3502            714854.2             87.2               0.3392                    3.7
+CharTransformer             paper-char    0.6060     2.44      1.1343            107760.9            118.0               1.1575                   16.1
+WordTransformer             paper-word    6.1267    24.52      1.1347            237932.6             48.5               0.7676                    4.5
+       IndoBERT pretrained-transformer  124.4429   497.84      5.0599              2145.8            785.2              57.9667                    9.3
+          mBERT pretrained-transformer  177.8550   711.47      5.2953              2232.1            999.1              59.3650                    5.1
+          XLM-R pretrained-transformer  278.0452  1112.23      5.7422              2261.2           1399.7              59.1051                    3.3
+       CANINE-s        pretrained-char  132.0845   528.42      7.4524              2345.2           1330.5              67.0641                    5.0
+     ByT5-small        pretrained-char  217.6604   872.94      8.0502               530.4           2238.9             215.5493                    4.1
+     TF-IDF+SVM            statistical    0.0500     3.42         NaN                 NaN              NaN                  NaN                    NaN
+
+Params check vs prior table:
+  CharBiRNN            30,001  OK
+  CharBiLSTM          114,097  OK
+  CharBiGRU            86,065  OK
+  WordBiRNN         2,432,545  OK
+  WordBiLSTM        2,544,289  OK
+  WordBiGRU         2,507,041  OK
+  CharTransformer     605,953  OK
+  WordTransformer   6,126,721  OK
+  IndoBERT         124,442,882  OK
+  mBERT            177,854,978  OK
+  XLM-R            278,045,186  OK
+
+Written D:\MyPaper\RisetNamaGender\results\final\11_inference_benchmark\tables\inference_benchmark.csv (backup .bak). Now run benchmark_inference_tfidf.py for the SVM row.
+Training TF-IDF + Linear SVM for timing...
+  features=50,000
+  CPU fwd=0.0294 ms | e2e=0.2775 ms | 6634702.5 names/s | disk=3.42 MB
+
+Appended to D:\MyPaper\RisetNamaGender\results\final\11_inference_benchmark\tables\inference_benchmark.csv

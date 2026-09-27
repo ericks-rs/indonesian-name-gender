@@ -1,0 +1,16 @@
+No script in this repository builds the corpus. `strict_clean_1990_2026.csv` and `data/audit/ambiguous_1990_2025.csv` are inputs with no recorded producer, and the original notebook only reads them. The rules below are what the files themselves demonstrate, each one tested rather than remembered, and they are what Methods can state.
+
+- one row per distinct name
+- names are upper case
+- single spaces, no leading or trailing
+- no digits
+- characters outside A to Z and space are punctuation only
+- labels are L or P only
+- FIRST_YEAR within 1990 to 2026
+- LAST_YEAR never before FIRST_YEAR
+- FREQ at least one
+- no ambiguous name survives in the corpus
+- every ambiguous row really carries both labels
+- ambiguous counts sum to their frequency
+
+Two things stay inferred and should be written as such. The exact normalisation applied to the raw registry cannot be recovered, only its result, and the rule that resolved a name recorded in several years to one label is visible only in the outcome, that no surviving name carries a conflict. Anyone rebuilding the corpus from the registry should expect to reproduce the counts, not the procedure.

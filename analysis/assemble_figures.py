@@ -10,31 +10,24 @@ OUT = SRC / "manuscript"
 ATTIC = ROOT / "_archive" / "v3i_old_figures"
 SOURCE = SRC / "_source"
 
+# The manuscript ships fourteen figures, already numbered in results/figures/.
+# Each source name below is the shipped file; this list is the numbering authority
+# and matches the figure order in the paper.
 ORDER = [
-    (1, "02_name_length_distribution.png", "name length in characters and in tokens"),
-    (2, "01_label_distribution.png", "label proportions across the three partitions"),
-    (3, "03_suffix_analysis_by_gender.png", "suffixes ranked by conditional gender probability"),
-    (4, "04_first_word_distribution.png", "most frequent first tokens by gender"),
-    (5, "fig_metrics_accuracy_precision.png", "accuracy and precision, fourteen classifiers"),
-    (6, "fig_metrics_recall_f1.png", "recall and F1, fourteen classifiers"),
-    (7, "fig_neural_f1_lollipop.png", "F1 of the eight neural models with the seed interval"),
-    (8, "fig_paired_forest_test.png", "paired character minus word on the test partition"),
-    (9, "fig_training_curves.png", "training and development F1 across epochs"),
-    (10, "fig_confusion_birnn_bigru.png", "confusion matrices, BiRNN and BiGRU"),
-    (11, "fig_confusion_bilstm_transformer.png", "confusion matrices, BiLSTM and Transformer"),
-    (12, "fig_efficiency_params.png", "F1 against parameter count"),
-    (13, "fig_accuracy_by_token_count.png", "accuracy against the number of tokens"),
-    (14, "fig_attention_reading_one.png", "attention over two constructed names"),
-    (15, "fig_attention_reading_two.png", "attention over two further constructed names"),
-    (16, "fig_attention_position.png", "where attention falls, aggregated over the partition"),
-    (17, "fig_paired_forest_external.png", "paired character minus word on the benchmark"),
-    (18, "fig_external_validation.png", "F1 across the three versions of the benchmark"),
-    (19, "fig_error_profile.png", "how often a name is missed, and by which gender"),
-    (20, "fig_error_by_token.png", "error rate against the number of tokens"),
-    (21, "fig_efficiency_latency.png", "F1 against single-thread CPU latency"),
-    (22, "fig_sensitivity_sweep.png", "every configuration in the sensitivity sweep"),
-    (23, "fig_imbalance_strategies.png", "resampling strategies against a weighted objective"),
-    (24, "fig_temporal_drift.png", "F1 by the year a name first appears and by training window"),
+    (1, "fig01_name_length.png", "name length in characters and in tokens"),
+    (2, "fig02_label_share.png", "label proportions across the three partitions"),
+    (3, "fig03_suffix.png", "suffixes ranked by conditional gender probability"),
+    (4, "fig04_first_token.png", "most frequent first tokens by gender"),
+    (5, "fig05_training_curves.png", "training and development F1 across epochs"),
+    (6, "fig06_confusion.png", "confusion matrices, CharBiGRU and CharBiLSTM"),
+    (7, "fig07_efficiency_params.png", "F1 against parameter count"),
+    (8, "fig08_attention_position_char.png", "character-level attention by position"),
+    (9, "fig09_attention_position_word.png", "word-level attention, first token against last"),
+    (10, "fig10_attention_reading.png", "attention over two constructed names"),
+    (11, "fig11_external_validation.png", "F1 across the three versions of the benchmark"),
+    (12, "fig12_error_profile.png", "how often a name is missed, and by which gender"),
+    (13, "fig13_efficiency_latency.png", "F1 against single-thread CPU latency"),
+    (14, "fig14_sensitivity_sweep.png", "every configuration in the sensitivity sweep"),
 ]
 
 def main() -> int:

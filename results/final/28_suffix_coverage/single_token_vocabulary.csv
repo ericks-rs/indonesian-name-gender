@@ -1,0 +1,7 @@
+partition,subset,n_names,n_single_token,pct_of_single_token,character_acc_pct,word_acc_pct
+internal 2024-2026,"single-token, all",159,159,100.0,86.2264,67.5157
+internal 2024-2026,"single-token, outside vocabulary",100,159,62.8931,86.6,60.0
+internal 2024-2026,"single-token, in vocabulary",59,159,37.1069,85.5932,80.2542
+external clean dedup,"single-token, all",365,365,100.0,88.6027,58.3151
+external clean dedup,"single-token, outside vocabulary",301,365,82.4658,87.4585,52.4917
+external clean dedup,"single-token, in vocabulary",64,365,17.5342,93.9844,85.7031

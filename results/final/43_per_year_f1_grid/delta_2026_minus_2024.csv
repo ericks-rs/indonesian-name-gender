@@ -1,0 +1,9 @@
+Model,from_year,to_year,delta_pp,min_seed_pp,max_seed_pp,seeds_higher_2026
+CharBiRNN,2024,2026,0.813,0.472,1.309,5
+CharBiLSTM,2024,2026,1.165,1.037,1.347,5
+CharBiGRU,2024,2026,1.139,0.873,1.343,5
+CharTransformer,2024,2026,0.504,0.308,0.716,5
+WordBiRNN,2024,2026,0.235,-0.084,0.785,4
+WordBiLSTM,2024,2026,0.170,-0.056,0.323,4
+WordBiGRU,2024,2026,0.200,0.068,0.310,5
+WordTransformer,2024,2026,0.003,-0.434,0.575,3

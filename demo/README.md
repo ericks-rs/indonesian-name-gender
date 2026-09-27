@@ -4,7 +4,7 @@ Live web demo untuk klasifikasi gender dari nama Indonesia menggunakan **8 neura
 
 ## Fitur
 
-1. **Single Model** - prediksi dengan CharBiLSTM (F1 0.9589 rata-rata lima seed),
+1. **Single Model** - prediksi dengan CharBiLSTM (F1 0.9675 rata-rata lima seed),
    dengan confidence bar L vs P. Disebut single, bukan best, karena CharBiGRU
    unggul 0.04 poin dengan interval yang melewati nol, jadi menyebut salah satu
    terbaik adalah seleksi yang tidak didukung data.

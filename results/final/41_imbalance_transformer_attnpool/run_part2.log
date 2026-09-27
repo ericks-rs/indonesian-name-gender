@@ -1,0 +1,12 @@
+PyTorch 2.8.0+cu128 | Device: cuda | seeds=[42, 7, 123, 2024, 777]
+Train 169,329 (M=103,281 F=66,048, pos_weight=1.5637) | Val 15,923
+Tokenizers: char=33 word=24947
+resume: 38 run sudah ada
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 39/40] balanced      WordTransformer  seed=2024  F1=0.933752 (best ep 8, 73s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 40/40] balanced      WordTransformer  seed=777   F1=0.935044 (best ep 9, 81s)
+
+wrote D:\MyPaper\RisetNamaGender\results\final\41_imbalance_transformer_attnpool\imbalance_runs_transformer_attnpool.csv

@@ -1,0 +1,6 @@
+Rerunning the same architecture from the same seed does not return identical weights, but the difference does not reach the score.
+Across 4 character models, ten epochs on 20,000 training names, the largest weight difference is 1.651e-03 and the largest development F1 difference is 0.0066 percentage points. 2 of 4 reproduce the score exactly at four decimals.
+
+The training script seeds torch, numpy and CUDA and gives the shuffler its own generator, but does not call torch.use_deterministic_algorithms or disable the cuDNN autotuner, so recurrent and attention kernels are free to pick different reduction orders between runs. The effect stays two orders of magnitude below the seed to seed spread the paper already reports, so a rerun lands on the same figure at the precision the tables carry.
+
+A separate and exact guarantee: a released checkpoint reproduces the stored predictions on all 15,923 evaluation names for every model, which stage_release_models.py verifies on every run. Checking the reported numbers against the released weights returns them exactly. The measurement above concerns retraining from scratch.

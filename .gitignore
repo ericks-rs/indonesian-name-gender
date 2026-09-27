@@ -22,3 +22,11 @@ Thumbs.db
 # scoped, because every document a reader needs sits in the root, docs/, demo/
 # or experiments/, and none of those are touched.
 /results/**/*.md
+
+# Training checkpoints are not shipped in the repository; the eight seed-42 grid models live in models/ and the
+# bundled CharBiLSTM in src/indonamegender/data/. Fine-tuned encoder and sweep checkpoints stay local.
+/results/final/**/checkpoints/
+/results/final/04_seeds_transformers/models/
+
+# Case-to-name keys for the error tables stay local; the paper states the mapping is not released.
+/results/final/27_error_analysis/error_examples_key*.csv

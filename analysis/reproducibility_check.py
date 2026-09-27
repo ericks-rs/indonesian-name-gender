@@ -117,7 +117,7 @@ def main() -> int:
            "at the precision the tables carry."),
         "",
         "A separate and exact guarantee: a released checkpoint reproduces the "
-        "stored predictions on all 15,923 evaluation names for every model, which "
+        "stored predictions on all 18,882 evaluation names for every model, which "
         "stage_release_models.py verifies on every run. Checking the reported "
         "numbers against the released weights returns them exactly. The "
         "measurement above concerns retraining from scratch.",

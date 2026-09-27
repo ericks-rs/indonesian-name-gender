@@ -1,0 +1,10 @@
+{
+  "model": "qwen2.5:7b",
+  "target_count": 10000,
+  "generated_count": 10000,
+  "batches_done": 230,
+  "duplicates_skipped": 536,
+  "existing_collisions": 553,
+  "total_time_minutes": 28.36,
+  "rate_per_minute": 352.6
+}

@@ -37,7 +37,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
 
     tr = pd.read_csv(DATA_DIR / "train_1990_2021.csv")
-    va = pd.read_csv(DATA_DIR / "val_2024_2025.csv")
+    va = pd.read_csv(DATA_DIR / "val_2024_2026.csv")
     tr["LABEL_ENC"] = (tr["LABEL"] == "P").astype(int)
     va["LABEL_ENC"] = (va["LABEL"] == "P").astype(int)
     print(f"Train {len(tr):,} | Val {len(va):,}", flush=True)

@@ -1,9 +1,9 @@
 Model,level,true_negative,false_positive,false_negative,true_positive,fn_over_fp
-CharBiRNN,character,7572.0,256.0,426.8,7668.2,1.67
-CharBiGRU,character,7588.6,239.4,412.0,7683.0,1.72
-CharBiLSTM,character,7580.4,247.6,410.8,7684.2,1.66
-CharTransformer,character,7535.4,292.6,424.4,7670.6,1.45
-WordBiRNN,word,7326.2,501.8,587.6,7507.4,1.17
-WordBiGRU,word,7298.8,529.2,547.0,7548.0,1.03
-WordBiLSTM,word,7301.8,526.2,536.0,7559.0,1.02
-WordTransformer,word,7309.6,518.4,510.8,7584.2,0.99
+CharBiRNN,character,8988.2,267.8,399.4,9226.6,1.49
+CharBiGRU,character,8995.0,261.0,372.2,9253.8,1.43
+CharBiLSTM,character,9000.6,255.4,366.6,9259.4,1.44
+CharTransformer,character,8894.6,361.4,349.4,9276.6,0.97
+WordBiRNN,word,8689.0,567.0,612.4,9013.6,1.08
+WordBiGRU,word,8672.0,584.0,583.2,9042.8,1.0
+WordBiLSTM,word,8663.0,593.0,561.4,9064.6,0.95
+WordTransformer,word,8674.6,581.4,531.6,9094.4,0.91

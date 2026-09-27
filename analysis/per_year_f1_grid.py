@@ -3,7 +3,7 @@
 Dipakai untuk Fig. 15(a). Prediksi dibaca dari
 `results/final/24_grid_attention_pooling/val_predictions.csv` (anonim, urut
 `row_id`). Tahun registrasi pertama tidak dirilis, jadi kolom `FIRST_YEAR` dibaca
-dari `data/splits/val_2024_2025.csv`, yang sama seperti script training tidak
+dari `data/splits/val_2024_2026.csv`, yang sama seperti script training tidak
 ikut di repository ini. Baris ke-i split itu adalah `row_id` i.
 
 Output di results/final/43_per_year_f1_grid/ (agregat, tanpa nama):
@@ -41,7 +41,7 @@ def dec(fr: Fraction, places: str) -> Decimal:
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     pred = pd.read_csv(GRID / "val_predictions.csv").sort_values("row_id")
-    val = pd.read_csv(ROOT / "data" / "splits" / "val_2024_2025.csv")
+    val = pd.read_csv(ROOT / "data" / "splits" / "val_2024_2026.csv")
     assert len(val) == len(pred) and (pred.row_id.values == range(1, len(val) + 1)).all()
     assert ((val.LABEL == "P").astype(int).values == pred.label.values).all()
     y, year = pred.label.values, val.FIRST_YEAR.values

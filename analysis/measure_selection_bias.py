@@ -104,15 +104,15 @@ def main() -> int:
     tr21 = pd.read_csv(DATA / "train_1990_2021.csv")
     dev = pd.read_csv(DATA / "dev_2022_2023.csv")
     tr23 = pd.read_csv(DATA / "train_1990_2023.csv")
-    te = pd.read_csv(DATA / "val_2024_2025.csv")
+    te = pd.read_csv(DATA / "val_2024_2026.csv")
 
     tok = CharTok(tr23.NAMA)
     test_dl = make_loader(te, tok)
 
     pw = lambda d: (d.LABEL == "L").sum() / (d.LABEL == "P").sum()
 
-    ARMS = [("A", "train 1990-2023, select on 2024-2025", tr23, te),
-            ("B", "train 1990-2021, select on 2024-2025", tr21, te),
+    ARMS = [("A", "train 1990-2023, select on 2024-2026", tr23, te),
+            ("B", "train 1990-2021, select on 2024-2026", tr21, te),
             ("C", "train 1990-2021, select on 2022-2023", tr21, dev)]
     for tag, what, trd, seld in ARMS:
         print(f"arm {tag}: {what}, {len(trd):,} training names, "
@@ -139,7 +139,7 @@ def main() -> int:
     tc = 2.776
     summary = []
     for col, label in (("data_effect_pp", "training window, 1990-2023 against 1990-2021"),
-                       ("selection_effect_pp", "selection signal, 2024-2025 against 2022-2023"),
+                       ("selection_effect_pp", "selection signal, 2024-2026 against 2022-2023"),
                        ("total_pp", "both changes together")):
         v = df[col]
         se = v.std(ddof=1) / np.sqrt(len(v))

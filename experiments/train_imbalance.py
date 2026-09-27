@@ -39,7 +39,7 @@ CFG = dict(CHAR_MAX_LEN=50, WORD_MAX_LEN=8, CHAR_EMB_DIM=48, WORD_EMB_DIM=96,
 
 df_train = pd.read_csv(DATA_DIR / "train_1990_2021.csv")
 df_dev = pd.read_csv(DATA_DIR / "dev_2022_2023.csv")
-df_val = pd.read_csv(DATA_DIR / "val_2024_2025.csv")
+df_val = pd.read_csv(DATA_DIR / "val_2024_2026.csv")
 
 df_ext = pd.read_csv(PROJECT_ROOT / "data" / "external" / "indonesian-names.csv")
 df_ext = df_ext.rename(columns={"name": "NAMA"})

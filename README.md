@@ -6,43 +6,43 @@
 [![Python](https://img.shields.io/pypi/pyversions/indonamegender)](https://pypi.org/project/indonamegender/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Code, trained checkpoints and result tables for *A Cross-Architecture Attention
-Analysis of Character-Level and Word-Level Models for Gender Classification from
-Indonesian Names*.
+Code, trained checkpoints and result tables for *A Cross-Architecture Empirical
+Study of Character-Level and Word-Level Representations for Gender Classification
+from Indonesian Names*.
 
 The study compares two input representations across four sequence encoders under
-one fixed configuration, and asks where each model places its attention. It does
+one fixed configuration, and reads where each model places its attention. It does
 not propose an architecture. Every model here is a standard encoder used as
 published.
 
 ## What the study found
 
 Character-level representation beat word-level representation for all four
-architectures, by 1.89 to 2.59 F1 points over five matched seeds, with every
+architectures, by 2.08 to 2.76 F1 points over five matched seeds, with every
 confidence interval clear of zero. Encoder choice decided far less. Within the
 character-level group no pairwise difference survived Holm correction, so the
 paper names no best encoder.
 
 | model | level | precision | recall | F1 |
 |---|---|---|---|---|
-| TF-IDF+SVM | character | 0.9777 | 0.9484 | **0.9628** |
-| XLM-R | subword | 0.9730 | 0.9506 | 0.9617 |
-| mBERT | subword | 0.9737 | 0.9483 | 0.9608 |
-| TF-IDF+LR | character | 0.9755 | 0.9453 | 0.9602 |
-| CharBiGRU | character | 0.9698 | 0.9491 | 0.9593 |
-| CharBiLSTM | character | 0.9688 | 0.9493 | 0.9589 |
-| IndoBERT | subword | 0.9694 | 0.9466 | 0.9578 |
-| CharBiRNN | character | 0.9677 | 0.9473 | 0.9574 |
-| CharTransformer | character | 0.9633 | 0.9476 | 0.9554 |
-| WordTransformer | word | 0.9361 | 0.9369 | 0.9365 |
-| WordBiLSTM | word | 0.9349 | 0.9338 | 0.9344 |
-| WordBiGRU | word | 0.9345 | 0.9324 | 0.9335 |
-| WordBiRNN | word | 0.9374 | 0.9274 | 0.9323 |
-| TF-IDF+RF | character | 0.9545 | 0.8871 | 0.9196 |
+| TF-IDF+SVM | character | 0.9800 | 0.9611 | **0.9705** |
+| XLM-R | subword | 0.9773 | 0.9619 | 0.9696 |
+| mBERT | subword | 0.9768 | 0.9599 | 0.9682 |
+| CharBiLSTM | character | 0.9732 | 0.9619 | 0.9675 |
+| TF-IDF+LR | character | 0.9779 | 0.9561 | 0.9669 |
+| CharBiGRU | character | 0.9726 | 0.9613 | 0.9669 |
+| CharBiRNN | character | 0.9718 | 0.9585 | 0.9651 |
+| IndoBERT | subword | 0.9738 | 0.9556 | 0.9646 |
+| CharTransformer | character | 0.9625 | 0.9637 | 0.9631 |
+| WordTransformer | word | 0.9398 | 0.9448 | 0.9423 |
+| WordBiLSTM | word | 0.9385 | 0.9417 | 0.9401 |
+| WordBiGRU | word | 0.9393 | 0.9394 | 0.9393 |
+| WordBiRNN | word | 0.9408 | 0.9364 | 0.9386 |
+| TF-IDF+RF | character | 0.9561 | 0.9005 | 0.9275 |
 
 All fourteen classifiers are shown. The character-level neural models match the
 fine-tuned encoders on the test partition and lead on the external benchmark, at
-44.6 to 151.4 times lower single-thread CPU latency. Precision, recall, external
+43.6 to 148.5 times lower single-thread CPU latency. Precision, recall, external
 F1, parameter counts and latency for every model are in `results/final/`.
 
 ## Install
@@ -69,9 +69,9 @@ p.predict("GATOTKACA WIRAWAN")
 
 The bundled model is the seed-42 `CharBiLSTM`, which is the one the paper
 recommends for names beyond the training data. It has the highest
-external F1 at 0.9375 and the lowest CPU latency at 0.3952 milliseconds, and it
-reproduces the stored prediction on all 15,923 evaluation names exactly. It
-trails CharBiGRU internally by 0.04 points, a difference the paper reports as
+external F1 at 0.9393 and the lowest CPU latency at 0.3912 milliseconds, and it
+reproduces the stored prediction on all 18,882 evaluation names exactly. It
+leads CharBiGRU internally by 0.06 points, a difference the paper reports as
 not separable.
 
 The other seven are under `models/` in a clone. From a pip install they are
@@ -88,28 +88,28 @@ GenderPredictor("WordTransformer")  # same
 
 Every model here answers on CPU, so none of them needs a GPU to serve.
 Latency is the median of seven trials of 200 single-thread calls at a fixed
-serving shape. Internal F1 is measured on the 2024 to 2025 partition and
+serving shape. Internal F1 is measured on the 2024 to 2026 partition and
 averaged over five seeds. External F1 is measured on the 1,464 names from the
 public benchmark that do not appear in the training data. Use this column when
 evaluating performance on unseen names.
 
 | model | parameters | size | CPU ms per name | internal F1 | external F1 |
 |---|---|---|---|---|---|
-| `CharBiLSTM` (bundled) | 114,097 | 0.46 MB | 0.3952 | 0.9589 | 0.9375 |
-| `CharTransformer` | 605,953 | 2.44 MB | 1.1456 | 0.9554 | 0.9368 |
-| `CharBiGRU` | 86,065 | 0.35 MB | 1.3433 | 0.9593 | 0.9345 |
-| `CharBiRNN` | 30,001 | 0.12 MB | 0.5238 | 0.9574 | 0.9297 |
-| `WordTransformer` | 6,126,721 | 24.52 MB | 0.7702 | 0.9365 | 0.8380 |
-| `WordBiRNN` | 2,432,545 | 9.73 MB | 0.1854 | 0.9323 | 0.8365 |
-| `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3388 | 0.9335 | 0.8357 |
-| `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2518 | 0.9344 | 0.8347 |
+| `CharBiLSTM` (bundled) | 114,097 | 0.46 MB | 0.3912 | 0.9675 | 0.9393 |
+| `CharTransformer` | 605,953 | 2.44 MB | 1.1338 | 0.9631 | 0.9389 |
+| `CharBiGRU` | 86,065 | 0.35 MB | 1.3316 | 0.9669 | 0.9385 |
+| `CharBiRNN` | 30,001 | 0.12 MB | 0.5237 | 0.9651 | 0.9313 |
+| `WordTransformer` | 6,126,721 | 24.52 MB | 0.7538 | 0.9423 | 0.8338 |
+| `WordBiRNN` | 2,432,545 | 9.73 MB | 0.1819 | 0.9386 | 0.8328 |
+| `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3351 | 0.9393 | 0.8325 |
+| `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2478 | 0.9401 | 0.8328 |
 
-Every character-level model exceeds every word-level model by at least 9.17
+Every character-level model exceeds every word-level model by at least 9.75
 external F1 points, which translates the paper's main finding into a practical
 serving decision. Internal F1 separates the two representation levels by only
 about 2 points, so selecting a model from the internal results alone understates
 the generalization gap. `CharBiRNN` is the smallest at 0.12 MB and 30,001
-parameters, and costs 0.78 points of external F1 against the bundled model.
+parameters, and costs 0.80 points of external F1 against the bundled model.
 
 Parameter count does not predict latency here, so read the two columns
 separately. Names are padded to 50 character positions and 8 word positions,
@@ -132,7 +132,7 @@ analysis/             statistics, figures and audits over the artifacts
 models/               eight seed-42 checkpoints, one per architecture
 tokenizers/           character vocabulary, and the hashed word vocabulary
 results/final/        every reported number, as CSV
-results/figures/      the 24 manuscript figures, PNG and PDF at 600 dpi
+results/figures/      the 14 manuscript figures, PNG and PDF at 600 dpi
 configs/              the machine and the training settings the run used
 demo/                 local web demo
 docs/                 data access, protocol, reproducibility

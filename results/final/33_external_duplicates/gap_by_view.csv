@@ -1,25 +1,25 @@
 view,subset,pair,char_f1,word_f1,gap_pp,n
-as published,full,BiRNN,0.9395,0.8532,8.632,1960
-as published,full,BiGRU,0.9449,0.8525,9.238,1960
-as published,full,BiLSTM,0.9476,0.8529,9.465,1960
-as published,full,Transformer,0.9474,0.8554,9.206,1960
-as published,clean,BiRNN,0.9306,0.8346,9.6,1551
-as published,clean,BiGRU,0.9366,0.8335,10.31,1551
-as published,clean,BiLSTM,0.9398,0.8331,10.673,1551
-as published,clean,Transformer,0.9384,0.8358,10.257,1551
-deduplicated,full,BiRNN,0.9376,0.8524,8.529,1795
-deduplicated,full,BiGRU,0.9422,0.8518,9.038,1795
-deduplicated,full,BiLSTM,0.9442,0.8512,9.298,1795
-deduplicated,full,Transformer,0.9447,0.8542,9.058,1795
-deduplicated,clean,BiRNN,0.9297,0.8365,9.319,1464
-deduplicated,clean,BiGRU,0.9345,0.8357,9.881,1464
-deduplicated,clean,BiLSTM,0.9375,0.8347,10.274,1464
-deduplicated,clean,Transformer,0.9368,0.838,9.885,1464
-unambiguous,full,BiRNN,0.9382,0.8528,8.539,1794
-unambiguous,full,BiGRU,0.9428,0.8523,9.049,1794
-unambiguous,full,BiLSTM,0.9448,0.8517,9.309,1794
-unambiguous,full,Transformer,0.9453,0.8546,9.069,1794
-unambiguous,clean,BiRNN,0.9297,0.8365,9.319,1464
-unambiguous,clean,BiGRU,0.9345,0.8357,9.881,1464
-unambiguous,clean,BiLSTM,0.9375,0.8347,10.274,1464
-unambiguous,clean,Transformer,0.9368,0.838,9.885,1464
+as published,full,BiRNN,0.9412,0.8523,8.893,1960
+as published,full,BiGRU,0.9459,0.8519,9.398,1960
+as published,full,BiLSTM,0.9457,0.8526,9.307,1960
+as published,full,Transformer,0.9473,0.8542,9.316,1960
+as published,clean,BiRNN,0.9313,0.8328,9.849,1551
+as published,clean,BiGRU,0.9385,0.8325,10.597,1551
+as published,clean,BiLSTM,0.9393,0.8328,10.656,1551
+as published,clean,Transformer,0.9389,0.8338,10.515,1551
+deduplicated,full,BiRNN,0.9386,0.8515,8.708,1795
+deduplicated,full,BiGRU,0.9429,0.8509,9.195,1795
+deduplicated,full,BiLSTM,0.943,0.8509,9.205,1795
+deduplicated,full,Transformer,0.9444,0.8529,9.151,1795
+deduplicated,clean,BiRNN,0.93,0.8347,9.529,1464
+deduplicated,clean,BiGRU,0.9361,0.8344,10.166,1464
+deduplicated,clean,BiLSTM,0.9367,0.8346,10.211,1464
+deduplicated,clean,Transformer,0.9372,0.8359,10.126,1464
+unambiguous,full,BiRNN,0.9391,0.852,8.719,1794
+unambiguous,full,BiGRU,0.9434,0.8514,9.206,1794
+unambiguous,full,BiLSTM,0.9436,0.8514,9.216,1794
+unambiguous,full,Transformer,0.945,0.8534,9.161,1794
+unambiguous,clean,BiRNN,0.93,0.8347,9.529,1464
+unambiguous,clean,BiGRU,0.9361,0.8344,10.166,1464
+unambiguous,clean,BiLSTM,0.9367,0.8346,10.211,1464
+unambiguous,clean,Transformer,0.9372,0.8359,10.126,1464

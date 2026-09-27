@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: >-
-  A Cross-Architecture Attention Analysis of Character-Level and Word-Level
-  Models for Gender Classification from Indonesian Names
+  A Cross-Architecture Empirical Study of Character-Level and Word-Level
+  Representations for Gender Classification from Indonesian Names
 message: If you use this software or its results, please cite the paper.
 type: software
 authors:

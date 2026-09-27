@@ -153,7 +153,7 @@ def holm(p):
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
-    te = pd.read_csv(DATA / "val_2024_2025.csv")
+    te = pd.read_csv(DATA / "val_2024_2026.csv")
     names = te.NAMA.astype(str).tolist()
     y = (te.LABEL == "P").astype(int).values
     clen = np.array([min(len(s.lower()), CFG["CHAR_MAX_LEN"]) for s in names])

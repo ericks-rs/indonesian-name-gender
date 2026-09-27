@@ -74,7 +74,7 @@ def main():
 
     tr = pd.read_csv(DATA_DIR / "train_1990_2021.csv")
     dv = pd.read_csv(DATA_DIR / "dev_2022_2023.csv")
-    va = pd.read_csv(DATA_DIR / "val_2024_2025.csv")
+    va = pd.read_csv(DATA_DIR / "val_2024_2026.csv")
     for d in (tr, dv, va):
         d["label"] = (d["LABEL"] == "P").astype(int)
         d["text"] = d["NAMA"].str.title()

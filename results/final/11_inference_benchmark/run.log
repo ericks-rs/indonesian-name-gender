@@ -1,0 +1,87 @@
+
+### program/benchmark_inference.py
+PyTorch 2.11.0+cu128 | GPU: NVIDIA GeForce RTX 5080 Laptop GPU | CPU threads pinned to 1
+Tokenizers: char=33 word=24947
+
+=== Paper models ===
+D:\MyPaper\RisetNamaGender\program\benchmark_inference.py:125: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
+  CharBiRNN           30,001 params | GPU 0.3431 ms | CPU 0.5215 ms | CPU 21152.7 n/s
+  CharBiLSTM         114,097 params | GPU 0.3461 ms | CPU 0.3934 ms | CPU 7971.4 n/s
+  CharBiGRU           86,065 params | GPU 0.3414 ms | CPU 1.3423 ms | CPU 9133.1 n/s
+  WordBiRNN        2,432,545 params | GPU 0.3325 ms | CPU 0.1906 ms | CPU 121044.5 n/s
+  WordBiLSTM       2,544,289 params | GPU 0.3483 ms | CPU 0.2528 ms | CPU 40231.3 n/s
+  WordBiGRU        2,507,041 params | GPU 0.3401 ms | CPU 0.3462 ms | CPU 49366.4 n/s
+  CharTransformer    605,825 params | GPU 1.0731 ms | CPU 1.1069 ms | CPU 1267.3 n/s
+  WordTransformer  6,126,529 params | GPU 0.9956 ms | CPU 0.7304 ms | CPU 5532.7 n/s
+
+=== Transformer baselines ===
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `5`.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 49759.54it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.bias   | MISSING | 
+classifier.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  IndoBERT         124,442,882 params | GPU 5.0449 ms | CPU 56.9804 ms | CPU 25.0 n/s
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 6094.06it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+classifier.bias                            | MISSING    | 
+classifier.weight                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  mBERT            177,854,978 params | GPU 5.0208 ms | CPU 56.7704 ms | CPU 25.0 n/s
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 5667.08it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+roberta.pooler.dense.weight | UNEXPECTED | 
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+lm_head.layer_norm.bias     | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+classifier.dense.weight     | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  XLM-R            278,045,186 params | GPU 5.1691 ms | CPU 56.6681 ms | CPU 25.0 n/s
+
+========================================================================================================================
+INFERENCE BENCHMARK — identical runtime conditions (single process, same machine state)
+========================================================================================================================
+          Model                 Family  Params_M  Disk_MB  GPU_fwd_ms  GPU_e2e_ms  GPU_throughput_nps  GPU_peak_mem_MB  CPU_fwd_ms  CPU_e2e_ms  CPU_throughput_nps
+      CharBiRNN             paper-char    0.0300     0.12      0.3431      0.3768            761530.8            103.6      0.5215      0.5331             21152.7
+     CharBiLSTM             paper-char    0.1141     0.46      0.3461      0.3814            360101.8            194.5      0.3934      0.4041              7971.4
+      CharBiGRU             paper-char    0.0861     0.35      0.3414      0.3781            448363.7            162.7      1.3423      1.3660              9133.1
+      WordBiRNN             paper-word    2.4325     9.73      0.3325      0.3678            748636.5             50.7      0.1906      0.1954            121044.5
+     WordBiLSTM             paper-word    2.5443    10.18      0.3483      0.3774            706090.0             67.5      0.2528      0.2647             40231.3
+      WordBiGRU             paper-word    2.5070    10.03      0.3401      0.3739            764110.7             60.8      0.3462      0.3568             49366.4
+CharTransformer             paper-char    0.6058     2.44      1.0731      1.0863            108263.1             93.4      1.1069      1.1167              1267.3
+WordTransformer             paper-word    6.1265    24.52      0.9956      1.0024            265459.7             49.2      0.7304      0.7398              5532.7
+       IndoBERT pretrained-transformer  124.4429   497.84      5.0449      5.1968              2280.4            785.5     56.9804     56.9721                25.0
+          mBERT pretrained-transformer  177.8550   711.47      5.0208      5.2108              2320.5            999.4     56.7704     56.7823                25.0
+          XLM-R pretrained-transformer  278.0452  1112.23      5.1691      5.2938              2380.6           1400.0     56.6681     56.7056                25.0
+
+Saved: D:\MyPaper\RisetNamaGender\results\tables\inference_benchmark.csv
+
+Probe: 'DEWI KARTIKA SARI' | warmup=30 runs=200 | throughput batch=256 x 20 reps

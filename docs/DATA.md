@@ -6,7 +6,7 @@ The corpus used for training is not distributed with this repository. Its
 composition and source are described in the paper. This document only states
 what the code expects, so that the scripts can be run against a suitable corpus.
 
-The corpus holds 202,134 unique names with a binary label after deduplication to
+The corpus holds 205,093 unique names with a binary label after deduplication to
 one row per distinct name and removal of names that carry both labels. No file in
 this repository contains a name from it.
 
@@ -20,7 +20,7 @@ seen again in 2022 stays in training. No name is shared between partitions.
 |---|---|---|
 | training | 1990 to 2021 | 169,329 |
 | development | 2022 to 2023 | 16,882 |
-| test | 2024 to 2025 | 15,923 |
+| test | 2024 to 2026 | 18,882 |
 
 The training partition runs 1.56 male to female. Development and test are close
 to balanced. No resampling was applied to produce that. This is a novel-name
@@ -45,7 +45,7 @@ columns, `NAMA` and `LABEL`, where `L` is male and `P` is female.
 ```
 data/splits/train_1990_2021.csv
 data/splits/dev_2022_2023.csv
-data/splits/val_2024_2025.csv
+data/splits/val_2024_2026.csv
 ```
 
 Four properties matter for the comparison to mean what it means here. Names must

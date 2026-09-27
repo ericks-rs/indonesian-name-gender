@@ -1,0 +1,119 @@
+PyTorch 2.8.0+cu128 | Device: cuda | seeds=[42, 7, 123, 2024, 777]
+Train 169,329 (M=103,281 F=66,048, pos_weight=1.5637) | Val 15,923
+Tokenizers: char=33 word=24947
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  1/40] weighted      CharTransformer  seed=42    F1=0.956272 (best ep 26, 482s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  2/40] weighted      CharTransformer  seed=7     F1=0.956128 (best ep 36, 624s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  3/40] weighted      CharTransformer  seed=123   F1=0.956235 (best ep 36, 626s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  4/40] weighted      CharTransformer  seed=2024  F1=0.955520 (best ep 27, 492s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  5/40] weighted      CharTransformer  seed=777   F1=0.953500 (best ep 32, 566s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  6/40] weighted      WordTransformer  seed=42    F1=0.938583 (best ep 7, 73s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  7/40] weighted      WordTransformer  seed=7     F1=0.936338 (best ep 11, 95s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  8/40] weighted      WordTransformer  seed=123   F1=0.934998 (best ep 7, 74s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[  9/40] weighted      WordTransformer  seed=2024  F1=0.935556 (best ep 11, 96s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 10/40] weighted      WordTransformer  seed=777   F1=0.936659 (best ep 7, 72s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 11/40] unweighted    CharTransformer  seed=42    F1=0.954889 (best ep 28, 507s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 12/40] unweighted    CharTransformer  seed=7     F1=0.955310 (best ep 26, 490s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 13/40] unweighted    CharTransformer  seed=123   F1=0.957639 (best ep 40, 734s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 14/40] unweighted    CharTransformer  seed=2024  F1=0.955192 (best ep 31, 594s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 15/40] unweighted    CharTransformer  seed=777   F1=0.954562 (best ep 29, 559s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 16/40] unweighted    WordTransformer  seed=42    F1=0.924459 (best ep 15, 114s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 17/40] unweighted    WordTransformer  seed=7     F1=0.923840 (best ep 14, 108s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 18/40] unweighted    WordTransformer  seed=123   F1=0.930990 (best ep 5, 60s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 19/40] unweighted    WordTransformer  seed=2024  F1=0.923937 (best ep 9, 82s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 20/40] unweighted    WordTransformer  seed=777   F1=0.923087 (best ep 6, 66s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 21/40] oversampling  CharTransformer  seed=42    F1=0.951954 (best ep 13, 349s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 22/40] oversampling  CharTransformer  seed=7     F1=0.956134 (best ep 22, 532s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 23/40] oversampling  CharTransformer  seed=123   F1=0.955450 (best ep 19, 459s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 24/40] oversampling  CharTransformer  seed=2024  F1=0.954712 (best ep 22, 514s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 25/40] oversampling  CharTransformer  seed=777   F1=0.954982 (best ep 24, 548s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 26/40] oversampling  WordTransformer  seed=42    F1=0.938382 (best ep 10, 115s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 27/40] oversampling  WordTransformer  seed=7     F1=0.935288 (best ep 8, 97s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 28/40] oversampling  WordTransformer  seed=123   F1=0.934670 (best ep 15, 146s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 29/40] oversampling  WordTransformer  seed=2024  F1=0.933854 (best ep 16, 150s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 30/40] oversampling  WordTransformer  seed=777   F1=0.934504 (best ep 12, 127s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 31/40] balanced      CharTransformer  seed=42    F1=0.955246 (best ep 47, 757s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 32/40] balanced      CharTransformer  seed=7     F1=0.954734 (best ep 27, 499s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 33/40] balanced      CharTransformer  seed=123   F1=0.955683 (best ep 27, 491s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 34/40] balanced      CharTransformer  seed=2024  F1=0.955014 (best ep 27, 490s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 35/40] balanced      CharTransformer  seed=777   F1=0.955906 (best ep 30, 536s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 36/40] balanced      WordTransformer  seed=42    F1=0.937473 (best ep 17, 126s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 37/40] balanced      WordTransformer  seed=7     F1=0.933956 (best ep 8, 77s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[ 38/40] balanced      WordTransformer  seed=123   F1=0.934739 (best ep 15, 115s)
+C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(

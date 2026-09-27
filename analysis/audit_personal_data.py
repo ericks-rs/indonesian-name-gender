@@ -41,7 +41,7 @@ MATCH_FLOOR = 0.30
 
 def corpus_names() -> set[str]:
     s = set()
-    for f in ("train_1990_2021", "dev_2022_2023", "val_2024_2025", "strict_clean_1990_2025"):
+    for f in ("train_1990_2021", "dev_2022_2023", "val_2024_2026", "strict_clean_1990_2026"):
         p = SPLITS / f"{f}.csv"
         if p.exists():
             s |= set(pd.read_csv(p).NAMA.astype(str).str.upper().str.strip())

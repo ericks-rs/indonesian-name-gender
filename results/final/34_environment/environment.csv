@@ -1,21 +1,22 @@
 item,value
-python,3.10.9
+python,3.11.15
 platform,Windows 10
 machine,AMD64
 processor,"Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+cpu,Intel(R) Core(TM) Ultra 9 275HX
 gpu memory,17.1 GB
 gpu,NVIDIA GeForce RTX 5080 Laptop GPU
 cuda,12.8
-torch,2.8.0+cu128
-numpy,1.23.5
-pandas,1.5.3
-scikit-learn,1.2.1
-scipy,1.10.0
-matplotlib,3.7.0
+torch,2.11.0+cu128
+numpy,2.4.5
+pandas,3.0.3
+scikit-learn,1.8.0
+scipy,1.17.1
+matplotlib,3.10.9
 seaborn,0.13.2
-transformers,4.24.0
-fastapi,not installed
-uvicorn,not installed
-pydantic,2.13.3
-imbalanced-learn,0.10.1
-requests,2.33.1
+transformers,5.14.1
+fastapi,0.136.1
+uvicorn,0.47.0
+pydantic,2.13.4
+imbalanced-learn,0.14.1
+requests,2.34.2

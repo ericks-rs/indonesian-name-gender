@@ -104,7 +104,7 @@ def fig6(df):
                     textcoords="offset points", fontsize=6)
     ax.set_yticks(y)
     ax.set_yticklabels(d.model, fontsize=6.2)
-    ax.set_xlabel("F1 on the 2024 to 2025 partition (%), five seeds")
+    ax.set_xlabel("F1 on the 2024 to 2026 partition (%), five seeds")
     ax.set_xlim(left, lab.max() + 0.75)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="x", color="0.92", linewidth=0.6)
@@ -208,7 +208,7 @@ def fig13():
     yy = np.arange(len(c))
     fig, ax = plt.subplots(figsize=(COL, 4.6))
     ax.barh(yy - 0.26, c.internal * 100, 0.25, color="#41618c",
-            label="2024 to 2025 partition", edgecolor="white", linewidth=0.4)
+            label="2024 to 2026 partition", edgecolor="white", linewidth=0.4)
     ax.barh(yy, c["full"] * 100, 0.25, color="#c98b3a", label="public benchmark",
             edgecolor="white", linewidth=0.4)
     ax.barh(yy + 0.26, c["clean_dedup"] * 100, 0.25, color="#8b6a3a",

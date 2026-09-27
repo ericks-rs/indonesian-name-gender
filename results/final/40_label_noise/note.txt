@@ -1,0 +1,7 @@
+334 names appear in both the institutional corpus and the published benchmark, which is 0.163 percent of the corpus and the only part of it a second source can examine. 328 of them agree, 98.2 percent.
+
+The 6 disagreements run in both directions, 2 where the registry says female and the benchmark male and 4 the other way, so they do not look like a systematic flip. Every one has a frequency of one or two, meaning a single registration with no internal majority to check it against. 5 fall in training and 1 in evaluation, so the largest effect any relabelling could have on the reported test figures is 0.0053 percentage points.
+
+No label was changed. A disagreement identifies a conflict, not a culprit, and the registry label is the registration while the benchmark is compiled. Editing an evaluation label after seeing the models fail on it would raise the score by construction, which is a problem of procedure rather than of size.
+
+What the number supports is a statement about data quality. Agreement with an independent source on the checkable overlap is 98.2 percent, and the residual is a floor under the error rate that no model can go below.

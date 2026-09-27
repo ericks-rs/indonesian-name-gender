@@ -15,7 +15,7 @@ corpus must follow. The tokenizers under `tokenizers/` are shipped and are the
 ones fitted on the reported training partition.
 
 Every script uses the 1990 to 2021 training window, selects checkpoints on the
-2022 to 2023 development partition, and scores the 2024 to 2025 test partition
+2022 to 2023 development partition, and scores the 2024 to 2026 test partition
 once. The pretrained encoders download their base weights from Hugging Face on
 first run.
 

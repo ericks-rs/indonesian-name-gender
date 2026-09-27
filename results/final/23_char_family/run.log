@@ -1,0 +1,126 @@
+
+=== internal 2024-2025 ===
+                      family      char_model        baseline  char_f1  baseline_f1  diff_pp  ci95_lo_pp  ci95_hi_pp  p_holm_grouped             verdict
+character against pretrained       CharBiRNN        IndoBERT   0.9575       0.9578   -0.032      -0.217       0.152        0.651112 no difference shown
+character against pretrained       CharBiRNN           mBERT   0.9575       0.9608   -0.329      -0.576      -0.082        0.104249 no difference shown
+character against pretrained       CharBiRNN           XLM-R   0.9575       0.9617   -0.417      -0.643      -0.190        0.061183 no difference shown
+ character against classical       CharBiRNN      TF-IDF+SVM   0.9575       0.9628   -0.531      -0.685      -0.378        0.003905     baseline better
+ character against classical       CharBiRNN       TF-IDF+LR   0.9575       0.9602   -0.266      -0.419      -0.113        0.025568     baseline better
+ character against classical       CharBiRNN       TF-IDF+RF   0.9575       0.9196    3.793       3.639       3.946        0.000003    character better
+      character against word       CharBiRNN       WordBiRNN   0.9575       0.9323    2.517       2.129       2.905        0.000392    character better
+      character against word       CharBiRNN      WordBiLSTM   0.9575       0.9344    2.315       2.084       2.545        0.000108    character better
+      character against word       CharBiRNN       WordBiGRU   0.9575       0.9335    2.405       2.123       2.686        0.000169    character better
+      character against word       CharBiRNN WordTransformer   0.9575       0.9359    2.156       1.869       2.443        0.000249    character better
+character against pretrained      CharBiLSTM        IndoBERT   0.9589       0.9578    0.108       0.008       0.209        0.162300 no difference shown
+character against pretrained      CharBiLSTM           mBERT   0.9589       0.9608   -0.189      -0.390       0.013        0.180260 no difference shown
+character against pretrained      CharBiLSTM           XLM-R   0.9589       0.9617   -0.276      -0.416      -0.136        0.054147 no difference shown
+ character against classical      CharBiLSTM      TF-IDF+SVM   0.9589       0.9628   -0.391      -0.474      -0.308        0.001572     baseline better
+ character against classical      CharBiLSTM       TF-IDF+LR   0.9589       0.9602   -0.126      -0.208      -0.043        0.027283     baseline better
+ character against classical      CharBiLSTM       TF-IDF+RF   0.9589       0.9196    3.933       3.565       4.301        0.000071    character better
+      character against word      CharBiLSTM       WordBiRNN   0.9589       0.9323    2.658       2.223       3.092        0.000422    character better
+      character against word      CharBiLSTM      WordBiLSTM   0.9589       0.9344    2.455       2.330       2.581        0.000010    character better
+      character against word      CharBiLSTM       WordBiGRU   0.9589       0.9335    2.545       2.436       2.655        0.000005    character better
+      character against word      CharBiLSTM WordTransformer   0.9589       0.9359    2.296       2.127       2.466        0.000036    character better
+character against pretrained       CharBiGRU        IndoBERT   0.9593       0.9578    0.152       0.055       0.249        0.074113 no difference shown
+character against pretrained       CharBiGRU           mBERT   0.9593       0.9608   -0.145      -0.317       0.027        0.180260 no difference shown
+character against pretrained       CharBiGRU           XLM-R   0.9593       0.9617   -0.232      -0.366      -0.099        0.061183 no difference shown
+ character against classical       CharBiGRU      TF-IDF+SVM   0.9593       0.9628   -0.347      -0.496      -0.198        0.011832     baseline better
+ character against classical       CharBiGRU       TF-IDF+LR   0.9593       0.9602   -0.082      -0.231       0.067        0.202949 no difference shown
+ character against classical       CharBiGRU       TF-IDF+RF   0.9593       0.9196    3.977       3.612       4.342        0.000071    character better
+      character against word       CharBiGRU       WordBiRNN   0.9593       0.9323    2.701       2.146       3.257        0.000477    character better
+      character against word       CharBiGRU      WordBiLSTM   0.9593       0.9344    2.499       2.236       2.763        0.000124    character better
+      character against word       CharBiGRU       WordBiGRU   0.9593       0.9335    2.589       2.448       2.730        0.000012    character better
+      character against word       CharBiGRU WordTransformer   0.9593       0.9359    2.340       2.217       2.464        0.000011    character better
+character against pretrained CharTransformer        IndoBERT   0.9534       0.9578   -0.443      -0.682      -0.204        0.061183 no difference shown
+character against pretrained CharTransformer           mBERT   0.9534       0.9608   -0.740      -1.046      -0.434        0.028111     baseline better
+character against pretrained CharTransformer           XLM-R   0.9534       0.9617   -0.827      -1.076      -0.579        0.009166     baseline better
+ character against classical CharTransformer      TF-IDF+SVM   0.9534       0.9628   -0.942      -1.182      -0.702        0.002837     baseline better
+ character against classical CharTransformer       TF-IDF+LR   0.9534       0.9602   -0.677      -0.917      -0.436        0.007238     baseline better
+ character against classical CharTransformer       TF-IDF+RF   0.9534       0.9196    3.382       3.191       3.573        0.000011    character better
+      character against word CharTransformer       WordBiRNN   0.9534       0.9323    2.107       1.633       2.580        0.000477    character better
+      character against word CharTransformer      WordBiLSTM   0.9534       0.9344    1.904       1.578       2.230        0.000424    character better
+      character against word CharTransformer       WordBiGRU   0.9534       0.9335    1.994       1.622       2.366        0.000477    character better
+      character against word CharTransformer WordTransformer   0.9534       0.9359    1.745       1.404       2.087        0.000477    character better
+  reported  character better: 20 | no difference shown: 11 | baseline better: 9
+  robustness, 2 row(s) that change under a pooled correction: CharBiRNN vs TF-IDF+LR (baseline better -> no difference shown), CharBiLSTM vs TF-IDF+LR (baseline better -> no difference shown)
+  largest deficit left open against a non-word baseline: 1.18 pp
+  comparisons inside the 0.5 pp margin: 16 of 24 non-word
+
+=== public benchmark, clean ===
+                      family      char_model        baseline  char_f1  baseline_f1  diff_pp  ci95_lo_pp  ci95_hi_pp  p_holm_grouped             verdict
+character against pretrained       CharBiRNN        IndoBERT   0.9315       0.9233    0.827       0.253       1.402    9.694888e-02 no difference shown
+character against pretrained       CharBiRNN           mBERT   0.9315       0.9248    0.669      -0.323       1.662    2.687396e-01 no difference shown
+character against pretrained       CharBiRNN           XLM-R   0.9315       0.9266    0.499      -0.454       1.451    2.687396e-01 no difference shown
+ character against classical       CharBiRNN      TF-IDF+SVM   0.9315       0.9377   -0.614      -1.406       0.178    6.847071e-01 no difference shown
+ character against classical       CharBiRNN       TF-IDF+LR   0.9315       0.9343   -0.275      -1.067       0.517    1.000000e+00 no difference shown
+ character against classical       CharBiRNN       TF-IDF+RF   0.9315       0.9006    3.096       2.197       3.995    6.012447e-03    character better
+      character against word       CharBiRNN       WordBiRNN   0.9315       0.8346    9.693       8.697      10.690    2.140624e-05    character better
+      character against word       CharBiRNN      WordBiLSTM   0.9315       0.8331    9.844       8.976      10.711    1.820029e-05    character better
+      character against word       CharBiRNN       WordBiGRU   0.9315       0.8335    9.801       8.805      10.798    2.140624e-05    character better
+      character against word       CharBiRNN WordTransformer   0.9315       0.8340    9.752       9.053      10.451    1.701043e-05    character better
+character against pretrained      CharBiLSTM        IndoBERT   0.9398       0.9233    1.656       1.119       2.194    1.129641e-02    character better
+character against pretrained      CharBiLSTM           mBERT   0.9398       0.9248    1.498       0.728       2.269    4.565943e-02    character better
+character against pretrained      CharBiLSTM           XLM-R   0.9398       0.9266    1.328       0.673       1.982    4.410555e-02    character better
+ character against classical      CharBiLSTM      TF-IDF+SVM   0.9398       0.9377    0.215      -0.111       0.541    8.487754e-01 no difference shown
+ character against classical      CharBiLSTM       TF-IDF+LR   0.9398       0.9343    0.554       0.228       0.881    7.378767e-02 no difference shown
+ character against classical      CharBiLSTM       TF-IDF+RF   0.9398       0.9006    3.925       3.513       4.337    1.456218e-04    character better
+      character against word      CharBiLSTM       WordBiRNN   0.9398       0.8346   10.522      10.028      11.017    5.421958e-06    character better
+      character against word      CharBiLSTM      WordBiLSTM   0.9398       0.8331   10.673      10.320      11.025    1.674846e-06    character better
+      character against word      CharBiLSTM       WordBiGRU   0.9398       0.8335   10.630      10.345      10.916    8.452829e-07    character better
+      character against word      CharBiLSTM WordTransformer   0.9398       0.8340   10.581      10.061      11.101    5.887463e-06    character better
+character against pretrained       CharBiGRU        IndoBERT   0.9366       0.9233    1.336       0.850       1.822    1.588405e-02    character better
+character against pretrained       CharBiGRU           mBERT   0.9366       0.9248    1.178       0.315       2.041    9.694888e-02 no difference shown
+character against pretrained       CharBiGRU           XLM-R   0.9366       0.9266    1.007       0.368       1.646    8.355372e-02 no difference shown
+ character against classical       CharBiGRU      TF-IDF+SVM   0.9366       0.9377   -0.105      -0.487       0.276    1.000000e+00 no difference shown
+ character against classical       CharBiGRU       TF-IDF+LR   0.9366       0.9343    0.234      -0.148       0.615    8.487754e-01 no difference shown
+ character against classical       CharBiGRU       TF-IDF+RF   0.9366       0.9006    3.605       2.966       4.243    9.697112e-04    character better
+      character against word       CharBiGRU       WordBiRNN   0.9366       0.8346   10.202       9.573      10.831    1.162662e-05    character better
+      character against word       CharBiGRU      WordBiLSTM   0.9366       0.8331   10.352      10.059      10.645    9.771034e-07    character better
+      character against word       CharBiGRU       WordBiGRU   0.9366       0.8335   10.310       9.857      10.763    4.525732e-06    character better
+      character against word       CharBiGRU WordTransformer   0.9366       0.8340   10.261       9.834      10.687    3.903144e-06    character better
+character against pretrained CharTransformer        IndoBERT   0.9374       0.9233    1.410       0.992       1.828    8.694089e-03    character better
+character against pretrained CharTransformer           mBERT   0.9374       0.9248    1.252       0.320       2.184    9.694888e-02 no difference shown
+character against pretrained CharTransformer           XLM-R   0.9374       0.9266    1.081       0.218       1.944    9.694888e-02 no difference shown
+ character against classical CharTransformer      TF-IDF+SVM   0.9374       0.9377   -0.032      -0.618       0.555    1.000000e+00 no difference shown
+ character against classical CharTransformer       TF-IDF+LR   0.9374       0.9343    0.308      -0.279       0.894    8.758886e-01 no difference shown
+ character against classical CharTransformer       TF-IDF+RF   0.9374       0.9006    3.679       3.089       4.269    7.196582e-04    character better
+      character against word CharTransformer       WordBiRNN   0.9374       0.8346   10.276       9.545      11.007    1.701043e-05    character better
+      character against word CharTransformer      WordBiLSTM   0.9374       0.8331   10.426       9.695      11.157    1.701043e-05    character better
+      character against word CharTransformer       WordBiGRU   0.9374       0.8335   10.384       9.573      11.195    1.701043e-05    character better
+      character against word CharTransformer WordTransformer   0.9374       0.8340   10.334       9.754      10.915    9.040050e-06    character better
+  reported  character better: 25 | no difference shown: 15
+  robustness, 2 row(s) that change under a pooled correction: CharBiLSTM vs mBERT (character better -> no difference shown), CharBiLSTM vs XLM-R (character better -> no difference shown)
+  largest deficit left open against a non-word baseline: 1.41 pp
+  comparisons inside the 0.5 pp margin: 21 of 24 non-word
+
+=== per baseline, across the four character models ===
+
+internal
+                 char_min  char_max  baseline_f1  worst_deficit  char_wins  losses
+baseline                                                                          
+IndoBERT           0.9534    0.9593       0.9578          0.682          0       0
+TF-IDF+LR          0.9534    0.9593       0.9602          0.917          0       3
+TF-IDF+RF          0.9534    0.9593       0.9196          0.000          4       0
+TF-IDF+SVM         0.9534    0.9593       0.9628          1.182          0       4
+WordBiGRU          0.9534    0.9593       0.9335          0.000          4       0
+WordBiLSTM         0.9534    0.9593       0.9344          0.000          4       0
+WordBiRNN          0.9534    0.9593       0.9323          0.000          4       0
+WordTransformer    0.9534    0.9593       0.9359          0.000          4       0
+XLM-R              0.9534    0.9593       0.9617          1.076          0       1
+mBERT              0.9534    0.9593       0.9608          1.046          0       1
+
+clean external
+                 char_min  char_max  baseline_f1  worst_deficit  char_wins  losses
+baseline                                                                          
+IndoBERT           0.9315    0.9398       0.9233          0.000          3       0
+TF-IDF+LR          0.9315    0.9398       0.9343          1.067          0       0
+TF-IDF+RF          0.9315    0.9398       0.9006          0.000          4       0
+TF-IDF+SVM         0.9315    0.9398       0.9377          1.406          0       0
+WordBiGRU          0.9315    0.9398       0.8335          0.000          4       0
+WordBiLSTM         0.9315    0.9398       0.8331          0.000          4       0
+WordBiRNN          0.9315    0.9398       0.8346          0.000          4       0
+WordTransformer    0.9315    0.9398       0.8340          0.000          4       0
+XLM-R              0.9315    0.9398       0.9266          0.454          1       0
+mBERT              0.9315    0.9398       0.9248          0.323          1       0
+
+Written to D:\MyPaper\RisetNamaGender\results\final\23_char_family

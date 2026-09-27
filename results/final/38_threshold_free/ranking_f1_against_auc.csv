@@ -1,9 +1,9 @@
 by_f1,by_auc
-CharBiGRU,CharBiGRU
 CharBiLSTM,CharBiLSTM
+CharBiGRU,CharBiGRU
 CharBiRNN,CharBiRNN
 CharTransformer,CharTransformer
-WordTransformer,WordTransformer
-WordBiLSTM,WordBiLSTM
-WordBiGRU,WordBiRNN
+WordTransformer,WordBiLSTM
+WordBiLSTM,WordBiRNN
+WordBiGRU,WordTransformer
 WordBiRNN,WordBiGRU
