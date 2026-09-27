@@ -6,7 +6,7 @@ def test_predict_female():
     r = gp.predict("BANOWATI LARASATI")
     assert r["gender"] == "Female"
     assert r["confidence"] > 0.8
-    assert r["model"] == "CharBiGRU"
+    assert r["model"] == "CharBiLSTM"
 
 def test_predict_male():
     gp = GenderPredictor()
