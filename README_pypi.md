@@ -16,7 +16,7 @@ pip install indonamegender
 from indonamegender import GenderPredictor
 
 predictor = GenderPredictor()
-result = predictor.predict("SITI AMINAH")
+result = predictor.predict("BANOWATI LARASATI")
 print(result)
 ```
 

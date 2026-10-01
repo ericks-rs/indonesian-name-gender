@@ -10,7 +10,7 @@ The package includes the seed-42 CharBiLSTM checkpoint. The other seven characte
 from indonamegender import GenderPredictor
 
 predictor = GenderPredictor("CharBiLSTM", device="cpu")
-result = predictor.predict("SITI AMINAH")
+result = predictor.predict("BANOWATI LARASATI")
 print(result)
 ```
 
