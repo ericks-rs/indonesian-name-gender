@@ -132,19 +132,20 @@ performance and storage requirements when selecting a model. The reported
 timings describe the benchmark environment; performance on other hardware may
 differ.
 
-## Layout
+## Repository layout
 
 ```
-src/indonamegender/   inference package, published on PyPI as indonamegender
-experiments/          the two training entry points
-analysis/             statistics, figures and audits over the artifacts
-models/               eight seed-42 checkpoints, one per architecture
-tokenizers/           character vocabulary, and the hashed word vocabulary
-results/final/        every reported number, as CSV
-results/figures/      the 14 manuscript figures, PNG and PDF at 600 dpi
-configs/              the machine and the training settings the run used
-demo/                 local web demo
-docs/                 data access, protocol, reproducibility
+src/indonamegender/   Python package for inference
+experiments/          Training scripts for neural models and classical baselines
+analysis/             Statistical analyses, figures, and artifact checks
+models/               Eight seed-42 checkpoints for the character–word grid
+tokenizers/           Fitted character and word tokenizers
+results/final/        Stored predictions, metrics, and statistical results
+results/figures/      Manuscript figures in PNG and PDF formats
+configs/              Experiment settings and environment records
+demo/                 Local web demo
+docs/                 Data requirements, protocol, and reproduction instructions
+tests/                Package tests
 ```
 
 ## Reproducing the analyses
@@ -205,9 +206,12 @@ nowhere in the corpus.
 
 ## Citation
 
-The manuscript associated with this repository is currently under revision.
-Final publication details and DOI will be added after publication.
+If you use this repository in your research, please cite the associated study
+using the metadata in [CITATION.cff](CITATION.cff).
 
-See `CITATION.cff` for the current citation metadata.
+The manuscript is under revision. Publication details and the DOI will be added
+when available.
 
-Licensed MIT.
+## License
+
+The code is released under the [MIT License](LICENSE).
