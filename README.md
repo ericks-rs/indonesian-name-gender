@@ -74,12 +74,12 @@ p.predict("GATOTKACA WIRAWAN")
 # {'gender': 'Male', 'confidence': 0.999, 'model': 'CharBiLSTM', ...}
 ```
 
-The bundled model is the seed-42 `CharBiLSTM`, which is the one the paper
-recommends for names beyond the training data. It has the highest
-external F1 at 0.9393 and the lowest CPU latency at 0.3912 milliseconds, and it
-reproduces the stored prediction on all 18,882 evaluation names exactly. It
-leads CharBiGRU internally by 0.06 points, a difference the paper reports as
-not separable.
+The package includes the seed-42 `CharBiLSTM` checkpoint. CharBiLSTM combines
+a small model file (0.46 MB) with the lowest measured CPU forward-pass latency
+among the four character-level neural models (0.3912 ms per name). Mean F1
+across five seeds was 0.9675 on the temporal test and 0.9367 on the external
+benchmark. These scores summarize the five training runs rather than the
+bundled checkpoint alone.
 
 The other seven are under `models/` in a clone. From a pip install they are
 fetched once from the `v1.1.0` release and cached under
