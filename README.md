@@ -147,37 +147,47 @@ demo/                 local web demo
 docs/                 data access, protocol, reproducibility
 ```
 
-## Reproducing
+## Reproducing the analyses
 
-Training needs the corpus, which is not redistributable. `docs/DATA.md` says what
-the inputs are and what a substitute has to satisfy.
-
-```bash
-python experiments/train_grid.py          # eight architectures, five seeds
-python experiments/train_imbalance.py     # three imbalance strategies, 120 runs
-```
-
-Eleven of the twenty-two analysis scripts run against a fresh clone, because
-they read `results/final/` and nothing else. Each was executed from a clean
-checkout rather than assumed to work.
+The repository includes stored predictions and result tables that support
+several analyses without access to the institutional corpus. Install the
+analysis dependencies and run the following commands from the repository root:
 
 ```bash
-python analysis/paired_comparison.py        # character against word, paired
-python analysis/threshold_free_metrics.py   # AUC and Brier
-python analysis/imbalance_protocol.py       # the 120-run robustness check
-python analysis/architecture_comparison.py  # within-level encoder comparisons
-python analysis/external_paired.py          # the external benchmark, paired
-python analysis/audit_personal_data.py      # privacy scan (structural, see docs)
+pip install -e ".[analysis]"
+
+python analysis/paired_comparison.py
+python analysis/architecture_comparison.py
+python analysis/threshold_free_metrics.py
 ```
 
-The remaining eleven stop at their first read. Nine need the corpus, and two
-need the training layout rather than the released one. They ship because they
-are the code that produced the reported numbers, not because they can be rerun
-here, and `docs/REPRODUCIBILITY.md` says which is which.
+These scripts calculate the paired character–word comparisons, comparisons
+among architectures within each representation level, and AUC and Brier scores.
+They read the included artifacts and write their outputs to `results/final/`.
 
-`docs/PROTOCOL.md` gives the split and the training configuration.
-`docs/REPRODUCIBILITY.md` reports what is exact and what is not, measured rather
-than claimed.
+### Training requirements
+
+The institutional corpus is not distributed with the repository. Rerunning the
+training experiments requires access to the original data and the input files
+described in `docs/DATA.md`.
+
+The training scripts cover the eight character-level and word-level models
+(`experiments/train_grid.py`), the character n-gram classifiers
+(`experiments/train_tfidf.py`), and the pretrained encoders
+(`experiments/train_pretrained.py`). The data partitions and training settings
+are described in `docs/PROTOCOL.md`.
+
+The repository also retains `experiments/train_imbalance.py` and the associated
+analysis for additional class-imbalance experiments. These experiments are not
+reported in the current manuscript.
+
+### Reproduction scope
+
+Some analyses require private data or paths from the original experiment
+environment. See `docs/REPRODUCIBILITY.md` for script requirements, environment
+details, and the distinction between inference with released checkpoints and
+retraining. Training on a substitute corpus evaluates the method on different
+data and should not be expected to reproduce the reported scores.
 
 ## Privacy
 
