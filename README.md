@@ -6,14 +6,15 @@
 [![Python](https://img.shields.io/pypi/pyversions/indonamegender)](https://pypi.org/project/indonamegender/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Code, trained checkpoints and result tables for *A Cross-Architecture Empirical
-Study of Character-Level and Word-Level Representations for Gender Classification
-from Indonesian Names*.
+This repository provides code, trained checkpoints, and result tables for
+*A Cross-Architecture Empirical Study of Character-Level and Word-Level
+Representations for Gender Classification from Indonesian Names*.
 
-The study compares two input representations across four sequence encoders under
-one fixed configuration, and reads where each model places its attention. It does
-not propose an architecture. Every model here is a standard encoder used as
-published.
+The study evaluates character-level and word-level inputs across four encoder
+families under a common training and evaluation protocol. Character n-gram
+classifiers and pretrained encoders provide additional baselines. The analyses
+examine predictive performance, transfer to an external data source, attention
+patterns, and inference cost.
 
 ## What the study found
 
