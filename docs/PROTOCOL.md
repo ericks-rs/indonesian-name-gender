@@ -1,63 +1,99 @@
-# Protocol
+# Experimental protocol
 
-The configuration below was fixed before any model was trained, shared by all
-eight architectures, and never revised. No grid search, random search or Bayesian
-optimisation was used at any point.
+The main experiment evaluates character-level and word-level representations across four encoder families. Character n-gram classifiers and pretrained encoders provide additional baselines, giving 14 classifiers in total.
 
-## Training
+The main configurations were fixed before the sensitivity analyses. Those additional analyses did not determine the settings used for the main results.
 
-| setting | value |
+## Data partitions
+
+The institutional corpus is divided by the earliest registration year of each normalized name:
+
+| Partition | Registration years | Names |
+|---|---|---:|
+| Training | 1990–2021 | 169,329 |
+| Development | 2022–2023 | 16,882 |
+| Temporal test | 2024–2026 | 18,882 |
+
+No normalized name appears in more than one partition. The primary external benchmark contains 1,464 distinct names from a separate public source, excluding names present in training.
+
+See [DATA.md](DATA.md) for preprocessing and input requirements.
+
+## Character-level and word-level models
+
+The neural grid combines two input levels with BiRNN, BiLSTM, BiGRU, and Transformer encoders.
+
+Names are converted to lowercase during tokenization. Character sequences are padded to 50 positions, and whitespace-separated word sequences are padded to 8 positions. These limits accommodate all names in the institutional corpus.
+
+The character vocabulary contains 33 entries, including padding and unknown symbols. The word vocabulary contains 24,947 entries and retains tokens occurring at least twice in training. Other tokens map to the shared unknown symbol.
+
+All eight models use the same attention-pooling design. Within each encoder family, depth and dropout remain unchanged across input levels, while sequence length and embedding or model dimensions differ.
+
+The recurrent models use one bidirectional layer with 96 hidden units per direction. Character and word embedding dimensions are 48 and 96.
+
+The Transformers use three encoder layers, eight attention heads, and model dimensions of 128 for characters and 192 for words. Feedforward dimensions are four times the model dimension. Dropout is 0.3.
+
+## Grid training settings
+
+| Setting | Value |
 |---|---|
-| optimizer | Adam |
-| initial learning rate | 0.001 |
-| batch size | 512 |
-| maximum epochs | 50 |
-| early stopping | 6 epochs without development F1 improvement |
-| scheduler | ReduceLROnPlateau on development loss, patience 2, factor 0.5 |
-| loss | BCEWithLogitsLoss with pos_weight 1.5637 |
-| checkpoint selection | highest development F1 |
-| seeds | 42, 7, 123, 2024, 777 |
+| Optimizer | Adam |
+| Initial learning rate | 0.001 |
+| Batch size | 512 |
+| Maximum epochs | 50 |
+| Early stopping | Six consecutive epochs without improvement in development F1 |
+| Learning-rate scheduler | ReduceLROnPlateau |
+| Scheduler input | Development loss |
+| Scheduler patience | Two epochs |
+| Learning-rate reduction factor | 0.5 |
+| Loss | Class-weighted binary cross-entropy with logits |
+| Checkpoint selection | Highest development F1 |
+| Seeds | 42, 7, 123, 2024, 777 |
 
-Female is the positive class. Development F1 is the only selection signal, and
-the test partition is scored once, after the checkpoint is chosen.
+Female is the positive class. Its loss weight is calculated from the male-to-female ratio in the training partition, approximately 1.5596.
 
-## The eight architectures
+Development F1 controls checkpoint selection and early stopping. Development loss controls learning-rate scheduling. The selected checkpoint is then evaluated on the temporal test and external benchmark.
 
-Two representation levels crossed with four encoders. Character sequences are
-padded to 50, word sequences to 8, and neither limit truncates any name. All
-eight pool through the same additive attention module, so tokenization and
-encoder are the only things that differ between a character model and its
-word-level counterpart.
+## Baselines
 
-## Statistics
+The classical baselines combine character n-gram TF-IDF features with a linear SVM, logistic regression, or random forest. Features use n-grams of length 2–5 within word boundaries, with a maximum vocabulary of 50,000 features. The classifiers use balanced class weights.
 
-Comparisons are paired within seed rather than made between independent means.
-Each reports the mean difference, a 95 percent confidence interval, Cohen's d_z
-and a Holm-adjusted p-value. Holm is applied within each research question, and a
-pooled correction is carried alongside as a robustness column. McNemar's exact
-test is run per seed rather than once.
+The pretrained baselines are IndoBERT, mBERT, and XLM-R. Each retains its original subword tokenizer. Names are converted to title case, and inputs are limited to 32 subword tokens.
 
-## Why the sensitivity sweep is not a search
+Fine-tuning updates all parameters using AdamW, a learning rate of 0.00002, a batch size of 32, and class-weighted cross-entropy. Training runs for at most 10 epochs, with early stopping after two epochs without improvement in development F1. The checkpoint with the highest development F1 is retained.
 
-After the experiments were complete, the fixed configuration was perturbed 112
-ways and every variant scored on the development partition. Nothing reported was
-selected from it. The evidence is that the reported setting is not the best
-variant of a single one of the eight architectures. It trails the best variant by
-0.09 to 0.62 points, and which variant is best differs from one architecture to
-the next.
+The pretrained settings were fixed without hyperparameter search. The results describe these configurations rather than the best attainable performance of each encoder.
 
-Each configuration was trained once, at seed 42, so a difference between two
-variants of one architecture is not separable from seed noise. The sweep supports
-a statement about the character and word groups, which are separated by far more
-than that, and it cannot rank variants within an architecture.
+## Evaluation and statistical testing
 
-## Class imbalance
+All 14 classifiers use the same five seeds. Accuracy, precision, recall, and F1 are averaged across runs, with female as the positive class. AUC and Brier scores are also calculated for the eight grid models.
 
-The class-weighted objective was compared against unweighted training, random
-oversampling and class-balanced sampling, across all eight models under the same
-five seeds, which is 120 additional runs. Checkpoints were selected on the
-development partition and the test partition scored once, so the check runs under
-the protocol it is checking rather than a looser one.
+F1 comparisons pair models within the same seed. Each comparison reports the mean difference in percentage points, an unadjusted 95% confidence interval, Cohen’s dz, and a two-sided paired t-test with Holm correction.
 
-No alternative produced a statistically significant improvement in any of the 24
-combinations. `experiments/train_imbalance.py` reproduces it.
+Holm correction is applied separately to these comparison families:
+
+| Comparison family | Tests |
+|---|---:|
+| Character versus word within matched encoder families | 4 |
+| Architectures within the character level | 6 |
+| Architectures within the word level | 6 |
+| Character-level neural models versus pretrained encoders | 12 |
+| Character-level neural models versus classical baselines | 12 |
+| Every character-level neural model versus every word-level model | 16 |
+
+A further correction across the combined 12, 12, and 16 comparisons provides a sensitivity check.
+
+Confidence intervals use the five paired differences and a t-distribution with four degrees of freedom. They describe variation across seeds on a fixed evaluation set.
+
+Exact McNemar tests compare prediction correctness within each seed. Results record the number of seeds with an unadjusted p-value below 0.05; predictions are not pooled across seeds.
+
+## Additional analyses
+
+The hyperparameter sensitivity analysis evaluates 112 configurations using seed 42 and development F1. It examines whether the representation-level difference persists across alternative settings. The main configurations were not selected from this analysis.
+
+A separate CharBiGRU diagnostic examines training-period length and test-based monitoring. Test-based monitoring is confined to that diagnostic. The main experiment uses training data through 2021 and development-based monitoring.
+
+Performance is also evaluated separately for each registration year in the temporal test.
+
+The main neural experiments use class-weighted training. Additional class-imbalance experiments remain in the repository but are not reported in the current manuscript.
+
+See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for artifact availability and requirements for rerunning the analyses.
