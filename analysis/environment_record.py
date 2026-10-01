@@ -56,9 +56,10 @@ def main() -> int:
         OUT / "training_config.csv", index=False)
 
     get = dict(zip(d.item, d.value))
+    cpu = get.get('cpu', 'unrecorded CPU').replace('(R)', '').replace('(TM)', '')
     note = (
         "The recorded benchmark environment used an "
-        f"{get.get('cpu', 'unrecorded CPU')} CPU and an {get.get('gpu', 'no GPU')}, "
+        f"{cpu} CPU and an {get.get('gpu', 'no GPU')}, "
         f"with Python {get.get('python')}, PyTorch {get.get('torch')}, and "
         f"CUDA {get.get('cuda')} on {get.get('platform')}.\n\n"
         "CPU forward-pass latency was measured with torch.set_num_threads(1), a "
