@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-title: >-
-  A Cross-Architecture Empirical Study of Character-Level and Word-Level
-  Representations for Gender Classification from Indonesian Names
-message: If you use this software or its results, please cite the paper.
+title: "indonamegender: Gender classification from Indonesian names"
+message: >-
+  If you use this software or its results in research, please cite
+  the associated manuscript listed under preferred-citation.
 type: software
 authors:
   - family-names: Swedia
@@ -10,5 +10,22 @@ authors:
     email: ericks_rs@staff.gunadarma.ac.id
     affiliation: Universitas Gunadarma
 license: MIT
-version: 1.1.0
+version: "1.1.0"
 repository-code: "https://github.com/ericks-rs/indonesian-name-gender"
+
+preferred-citation:
+  type: unpublished
+  status: submitted
+  title: >-
+    A Cross-Architecture Empirical Study of Character-Level and
+    Word-Level Representations for Gender Classification from
+    Indonesian Names
+  authors:
+    - family-names: Swedia
+      given-names: Ericks Rachmat
+    - family-names: Septian
+      given-names: M Ridwan Dwi
+    - family-names: Cahyanti
+      given-names: Margi
+    - family-names: Sardjono
+      given-names: Mochamad Wisuda
