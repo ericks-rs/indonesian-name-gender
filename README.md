@@ -192,17 +192,20 @@ data and should not be expected to reproduce the reported scores.
 
 ## Privacy
 
-No file in this repository contains a record from the training data.
+The institutional corpus is not distributed with this repository. Released
+per-name result tables use row identifiers and derived fields, such as token
+counts and three-character endings, in place of full names.
 
-The word vocabulary ships hashed. Every entry except the two reserved indices is
-`blake2s(salt + token)`, which keeps the embedding index intact while making the
-24,947-entry vocabulary unreadable, so
-a released checkpoint stays usable without carrying the names it was fitted on.
-Eighteen per-name tables under `results/final/` have their name column replaced
-by a row identifier, the token count and the three-character ending. `analysis/audit_personal_data.py`
-scans the tree, and the build fails rather than warns. Illustrative names in the
-figures, the demo and the tests are drawn from Javanese shadow theatre and appear
-nowhere in the corpus.
+The word tokenizer stores vocabulary keys as BLAKE2s hashes rather than
+plain-text tokens. During inference, input tokens are hashed using the same
+procedure and mapped to the corresponding embedding indices. This allows the
+released checkpoints to use the fitted vocabulary without distributing a
+plain-text token list.
+
+The repository includes `analysis/audit_personal_data.py` to check selected
+files against names in the source data. These checks require access to the
+comparison data. Running the script without those data does not verify the
+absence of corpus names in the release.
 
 ## Citation
 
