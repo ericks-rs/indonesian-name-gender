@@ -18,11 +18,12 @@ patterns, and inference cost.
 
 ## What the study found
 
-Character-level representation beat word-level representation for all four
-architectures, by 2.08 to 2.76 F1 points over five matched seeds, with every
-confidence interval clear of zero. Encoder choice decided far less. Within the
-character-level group no pairwise difference survived Holm correction, so the
-paper names no best encoder.
+Character-level inputs improved temporal-test F1 over word-level inputs by
+2.081–2.756 percentage points across the four matched encoder pairs. All four
+differences were significant after Holm correction across five matched seeds.
+Differences among architectures within either representation level were
+smaller, at most 0.438 points. Among the character-level encoders, CharBiLSTM
+and CharBiGRU significantly outperformed CharTransformer after Holm correction.
 
 | model | level | precision | recall | F1 |
 |---|---|---|---|---|
