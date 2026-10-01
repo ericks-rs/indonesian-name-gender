@@ -93,15 +93,20 @@ transformer = GenderPredictor("WordTransformer")
 
 ### Choosing a model
 
-Every model here answers on CPU, so none of them needs a GPU to serve.
-Latency is the median of seven trials of 200 single-thread calls at a fixed
-serving shape. Internal F1 is measured on the 2024 to 2026 partition and
-averaged over five seeds. External F1 is measured on the 1,464 names from the
-public benchmark that do not appear in the training data. Use this column when
-evaluating performance on unseen names.
+All eight models support CPU inference. The table compares model size, measured
+latency, and predictive performance.
 
-| model | parameters | size | CPU ms per name | internal F1 | external F1 |
-|---|---|---|---|---|---|
+CPU latency measures the forward pass with preprocessed inputs, one thread, and
+a batch size of one. Each value is the median of seven trial medians, with 200
+timed calls per trial. Tokenization is excluded.
+
+Temporal-test F1 is measured on 18,882 names first registered from 2024 to
+2026. External F1 is measured on 1,464 distinct names from a separate public
+source, excluding names present in training. Both scores are means across five
+matched seeds.
+
+| Model | Parameters | Model file size | CPU latency (ms/name) | Temporal-test F1 | External F1 |
+|---|---:|---:|---:|---:|---:|
 | `CharBiLSTM` (bundled) | 114,097 | 0.46 MB | 0.3912 | 0.9675 | 0.9367 |
 | `CharTransformer` | 605,953 | 2.44 MB | 1.1338 | 0.9631 | 0.9372 |
 | `CharBiGRU` | 86,065 | 0.35 MB | 1.3316 | 0.9669 | 0.9361 |
@@ -111,24 +116,21 @@ evaluating performance on unseen names.
 | `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3351 | 0.9393 | 0.8344 |
 | `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2478 | 0.9401 | 0.8346 |
 
-Every character-level model exceeds every word-level model by at least 9.41
-external F1 points, which translates the paper's main finding into a practical
-serving decision. Internal F1 separates the two representation levels by only
-about 2 points, so selecting a model from the internal results alone understates
-the generalization gap. `CharBiRNN` is the smallest at 0.12 MB and 30,001
-parameters, and costs 0.67 points of external F1 against the bundled model.
+Character-level models achieved higher F1 than word-level models on both
+datasets. On the external benchmark, the advantage within matched encoder pairs
+ranged from 9.53 to 10.21 percentage points.
 
-Parameter count does not predict latency here, so read the two columns
-separately. Names are padded to 50 character positions and 8 word positions,
-and a recurrent layer walks those positions one at a time, so every character
-model pays 50 sequential steps whatever the name. That is why `WordBiRNN`
-answers in a third of the time of `CharBiRNN` while carrying 81 times the
-parameters. Inside the character group the three recurrent cells share every
-dimension and differ only in gate count. At a hidden size of 192, kernel-launch
-and sequential execution overhead can dominate the relatively small matrix
-operations. `CharBiLSTM` runs four gates per step and still beats the
-single-gate `CharBiRNN`, which is why the smallest model in the table is not
-the quickest one.
+CharBiLSTM combines a small model file with the lowest measured latency among
+the character-level models. CharBiRNN has the smallest file and parameter count,
+with lower mean F1. WordBiRNN has the lowest latency among the eight models, but
+lower F1 than all four character-level models.
+
+Parameter count alone does not determine inference speed. Character-level and
+word-level inputs use different padded sequence lengths, and the encoders
+perform different computations. Use measured latency alongside predictive
+performance and storage requirements when selecting a model. The reported
+timings describe the benchmark environment; performance on other hardware may
+differ.
 
 ## Layout
 
