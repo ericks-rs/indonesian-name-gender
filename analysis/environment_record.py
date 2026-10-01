@@ -60,27 +60,20 @@ def main() -> int:
         "The recorded benchmark environment used an "
         f"{get.get('cpu', 'unrecorded CPU')} CPU and an {get.get('gpu', 'no GPU')}, "
         f"with Python {get.get('python')}, PyTorch {get.get('torch')}, and "
-        f"CUDA {get.get('cuda')} on {get.get('platform')}.
-
-"
+        f"CUDA {get.get('cuda')} on {get.get('platform')}.\n\n"
         "CPU forward-pass latency was measured with torch.set_num_threads(1), a "
         "batch size of one, and preprocessed inputs. Character-level inputs were "
         "padded to 50 positions, word-level inputs to 8 positions, and pretrained "
         "subword inputs to 32 positions. These lengths reflect the input "
-        "configurations used by each model family.
-
-"
+        "configurations used by each model family.\n\n"
         "Each benchmark measured 200 calls after 30 warm-up calls and reported the "
         "median latency. The repeated benchmark in results/final/32_latency_repeats "
         "summarized seven trials using the median of the seven trial medians, with "
-        "models reinitialized for each trial.
-
-"
+        "models reinitialized for each trial.\n\n"
         "Forward-pass measurements exclude tokenization and other preprocessing. "
         "The reported timings describe this hardware and software environment; "
         "application latency also depends on preprocessing, batching, and "
-        "deployment conditions.
-")
+        "deployment conditions.\n")
     (OUT / "environment_note.txt").write_text(note, encoding="utf-8")
 
     print(d.to_string(index=False))
