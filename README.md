@@ -81,14 +81,14 @@ across five seeds was 0.9675 on the temporal test and 0.9367 on the external
 benchmark. These scores summarize the five training runs rather than the
 bundled checkpoint alone.
 
-The other seven are under `models/` in a clone. From a pip install they are
-fetched once from the `v1.1.0` release and cached under
-`~/.cache/indonamegender/`, so any architecture in the grid can be asked for by
-name.
+To use another model, pass its name to `GenderPredictor`. The package downloads
+the checkpoint from the v1.1.0 GitHub release on first use and stores it in
+`~/.cache/indonamegender/`. Subsequent calls reuse the cached checkpoint. All
+eight model names are listed in the table below.
 
 ```python
-GenderPredictor("CharBiGRU")        # bundled? no, downloaded once
-GenderPredictor("WordTransformer")  # same
+gru = GenderPredictor("CharBiGRU")
+transformer = GenderPredictor("WordTransformer")
 ```
 
 ### Choosing a model
@@ -102,21 +102,21 @@ evaluating performance on unseen names.
 
 | model | parameters | size | CPU ms per name | internal F1 | external F1 |
 |---|---|---|---|---|---|
-| `CharBiLSTM` (bundled) | 114,097 | 0.46 MB | 0.3912 | 0.9675 | 0.9393 |
-| `CharTransformer` | 605,953 | 2.44 MB | 1.1338 | 0.9631 | 0.9389 |
-| `CharBiGRU` | 86,065 | 0.35 MB | 1.3316 | 0.9669 | 0.9385 |
-| `CharBiRNN` | 30,001 | 0.12 MB | 0.5237 | 0.9651 | 0.9313 |
-| `WordTransformer` | 6,126,721 | 24.52 MB | 0.7538 | 0.9423 | 0.8338 |
-| `WordBiRNN` | 2,432,545 | 9.73 MB | 0.1819 | 0.9386 | 0.8328 |
-| `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3351 | 0.9393 | 0.8325 |
-| `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2478 | 0.9401 | 0.8328 |
+| `CharBiLSTM` (bundled) | 114,097 | 0.46 MB | 0.3912 | 0.9675 | 0.9367 |
+| `CharTransformer` | 605,953 | 2.44 MB | 1.1338 | 0.9631 | 0.9372 |
+| `CharBiGRU` | 86,065 | 0.35 MB | 1.3316 | 0.9669 | 0.9361 |
+| `CharBiRNN` | 30,001 | 0.12 MB | 0.5237 | 0.9651 | 0.9300 |
+| `WordTransformer` | 6,126,721 | 24.52 MB | 0.7538 | 0.9423 | 0.8359 |
+| `WordBiRNN` | 2,432,545 | 9.73 MB | 0.1819 | 0.9386 | 0.8347 |
+| `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3351 | 0.9393 | 0.8344 |
+| `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2478 | 0.9401 | 0.8346 |
 
-Every character-level model exceeds every word-level model by at least 9.75
+Every character-level model exceeds every word-level model by at least 9.53
 external F1 points, which translates the paper's main finding into a practical
 serving decision. Internal F1 separates the two representation levels by only
 about 2 points, so selecting a model from the internal results alone understates
 the generalization gap. `CharBiRNN` is the smallest at 0.12 MB and 30,001
-parameters, and costs 0.80 points of external F1 against the bundled model.
+parameters, and costs 0.67 points of external F1 against the bundled model.
 
 Parameter count does not predict latency here, so read the two columns
 separately. Names are padded to 50 character positions and 8 word positions,
