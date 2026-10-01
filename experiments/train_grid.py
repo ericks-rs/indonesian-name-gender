@@ -60,11 +60,22 @@ class CharTokenizer:
     @property
     def vocab_size(self): return len(self.char2idx)
 
+def _vocab_key(word):
+    """Same key as indonamegender.tokenizers.vocab_key: the shipped word
+    vocabulary stores blake2s hashes of the salted token, not plain text."""
+    import hashlib
+    if word.startswith("<") and word.endswith(">"):
+        return word
+    return hashlib.blake2s(("indonamegender-v1" + word).encode("utf-8"),
+                           digest_size=8).hexdigest()
+
 class WordTokenizer:
     def __init__(self, min_freq=2):
         self.word2idx = {"<PAD>": 0, "<UNK>": 1}; self.min_freq = min_freq
+    def _key(self, word):
+        return _vocab_key(word) if getattr(self, "hashed", False) else word
     def encode(self, name, max_len):
-        ids = [self.word2idx.get(w, 1) for w in name.lower().split()]
+        ids = [self.word2idx.get(self._key(w), 1) for w in name.lower().split()]
         return ids[:max_len] if len(ids) >= max_len else ids + [0]*(max_len-len(ids))
     @property
     def vocab_size(self): return len(self.word2idx)
