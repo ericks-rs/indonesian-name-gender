@@ -30,12 +30,14 @@ answers in 0.3912 ms on a single CPU thread. No download is needed for it.
 
 ## Other models
 
-Seven further checkpoints are fetched once from the GitHub release and cached
-locally, so any of the eight architectures in the grid can be asked for by name.
+To use another model, pass its name to `GenderPredictor`. The package downloads
+the checkpoint from the v1.1.0 GitHub release on first use and stores it in
+`~/.cache/indonamegender/`. Subsequent calls reuse the cached checkpoint. All
+eight model names are listed in the table below.
 
 ```python
-GenderPredictor("CharBiGRU")
-GenderPredictor("WordTransformer")
+gru = GenderPredictor("CharBiGRU")
+transformer = GenderPredictor("WordTransformer")
 ```
 
 | model | level | test F1 | parameters |
