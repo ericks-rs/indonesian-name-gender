@@ -111,7 +111,7 @@ evaluating performance on unseen names.
 | `WordBiGRU` | 2,507,041 | 10.03 MB | 0.3351 | 0.9393 | 0.8344 |
 | `WordBiLSTM` | 2,544,289 | 10.18 MB | 0.2478 | 0.9401 | 0.8346 |
 
-Every character-level model exceeds every word-level model by at least 9.53
+Every character-level model exceeds every word-level model by at least 9.41
 external F1 points, which translates the paper's main finding into a practical
 serving decision. Internal F1 separates the two representation levels by only
 about 2 points, so selecting a model from the internal results alone understates
