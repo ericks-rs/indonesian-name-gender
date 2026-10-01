@@ -42,10 +42,15 @@ and CharBiGRU significantly outperformed CharTransformer after Holm correction.
 | WordBiRNN | word | 0.9408 | 0.9364 | 0.9386 |
 | TF-IDF+RF | character | 0.9561 | 0.9005 | 0.9275 |
 
-All fourteen classifiers are shown. The character-level neural models match the
-fine-tuned encoders on the test partition and lead on the external benchmark, at
-43.6 to 148.5 times lower single-thread CPU latency. Precision, recall, external
-F1, parameter counts and latency for every model are in `results/final/`.
+The table reports mean temporal-test scores across five matched seeds for all
+14 classifiers. TF-IDF+SVM achieved the highest F1. XLM-R significantly
+outperformed CharBiRNN, CharBiLSTM, and CharTransformer after Holm correction,
+while the difference from CharBiGRU was not significant. On the external
+benchmark, all four character-level neural models scored above the three
+pretrained encoders. The character-level neural models also achieved more than
+40-fold faster single-thread CPU forward-pass inference, based on median
+per-name latencies across seven trials. Detailed performance and efficiency
+results are available in `results/final/`.
 
 ## Install
 
