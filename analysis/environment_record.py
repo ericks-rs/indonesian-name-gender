@@ -57,18 +57,30 @@ def main() -> int:
 
     get = dict(zip(d.item, d.value))
     note = (
-        "All timings were taken on a single machine. "
-        f"{get.get('gpu', 'no GPU')}, CUDA {get.get('cuda')}, "
-        f"PyTorch {get.get('torch')}, Python {get.get('python')} on "
-        f"{get.get('platform')}.\n"
-        "CPU latency is measured with torch.set_num_threads(1), which is the "
-        "per-request cost when a server handles concurrent requests. Every model "
-        "runs at a fixed serving shape, 50 characters for the character models, "
-        "8 tokens for the word models and 32 padded subwords for the pretrained "
-        "encoders, so no model gains from a shorter input than the others.\n"
-        "Latency is the median of 200 calls after 30 warmups, and the repeated "
-        "measurement in 32_latency_repeats takes the median of seven such trials "
-        "with the model rebuilt each time.\n")
+        "The recorded benchmark environment used an "
+        f"{get.get('cpu', 'unrecorded CPU')} CPU and an {get.get('gpu', 'no GPU')}, "
+        f"with Python {get.get('python')}, PyTorch {get.get('torch')}, and "
+        f"CUDA {get.get('cuda')} on {get.get('platform')}.
+
+"
+        "CPU forward-pass latency was measured with torch.set_num_threads(1), a "
+        "batch size of one, and preprocessed inputs. Character-level inputs were "
+        "padded to 50 positions, word-level inputs to 8 positions, and pretrained "
+        "subword inputs to 32 positions. These lengths reflect the input "
+        "configurations used by each model family.
+
+"
+        "Each benchmark measured 200 calls after 30 warm-up calls and reported the "
+        "median latency. The repeated benchmark in results/final/32_latency_repeats "
+        "summarized seven trials using the median of the seven trial medians, with "
+        "models reinitialized for each trial.
+
+"
+        "Forward-pass measurements exclude tokenization and other preprocessing. "
+        "The reported timings describe this hardware and software environment; "
+        "application latency also depends on preprocessing, batching, and "
+        "deployment conditions.
+")
     (OUT / "environment_note.txt").write_text(note, encoding="utf-8")
 
     print(d.to_string(index=False))
