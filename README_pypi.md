@@ -1,12 +1,8 @@
 # indonamegender
 
-Character-level gender classification for Indonesian personal names.
+Predict gender labels from Indonesian personal names using character-level or word-level neural models.
 
-A compact recurrent model that reads a name character by character. It matches
-fully fine-tuned multilingual encoders at a fraction of the serving cost, and it
-is the analysis code behind the paper *A Cross-Architecture Empirical Study of
-Character-Level and Word-Level Representations for Gender Classification from
-Indonesian Names*.
+The package includes a compact CharBiLSTM checkpoint and supports seven additional models downloaded on first use. It provides an inference interface for the models evaluated in *A Cross-Architecture Empirical Study of Character-Level and Word-Level Representations for Gender Classification from Indonesian Names*.
 
 ## Install
 
@@ -19,52 +15,62 @@ pip install indonamegender
 ```python
 from indonamegender import GenderPredictor
 
-p = GenderPredictor()
-p.predict("SITI AMINAH")
-# {'name': 'SITI AMINAH', 'gender': 'Female', 'confidence': 0.9997, 'model': 'CharBiLSTM'}
+predictor = GenderPredictor()
+result = predictor.predict("SITI AMINAH")
+print(result)
 ```
 
-The bundled model is `CharBiLSTM`, the one the paper recommends for names from
-beyond the training data. It reaches 0.9393 F1 on an independent benchmark and
-answers in 0.3912 ms on a single CPU thread. No download is needed for it.
+The prediction includes the gender label, confidence score, and model name.
 
-## Other models
+The package includes the seed-42 CharBiLSTM checkpoint, so the default model requires no additional download. Its model file is 0.46 MB. In the reported benchmark, CharBiLSTM achieved a median CPU forward-pass latency of 0.3912 ms per name across seven trials using one thread. This measurement excludes tokenization.
 
-To use another model, pass its name to `GenderPredictor`. The package downloads
-the checkpoint from the v1.1.0 GitHub release on first use and stores it in
-`~/.cache/indonamegender/`. Subsequent calls reuse the cached checkpoint. All
-eight model names are listed in the table below.
+On the external benchmark of 1,464 names, CharBiLSTM achieved a mean F1 of 0.9367 across five training seeds. This score summarizes the five runs rather than the bundled checkpoint alone.
+
+## Choose a model
+
+Pass a model name to `GenderPredictor` to use another checkpoint.
 
 ```python
 gru = GenderPredictor("CharBiGRU")
 transformer = GenderPredictor("WordTransformer")
 ```
 
-| model | level | test F1 | parameters |
-|---|---|---|---|
-| CharBiLSTM | character | 0.9675 | 114,097 |
-| CharBiGRU | character | 0.9669 | 86,065 |
-| CharBiRNN | character | 0.9651 | 30,001 |
-| CharTransformer | character | 0.9631 | 605,953 |
-| WordTransformer | word | 0.9423 | 6,126,721 |
-| WordBiLSTM | word | 0.9401 | 2,544,289 |
-| WordBiGRU | word | 0.9393 | 2,507,041 |
-| WordBiRNN | word | 0.9386 | 2,432,545 |
+The package downloads additional checkpoints from the `v1.1.0` GitHub release on first use and stores them in `~/.cache/indonamegender/`. Subsequent calls reuse the cached files.
 
-Test F1 is the mean over five seeds on the 2024 to 2026 partition. `CharBiLSTM`
-is bundled, the other seven download on first use. The three pretrained encoders
-from the paper, IndoBERT, mBERT and XLM-R, are not distributed through this
-package because their base weights come from Hugging Face. The scripts that
-fine-tune them are in the repository under `experiments/`.
+All eight models support CPU inference. To select the CPU explicitly:
 
-## Notes
+```python
+predictor = GenderPredictor("CharBiLSTM", device="cpu")
+```
 
-The label is a binary administrative field, male or female. It reflects a recorded
-administrative label, not how a person identifies, and the model estimates that
-field rather than a person. Intended for completing missing fields in existing
-records for aggregate analysis, not for decisions about individuals.
+| Model | Input level | Temporal-test F1 | Parameters |
+|---|---|---:|---:|
+| CharBiLSTM | Character | 0.9675 | 114,097 |
+| CharBiGRU | Character | 0.9669 | 86,065 |
+| CharBiRNN | Character | 0.9651 | 30,001 |
+| CharTransformer | Character | 0.9631 | 605,953 |
+| WordTransformer | Word | 0.9423 | 6,126,721 |
+| WordBiLSTM | Word | 0.9401 | 2,544,289 |
+| WordBiGRU | Word | 0.9393 | 2,507,041 |
+| WordBiRNN | Word | 0.9386 | 2,432,545 |
 
-## Links
+F1 values are means across five matched training seeds on 18,882 names first registered from 2024 to 2026. The distributed checkpoints use seed 42.
 
-- Source, results, and paper: https://github.com/ericks-rs/indonesian-name-gender
-- License: MIT
+The package supports the eight neural models trained from scratch. Results for the character n-gram classifiers and pretrained encoders evaluated in the paper are available in the repository.
+
+## Intended use
+
+The models estimate the male or female labels recorded in the source dataset. They are intended to support aggregate analysis when gender labels are unavailable. Predictions may be incorrect and should not replace self-reported gender information or determine decisions about individuals.
+
+Performance may vary across institutions and naming conventions. Evaluate the model on representative data before using predictions in an analysis.
+
+## Research and source code
+
+The repository provides training and analysis code, result tables, and documentation for the associated study.
+
+- [GitHub repository](https://github.com/ericks-rs/indonesian-name-gender)
+- [Releases and model checkpoints](https://github.com/ericks-rs/indonesian-name-gender/releases)
+
+## License
+
+Released under the MIT license.
