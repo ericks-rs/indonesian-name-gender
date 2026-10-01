@@ -197,10 +197,8 @@ per-name result tables use row identifiers and derived fields, such as token
 counts and three-character endings, in place of full names.
 
 The word tokenizer stores vocabulary keys as BLAKE2s hashes rather than
-plain-text tokens. During inference, input tokens are hashed using the same
-procedure and mapped to the corresponding embedding indices. This allows the
-released checkpoints to use the fitted vocabulary without distributing a
-plain-text token list.
+plain-text tokens. During package inference, input tokens are hashed using the
+same procedure and mapped to the corresponding embedding indices.
 
 The repository includes `analysis/audit_personal_data.py` to check selected
 files against names in the source data. These checks require access to the
