@@ -132,6 +132,40 @@ performance and storage requirements when selecting a model. The reported
 timings describe the benchmark environment; performance on other hardware may
 differ.
 
+## Live demo
+
+A hosted instance of the models is available for trying them without installing
+anything.
+
+- Interactive documentation: <https://namegender.unmeka.ac.id/docs>
+- Endpoint: `POST https://namegender.unmeka.ac.id/api/gender`
+
+```bash
+curl -X POST https://namegender.unmeka.ac.id/api/gender \
+  -H "Content-Type: application/json" \
+  -d '{"name": "banowati larasati"}'
+# {"label":"P","gender":"Female","maleProbability":"7.57%","femaleProbability":"92.43%","confidence":"92.43%","model":"CharBiLSTM","tokens":null,"attention":null}
+```
+
+The request body also accepts the optional fields `model` and `includeAttention`,
+and `POST /api/gender/batch` accepts up to 100 names at once. The probabilities
+are returned as percentage strings.
+
+The service runs the seed-42 `CharBiLSTM` checkpoint through the ONNX export in
+[`onnx/`](onnx/README.md). It is a demonstration and not the evaluation. The
+scores reported in this repository are means across five seeds, and a single
+checkpoint can differ from them.
+
+The output is a statistical estimate based on how a name is spelled. Ambiguous
+or rare names are often misclassified, and the output should not be used to
+decide a person's gender.
+
+The service is hosted on a university server on a best-effort basis, without an
+availability guarantee, and is limited to 60 requests per minute per client
+address. It does not store submitted names and does not write them to its logs.
+Names are still sent to a server operated by the authors, so example names are
+preferable to real personal data.
+
 ## Repository layout
 
 ```
@@ -144,6 +178,7 @@ results/final/        Stored predictions, metrics, and statistical results
 results/figures/      Manuscript figures in PNG and PDF formats
 configs/              Experiment settings and environment records
 demo/                 Local web demo
+onnx/                 ONNX export, tokenizer files, and a C# example
 docs/                 Data requirements, protocol, and reproduction instructions
 tests/                Package tests
 ```
