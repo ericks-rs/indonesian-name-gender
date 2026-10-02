@@ -4,7 +4,7 @@ PyTorch 2.11.0+cu128 | GPU: NVIDIA GeForce RTX 5080 Laptop GPU | CPU threads pin
 Tokenizers: char=33 word=24947
 
 === Paper models ===
-D:\MyPaper\RisetNamaGender\program\benchmark_inference.py:125: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\benchmark_inference.py:125: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
   CharBiRNN           30,001 params | GPU 0.3431 ms | CPU 0.5215 ms | CPU 21152.7 n/s
   CharBiLSTM         114,097 params | GPU 0.3461 ms | CPU 0.3934 ms | CPU 7971.4 n/s
@@ -82,6 +82,6 @@ WordTransformer             paper-word    6.1265    24.52      0.9956      1.002
           mBERT pretrained-transformer  177.8550   711.47      5.0208      5.2108              2320.5            999.4     56.7704     56.7823                25.0
           XLM-R pretrained-transformer  278.0452  1112.23      5.1691      5.2938              2380.6           1400.0     56.6681     56.7056                25.0
 
-Saved: D:\MyPaper\RisetNamaGender\results\tables\inference_benchmark.csv
+Saved: results\tables\inference_benchmark.csv
 
 Probe: 'DEWI KARTIKA SARI' | warmup=30 runs=200 | throughput batch=256 x 20 reps

@@ -23,4 +23,4 @@ TF-IDF+SVM        5   0.9628  0.0000  0.9628  0.9628
  TF-IDF+LR        5   0.9602  0.0000  0.9602  0.9602
  TF-IDF+RF        5   0.9196  0.0024  0.9172  0.9232
 
-Written to D:\MyPaper\RisetNamaGender\results\final\03_seeds_tfidf
+Written to results\final\03_seeds_tfidf

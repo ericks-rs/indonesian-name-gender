@@ -48,4 +48,4 @@ CharTransformer        IndoBERT                     224                     342 
       CharBiGRU           mBERT                     214                     225  6.332171e-01 1.000000e+00           False
       CharBiGRU       TF-IDF+LR                     184                     176  7.122334e-01 1.000000e+00           False
 
-Written to D:\MyPaper\RisetNamaGender\results\final\08_significance
+Written to results\final\08_significance

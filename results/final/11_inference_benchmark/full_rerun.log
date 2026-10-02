@@ -1,5 +1,5 @@
 PyTorch 2.11.0+cu128 | GPU NVIDIA GeForce RTX 5080 Laptop GPU | probe 'BANOWATI LARASATI'
-D:\MyPaper\RisetNamaGender\demo\inference.py:136: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+demo\inference.py:136: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=n_layers)
 [Predictor] Loaded 8 models (suffix='__seed42') on cuda
   CharBiRNN           30,001 | GPU 0.3492 | CPU 0.5264 | CPU tp 19632.5
@@ -565,9 +565,9 @@ Params check vs prior table:
   mBERT            177,854,978  OK
   XLM-R            278,045,186  OK
 
-Written D:\MyPaper\RisetNamaGender\results\final\11_inference_benchmark\tables\inference_benchmark.csv (backup .bak). Now run benchmark_inference_tfidf.py for the SVM row.
+Written results\final\11_inference_benchmark\tables\inference_benchmark.csv (backup .bak). Now run benchmark_inference_tfidf.py for the SVM row.
 Training TF-IDF + Linear SVM for timing...
   features=50,000
   CPU fwd=0.0294 ms | e2e=0.2775 ms | 6634702.5 names/s | disk=3.42 MB
 
-Appended to D:\MyPaper\RisetNamaGender\results\final\11_inference_benchmark\tables\inference_benchmark.csv
+Appended to results\final\11_inference_benchmark\tables\inference_benchmark.csv

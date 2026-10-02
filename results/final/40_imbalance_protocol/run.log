@@ -16,19 +16,19 @@ Tokenizers: char=33 word=24947
 [ 13/120] unweighted    CharBiGRU        seed=123   F1=0.9587 (best ep 7, 41s)
 [ 14/120] unweighted    CharBiGRU        seed=2024  F1=0.9590 (best ep 11, 53s)
 [ 15/120] unweighted    CharBiGRU        seed=777   F1=0.9586 (best ep 6, 37s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 16/120] unweighted    CharTransformer  seed=42    F1=0.9532 (best ep 38, 322s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 17/120] unweighted    CharTransformer  seed=7     F1=0.9557 (best ep 33, 288s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 18/120] unweighted    CharTransformer  seed=123   F1=0.9531 (best ep 36, 311s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 19/120] unweighted    CharTransformer  seed=2024  F1=0.9543 (best ep 33, 293s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 20/120] unweighted    CharTransformer  seed=777   F1=0.9534 (best ep 31, 279s)
 [ 21/120] unweighted    WordBiRNN        seed=42    F1=0.9314 (best ep 8, 44s)
@@ -46,19 +46,19 @@ D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWar
 [ 33/120] unweighted    WordBiGRU        seed=123   F1=0.9327 (best ep 7, 42s)
 [ 34/120] unweighted    WordBiGRU        seed=2024  F1=0.9320 (best ep 13, 62s)
 [ 35/120] unweighted    WordBiGRU        seed=777   F1=0.9291 (best ep 10, 50s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 36/120] unweighted    WordTransformer  seed=42    F1=0.9249 (best ep 10, 67s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 37/120] unweighted    WordTransformer  seed=7     F1=0.9231 (best ep 13, 84s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 38/120] unweighted    WordTransformer  seed=123   F1=0.9358 (best ep 7, 55s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 39/120] unweighted    WordTransformer  seed=2024  F1=0.9223 (best ep 11, 73s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 40/120] unweighted    WordTransformer  seed=777   F1=0.9244 (best ep 14, 86s)
 [ 41/120] oversampling  CharBiRNN        seed=42    F1=0.9562 (best ep 15, 78s)
@@ -76,19 +76,19 @@ D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWar
 [ 53/120] oversampling  CharBiGRU        seed=123   F1=0.9587 (best ep 6, 47s)
 [ 54/120] oversampling  CharBiGRU        seed=2024  F1=0.9608 (best ep 9, 58s)
 [ 55/120] oversampling  CharBiGRU        seed=777   F1=0.9585 (best ep 8, 53s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 56/120] oversampling  CharTransformer  seed=42    F1=0.9537 (best ep 30, 318s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 57/120] oversampling  CharTransformer  seed=7     F1=0.9574 (best ep 34, 361s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 58/120] oversampling  CharTransformer  seed=123   F1=0.9518 (best ep 39, 413s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 59/120] oversampling  CharTransformer  seed=2024  F1=0.9510 (best ep 18, 227s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 60/120] oversampling  CharTransformer  seed=777   F1=0.9544 (best ep 25, 293s)
 [ 61/120] oversampling  WordBiRNN        seed=42    F1=0.9332 (best ep 12, 66s)
@@ -106,19 +106,19 @@ D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWar
 [ 73/120] oversampling  WordBiGRU        seed=123   F1=0.9339 (best ep 6, 44s)
 [ 74/120] oversampling  WordBiGRU        seed=2024  F1=0.9316 (best ep 9, 55s)
 [ 75/120] oversampling  WordBiGRU        seed=777   F1=0.9333 (best ep 10, 61s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 76/120] oversampling  WordTransformer  seed=42    F1=0.9359 (best ep 11, 91s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 77/120] oversampling  WordTransformer  seed=7     F1=0.9348 (best ep 8, 77s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 78/120] oversampling  WordTransformer  seed=123   F1=0.9345 (best ep 7, 73s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 79/120] oversampling  WordTransformer  seed=2024  F1=0.9349 (best ep 10, 93s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 80/120] oversampling  WordTransformer  seed=777   F1=0.9349 (best ep 5, 65s)
 [ 81/120] balanced      CharBiRNN        seed=42    F1=0.9558 (best ep 14, 64s)
@@ -136,19 +136,19 @@ D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWar
 [ 93/120] balanced      CharBiGRU        seed=123   F1=0.9591 (best ep 7, 39s)
 [ 94/120] balanced      CharBiGRU        seed=2024  F1=0.9590 (best ep 8, 42s)
 [ 95/120] balanced      CharBiGRU        seed=777   F1=0.9573 (best ep 9, 45s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 96/120] balanced      CharTransformer  seed=42    F1=0.9544 (best ep 34, 287s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 97/120] balanced      CharTransformer  seed=7     F1=0.9533 (best ep 28, 251s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 98/120] balanced      CharTransformer  seed=123   F1=0.9532 (best ep 36, 310s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [ 99/120] balanced      CharTransformer  seed=2024  F1=0.9530 (best ep 39, 332s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [100/120] balanced      CharTransformer  seed=777   F1=0.9544 (best ep 34, 296s)
 [101/120] balanced      WordBiRNN        seed=42    F1=0.9316 (best ep 11, 51s)
@@ -166,20 +166,20 @@ D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWar
 [113/120] balanced      WordBiGRU        seed=123   F1=0.9296 (best ep 14, 60s)
 [114/120] balanced      WordBiGRU        seed=2024  F1=0.9334 (best ep 9, 45s)
 [115/120] balanced      WordBiGRU        seed=777   F1=0.9320 (best ep 9, 45s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [116/120] balanced      WordTransformer  seed=42    F1=0.9354 (best ep 7, 53s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [117/120] balanced      WordTransformer  seed=7     F1=0.9350 (best ep 16, 90s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [118/120] balanced      WordTransformer  seed=123   F1=0.9330 (best ep 14, 82s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [119/120] balanced      WordTransformer  seed=2024  F1=0.9350 (best ep 16, 91s)
-D:\MyPaper\RisetNamaGender\program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\experiment_imbalance_protocol.py:156: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
 [120/120] balanced      WordTransformer  seed=777   F1=0.9357 (best ep 12, 76s)
 
-wrote D:\MyPaper\RisetNamaGender\results\tables\imbalance_protocol\imbalance_runs.csv
+wrote results\tables\imbalance_protocol\imbalance_runs.csv

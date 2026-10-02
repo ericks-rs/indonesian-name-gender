@@ -413,4 +413,4 @@ IndoBERT        5       0.9578      0.0006      0.9572      0.9586       0.9339
    XLM-R        5       0.9617      0.0012      0.9604      0.9630       0.9368
 
 Total wall time: 541.4 min
-Written to D:\MyPaper\RisetNamaGender\results\final\04_seeds_transformers
+Written to results\final\04_seeds_transformers

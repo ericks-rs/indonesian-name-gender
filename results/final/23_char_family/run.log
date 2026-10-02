@@ -123,4 +123,4 @@ WordTransformer    0.9315    0.9398       0.8340          0.000          4      
 XLM-R              0.9315    0.9398       0.9266          0.454          1       0
 mBERT              0.9315    0.9398       0.9248          0.323          1       0
 
-Written to D:\MyPaper\RisetNamaGender\results\final\23_char_family
+Written to results\final\23_char_family

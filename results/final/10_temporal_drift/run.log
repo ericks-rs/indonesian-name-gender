@@ -6,7 +6,7 @@ Train: 186,211 | Val: 15,923
 ======================================================================
 EKSPERIMEN 1: Per-Year Validation F1 (2024 vs 2025)
 ======================================================================
-D:\MyPaper\RisetNamaGender\program\temporal_drift\..\..\demo\inference.py:108: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+program\temporal_drift\..\..\demo\inference.py:108: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=n_layers)
 [Predictor] Loaded 8 models (suffix='_weighted') on cuda
 

@@ -7,7 +7,7 @@ L:P ratio  Train 1.56:1  Dev 1.05:1  Test 0.97:1
   03_suffix_analysis_by_gender.png  401 KB
   04_first_word_distribution.png  423 KB
 
-4 figures at 600 dpi, copies in D:\MyPaper\RisetNamaGender\results\final\13_figures
+4 figures at 600 dpi, copies in results\final\13_figures
 
 ### program/regen_figures_weighted.py
 Loading weighted artifacts...
@@ -40,7 +40,7 @@ Length       Samples    CharBiGRU            WordTransformer      Gap
 Done.
 
 ### program/generate_attention_weighted.py
-C:\Users\ERS-ASUS\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+C:\Users\<host>\AppData\Roaming\Python\Python310\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
   warnings.warn(
 Loading WEIGHTED models...
 [Predictor] Loaded 8 models (suffix='_weighted') on cuda
@@ -48,12 +48,12 @@ Loading WEIGHTED models...
 Collecting attention (2 names x 8 models)...
 
 Generate heatmap per name...
-  Saved: D:\MyPaper\RisetNamaGender\results\figures\13a_attn_dewi_kartika_w.png
-  Saved: D:\MyPaper\RisetNamaGender\results\figures\13a_attn_ahmad_fauzan_w.png
+  Saved: results\figures\13a_attn_dewi_kartika_w.png
+  Saved: results\figures\13a_attn_ahmad_fauzan_w.png
 
 Entropy table + chart...
-  Saved: D:\MyPaper\RisetNamaGender\results\tables\attention_entropy_weighted.csv
-  Saved: D:\MyPaper\RisetNamaGender\results\figures\13_attention_entropy_w.png
+  Saved: results\tables\attention_entropy_weighted.csv
+  Saved: results\figures\13_attention_entropy_w.png
 
 Model                Level      Mean H      Std
 ----------------------------------------------
@@ -69,14 +69,14 @@ WordTransformer      word       0.9779   0.0219
 Done.
 
 ### program/generate_external_validation_chart.py
-Saved: D:\MyPaper\RisetNamaGender\results\figures\12_external_validation.png
+Saved: results\figures\12_external_validation.png
 
 ### pipeline/make_figures.py
   13_attention_entropy_fullval.png  116 KB
   suffix_heatmap_female.png  311 KB
   14_per_year_f1.png  206 KB
 
-3 figure(s) written, copies in D:\MyPaper\RisetNamaGender\results\final\13_figures
+3 figure(s) written, copies in results\final\13_figures
 
 ### pipeline/figures_prior.py
   14_prior_comparison.png  179 KB at 600 dpi
