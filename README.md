@@ -161,8 +161,9 @@ or rare names are often misclassified, and the output should not be used to
 decide a person's gender.
 
 The service is hosted on a university server on a best-effort basis, without an
-availability guarantee, and is limited to 60 requests per minute per client
-address. It does not store submitted names and does not write them to its logs.
+availability guarantee, and is not rate limited. Please keep the request volume
+reasonable, and use the package or the ONNX models for bulk processing. It does
+not store submitted names and does not write them to its logs.
 Names are still sent to a server operated by the authors, so example names are
 preferable to real personal data.
 
