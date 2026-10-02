@@ -79,16 +79,21 @@ builder.Services.AddSingleton(_ => new GenderClassifier(
     Path.Combine(builder.Environment.ContentRootPath, "models"), "CharBiLSTM"));
 var app = builder.Build();
 
-app.MapGet("/api/gender", (string name, GenderClassifier classifier) =>
+app.MapPost("/api/gender", (NameRequest req, GenderClassifier classifier) =>
 {
-    if (string.IsNullOrWhiteSpace(name) || name.Length > 200)
+    if (string.IsNullOrWhiteSpace(req.Name) || req.Name.Length > 200)
         return Results.BadRequest("name is required and at most 200 characters");
-    var p = classifier.Predict(name);
+    var p = classifier.Predict(req.Name);
     return Results.Ok(new { p.Label, p.ProbFemale, p.Confidence });
 });
 
 app.Run();
+
+public record NameRequest(string? Name);
 ```
+
+The name is sent in a POST body, not in the URL. A name in a query string is written to web
+server and proxy access logs, and names are personal data.
 
 The 64-bit requirement of the old .NET Framework note does not apply here, the NuGet package
 carries the native library for each platform (win-x64, linux-x64, osx-arm64 and others). Only an
