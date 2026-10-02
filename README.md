@@ -137,11 +137,11 @@ differ.
 A hosted instance of the models is available for trying them without installing
 anything.
 
-- Interactive documentation: <https://namegender.unmeka.ac.id/docs>
-- Endpoint: `POST https://namegender.unmeka.ac.id/api/gender`
+- Interactive documentation: <https://namegender.lab-gunadarma.id/docs>
+- Endpoint: `POST https://namegender.lab-gunadarma.id/api/gender`
 
 ```bash
-curl -X POST https://namegender.unmeka.ac.id/api/gender \
+curl -X POST https://namegender.lab-gunadarma.id/api/gender \
   -H "Content-Type: application/json" \
   -d '{"name": "banowati larasati"}'
 # {"label":"P","gender":"Female","maleProbability":"7.57%","femaleProbability":"92.43%","confidence":"92.43%","model":"CharBiLSTM","tokens":null,"attention":null}
