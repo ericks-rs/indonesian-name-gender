@@ -32,6 +32,10 @@ STYLE = {"CharBiRNN": ("#1f4e79", "o", "-"), "CharBiGRU": ("#2e7d32", "s", "-"),
 
 # One JOIV column is 3.49 inches. Panels stack downwards at that width.
 COL = 3.4
+# Height of the character-position panel (Fig 8), tuned so the saved PNG aspect
+# matches the display box set in the manuscript, so Word places it at full column
+# width with no vertical stretch. Fig 9 keeps its own height.
+FH8 = 2.45
 plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
                      "xtick.labelsize": 6.4, "ytick.labelsize": 6.4,
                      "legend.fontsize": 6.4})
@@ -112,7 +116,7 @@ def main() -> int:
 
     # Two separate figures. Character position and word tokens were one two-panel
     # figure, split so each can be numbered and placed on its own.
-    figc, ax1 = plt.subplots(figsize=(COL, 2.3))
+    figc, ax1 = plt.subplots(figsize=(COL, FH8))
     for m in CHAR:
         g = prof[prof.Model == m].sort_values("position")
         x = g.position.values

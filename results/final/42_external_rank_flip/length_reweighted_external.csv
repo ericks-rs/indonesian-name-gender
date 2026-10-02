@@ -1,0 +1,6 @@
+model,external_accuracy,reweighted_to_registry_length_mix,shift_pp
+TF-IDF+SVM,94.33,96.4,2.07
+CharBiLSTM,94.28,96.19,1.91
+CharBiGRU,94.21,96.44,2.23
+CharBiRNN,93.65,96.0,2.35
+CharTransformer,94.29,96.14,1.85

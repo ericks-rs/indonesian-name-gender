@@ -36,7 +36,9 @@ COL = {"CharBiRNN": "#1f4e79", "CharBiGRU": "#2e7d32", "CharBiLSTM": "#b8860b",
 # a column with running text. COL is already the colour map in this module,
 # hence the separate name.
 COLW = 3.403
-COLH = 1.70
+# Height tuned so the saved PNG aspect matches the display box set in the
+# manuscript, so Word places the figure at full column width with no stretch.
+COLH = 2.0078
 WPAD = 1.5
 plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
                      "xtick.labelsize": 6.4, "ytick.labelsize": 6.4,

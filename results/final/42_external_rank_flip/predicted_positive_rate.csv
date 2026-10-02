@@ -1,0 +1,11 @@
+partition,model,true_positive_rate,predicted_positive_rate,excess_pp
+test 2024-2026,TF-IDF+SVM,0.5098,0.5,-0.98
+test 2024-2026,CharBiLSTM,0.5098,0.5039,-0.59
+test 2024-2026,CharBiGRU,0.5098,0.5039,-0.59
+test 2024-2026,CharBiRNN,0.5098,0.5028,-0.7
+test 2024-2026,CharTransformer,0.5098,0.5104,0.06
+"external, clean and deduplicated",TF-IDF+SVM,0.4488,0.4536,0.48
+"external, clean and deduplicated",CharBiLSTM,0.4488,0.4552,0.64
+"external, clean and deduplicated",CharBiGRU,0.4488,0.457,0.82
+"external, clean and deduplicated",CharBiRNN,0.4488,0.459,1.02
+"external, clean and deduplicated",CharTransformer,0.4488,0.46,1.12

@@ -1,0 +1,4 @@
+partition,n_names,mean_ngram_oov_rate,median_ngram_oov_rate,mean_type_oov_rate,share_with_any_oov,share_oov_over_10pct,share_oov_over_25pct,mean_char_oov_rate,share_with_any_char_oov,mean_ngram_types_in_vocab
+test 2024-2026,18882,0.031,0.0,0.0319,0.4645,0.0964,0.0031,0.0,0.0,62.43
+external benchmark,1960,0.035,0.0,0.0353,0.3724,0.1291,0.0189,0.0,0.0,40.59
+"external, clean and deduplicated",1464,0.0416,0.0,0.0419,0.4454,0.1516,0.0219,0.0,0.0,43.02

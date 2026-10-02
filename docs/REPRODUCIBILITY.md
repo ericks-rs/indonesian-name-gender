@@ -40,6 +40,19 @@ These scripts recompute:
 
 The scripts write their outputs to `results/final/`. Other analyses may require private data, additional dependencies, or paths from the original experiment environment.
 
+## External benchmark diagnostics
+
+The analyses of the external benchmark in the manuscript use the following scripts. They read the training and temporal-test partitions, so they require the institutional corpus described in [DATA.md](DATA.md). Their stored outputs are included.
+
+| Script | Output | Analysis |
+|---|---|---|
+| `analysis/suffix_coverage_bias.py` | `results/final/28_suffix_coverage/` | Accuracy by ending coverage and token count, and single-token names outside the word vocabulary |
+| `analysis/ngram_coverage.py` | `results/final/41_ngram_coverage/` | Character n-gram coverage of the TF-IDF vocabulary on the temporal test and external benchmark |
+| `analysis/external_rank_flip.py` | `results/final/42_external_rank_flip/` | Class mix, name-length composition, reweighting by token count, and precision and recall changes |
+| `analysis/external_operating_point.py` | `results/final/42_external_rank_flip/` | Predicted positive rates and the threshold diagnostic for TF-IDF+SVM |
+
+`analysis/figure_attention_reading.py` draws Fig. 10 from per-character attention weights for example names. The released copy of `results/final/26_attention_position/attention_examples.csv` replaces the names with row identifiers, so this script cannot be rerun from the repository. The shipped `results/figures/fig10_attention_reading.png` is the manuscript figure.
+
 ## Retraining
 
 The main training scripts are:

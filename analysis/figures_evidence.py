@@ -31,6 +31,11 @@ CCHAR, CWORD, CCLASS, CPRE = "#1f4e79", "#c98b3a", "#5b8c5a", "#8b1a1a"
 # One JOIV column is 3.49 inches. Every figure is drawn to that width, panels
 # stack downwards, and no figure carries more than two of them.
 COL = 3.4
+# Per-figure heights for the efficiency frontier. Both were tuned so the saved
+# PNG aspect matches the display box set in the manuscript, so Word places the
+# figure at full column width with no vertical stretch.
+FH_LAT = 3.0
+FH_PAR = 2.0141
 plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
                      "xtick.labelsize": 6.4, "ytick.labelsize": 6.4,
                      "legend.fontsize": 6.4})
@@ -217,9 +222,9 @@ def fig_efficiency():
     # external legend costs height that the corner gives away for nothing.
     for name, xcol, xlab, fh, inside in (
             ("fig13_efficiency_latency.png", "cpu_ms",
-             "CPU latency per name (ms, log scale)", 3.0, True),
+             "CPU latency per name (ms, log scale)", FH_LAT, True),
             ("fig07_efficiency_params.png", "params",
-             "parameters (log scale)", 1.9, True)):
+             "parameters (log scale)", FH_PAR, True)):
         fig, ax = plt.subplots(figsize=(COL, fh))
         for fam, gg in d.groupby("family"):
             ax.scatter(gg[xcol], gg.f1, s=26, color=col[fam], label=fam,
@@ -230,6 +235,14 @@ def fig_efficiency():
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(color="0.93", linewidth=0.6)
         ax.set_axisbelow(True)
+        # Lift the word cluster off the bottom spine. WordBiRNN is the lowest
+        # point on both panels, and with no room below its "BiRNN" label was
+        # driven onto the x-axis. The headroom lets place_labels seat it clear.
+        ax.set_ylim(bottom=d.f1.min() - 0.6)
+        if xcol == "cpu_ms":
+            # On the latency panel WordBiRNN is also the leftmost point, so pull
+            # the cluster in from the left spine as well.
+            ax.set_xlim(left=d.cpu_ms.min() * 0.62)
         fig.tight_layout(pad=0.5)
         h, lab = ax.get_legend_handles_labels()
         keep = [f for f in ("character", "word", "pretrained") if f in lab]

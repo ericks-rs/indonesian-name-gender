@@ -1,0 +1,6 @@
+model,excess_internal_pp,excess_external_pp,drift_pp
+TF-IDF+SVM,-0.98,0.48,1.46
+CharBiLSTM,-0.59,0.64,1.23
+CharBiGRU,-0.59,0.82,1.41
+CharBiRNN,-0.7,1.02,1.72
+CharTransformer,0.06,1.12,1.06

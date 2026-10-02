@@ -1,0 +1,5 @@
+model,n_full_coverage,n_oov_over_10pct,gap_full_coverage_pp,gap_oov_over_10pct_pp,interaction_pp,ci95_lo_pp,ci95_hi_pp
+CharBiLSTM,812,222,-0.394,-3.333,-2.939,-6.429,0.368
+CharBiGRU,812,222,-0.369,-3.514,-3.144,-6.339,-0.08
+CharBiRNN,812,222,-0.813,-3.514,-2.701,-5.66,0.298
+CharTransformer,812,222,-0.665,-0.631,0.034,-3.512,3.551

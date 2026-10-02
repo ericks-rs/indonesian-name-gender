@@ -1,0 +1,9 @@
+partition,tokens,n_names,TF-IDF+SVM,CharBiLSTM,CharBiGRU,CharBiRNN,CharTransformer,CharBiLSTM_minus_SVM_pp
+test 2024-2026,1,159,88.05,86.04,86.04,87.17,85.66,-2.01
+test 2024-2026,2,4485,96.79,96.36,96.41,96.22,96.25,-0.43
+test 2024-2026,3,11630,97.1,96.88,96.77,96.55,96.39,-0.22
+test 2024-2026,4 or more,2608,97.58,97.2,97.17,97.09,96.18,-0.38
+"external, clean and deduplicated",1,365,89.59,88.88,88.82,87.51,89.21,-0.71
+"external, clean and deduplicated",2,657,95.28,95.95,95.49,95.34,95.83,0.67
+"external, clean and deduplicated",3,382,96.86,95.97,96.49,95.92,95.86,-0.89
+"external, clean and deduplicated",4 or more,60,96.67,98.0,98.33,98.0,98.33,1.33
