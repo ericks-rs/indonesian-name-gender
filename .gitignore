@@ -30,3 +30,6 @@ Thumbs.db
 
 # Case-to-name keys for the error tables stay local; the paper states the mapping is not released.
 /results/final/27_error_analysis/error_examples_key*.csv
+
+# ONNX files are attached to the GitHub Release; the vocab and parity JSON stay in the repo.
+/onnx/models/*.onnx
