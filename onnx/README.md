@@ -48,95 +48,79 @@ prob_female, attention = sess.run(None, {"ids": np.array([ids], dtype=np.int64)}
 print(prob_female[0])
 ```
 
-## C# (ASP.NET Web Forms, .NET Framework 4.x)
+## C# (.NET)
 
-`csharp/` holds four files with no dependency except ONNX Runtime:
+`csharp/` holds four files with no dependency except ONNX Runtime. They build for .NET 6 and
+later (ASP.NET Core) and for .NET Framework 4.x.
 
 | File | Purpose |
 |---|---|
 | `GenderClassifier.cs` | loads a model, `Predict(name)` returns label, probability, attention |
 | `NameTokenizer.cs` | name to ids, same rules as the Python tokenizers |
-| `Blake2s.cs` | BLAKE2s for the Word vocabulary keys (.NET Framework has none built in) |
+| `Blake2s.cs` | BLAKE2s for the Word vocabulary keys (.NET has none built in) |
 | `TokenizerCheck.cs` | console test that compares the C# ids and hashes with `parity_cases.json` and `hash_cases.json` |
 
-Setup:
+### ASP.NET Core Web API
 
-1. Install the NuGet package `Microsoft.ML.OnnxRuntime` and add a reference to
-   `System.Web.Extensions`.
-2. ONNX Runtime is a native library, so the application pool must be **64-bit**
-   (IIS: Advanced Settings, Enable 32-Bit Applications = False) and the project platform x64
-   or Any CPU without "Prefer 32-bit".
-3. Copy the `.onnx` files and the two `*_vocab.json` files to a folder, for example
-   `App_Data/models`.
-4. Create one `GenderClassifier` for the lifetime of the application and share it. `Run` is
-   thread-safe.
+1. `dotnet add package Microsoft.ML.OnnxRuntime`.
+2. Copy `Blake2s.cs`, `NameTokenizer.cs` and `GenderClassifier.cs` into the project, and copy the
+   `.onnx` files and the two `*_vocab.json` files to a `models` folder. Mark them
+   `Copy to Output Directory` or resolve the folder from `ContentRootPath`.
+3. Register one `GenderClassifier` as a singleton. `InferenceSession.Run` is thread-safe, and the
+   container disposes the instance at shutdown. Do not create one per request.
 
-`Global.asax.cs`:
+`Program.cs` (minimal API):
 
 ```csharp
-using System;
-using System.Web;
 using IndoNameGender;
 
-public class Global : HttpApplication
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton(_ => new GenderClassifier(
+    Path.Combine(builder.Environment.ContentRootPath, "models"), "CharBiLSTM"));
+var app = builder.Build();
+
+app.MapGet("/api/gender", (string name, GenderClassifier classifier) =>
 {
-    public static GenderClassifier Classifier;
+    if (string.IsNullOrWhiteSpace(name) || name.Length > 200)
+        return Results.BadRequest("name is required and at most 200 characters");
+    var p = classifier.Predict(name);
+    return Results.Ok(new { p.Label, p.ProbFemale, p.Confidence });
+});
 
-    protected void Application_Start(object sender, EventArgs e)
-    {
-        string dir = Server.MapPath("~/App_Data/models");
-        Classifier = new GenderClassifier(dir, "CharBiLSTM");
-    }
-
-    protected void Application_End(object sender, EventArgs e)
-    {
-        if (Classifier != null) Classifier.Dispose();
-    }
-}
+app.Run();
 ```
 
-`Predict.ashx` (a JSON endpoint, `Predict.ashx?name=banowati larasati`):
+The 64-bit requirement of the old .NET Framework note does not apply here, the NuGet package
+carries the native library for each platform (win-x64, linux-x64, osx-arm64 and others). Only an
+x86 runtime would need a different setup.
 
-```csharp
-<%@ WebHandler Language="C#" Class="PredictHandler" %>
-using System.Web;
-using System.Web.Script.Serialization;
+### Tests
 
-public class PredictHandler : IHttpHandler
-{
-    public void ProcessRequest(HttpContext context)
-    {
-        string name = context.Request.QueryString["name"];
-        if (string.IsNullOrWhiteSpace(name) || name.Length > 200)
-        {
-            context.Response.StatusCode = 400;
-            return;
-        }
-        var result = Global.Classifier.Predict(name);
-        context.Response.ContentType = "application/json";
-        context.Response.Write(new JavaScriptSerializer().Serialize(result));
-    }
+`GenderClassifier` was run on .NET 9 with ONNX Runtime 1.x: all eight models, ten names each
+(80 predictions), and the largest difference from the PyTorch probability was 3e-07. The tokenizer
+and BLAKE2s were checked against the Python output (131 checks, all match, including words
+longer than one 64-byte block and non-ASCII text). The `Program.cs` snippet above is not part of
+that run.
 
-    public bool IsReusable { get { return true; } }
-}
-```
+To repeat the tokenizer check without ONNX Runtime, create a console project that includes
+`Blake2s.cs`, `NameTokenizer.cs` and `TokenizerCheck.cs`, then run it with the path to
+`onnx/models`. On .NET Framework, compile with
+`csc -r:System.Web.Extensions.dll Blake2s.cs NameTokenizer.cs TokenizerCheck.cs`.
 
-Tokenizer check, without ONNX Runtime:
+### .NET Framework 4.x (Web Forms)
 
-```bash
-csc -out:TokenizerCheck.exe -r:System.Web.Extensions.dll Blake2s.cs NameTokenizer.cs TokenizerCheck.cs
-TokenizerCheck.exe ..\models
-```
+The same files work. `NameTokenizer.cs` switches to `JavaScriptSerializer`, so add a reference to
+`System.Web.Extensions`. ONNX Runtime is native, so the application pool must be 64-bit
+(IIS, Enable 32-Bit Applications = False) and the project must not use "Prefer 32-bit". Create the
+`GenderClassifier` once in `Application_Start` and dispose it in `Application_End`.
+`GenderClassifier.cs` was not run on .NET Framework, only the tokenizer files were.
 
-`Blake2s.cs` and `NameTokenizer.cs` were checked this way against the Python output (131 checks,
-all match, including words longer than one 64-byte block and non-ASCII text).
-`GenderClassifier.cs` and the handler above have not been compiled against ONNX Runtime yet.
-
-Notes:
+### Notes
 
 - Characters outside the Basic Multilingual Plane (for example emoji) are two UTF-16 units in
   .NET and one code point in Python, so such input can tokenize differently. Names do not
   contain them in practice.
+- Names are personal data. Keep them out of logs and exception messages.
 - `Predict` is a per-name call. To score many names at once, build one `[n, max_len]` tensor and
   read `n` outputs.
 

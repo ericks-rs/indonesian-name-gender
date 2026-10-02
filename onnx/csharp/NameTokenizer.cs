@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+#if NET
+using System.Text.Json;
+#else
 using System.Web.Script.Serialization;
+#endif
 
 namespace IndoNameGender
 {
@@ -32,6 +36,20 @@ namespace IndoNameGender
         /// <param name="jsonPath">char_vocab.json or word_vocab.json</param>
         public static NameTokenizer Load(string jsonPath, bool isChar)
         {
+#if NET
+            using (var doc = JsonDocument.Parse(File.ReadAllText(jsonPath)))
+            {
+                var root = doc.RootElement;
+                var vocab = new Dictionary<string, int>();
+                foreach (var kv in root.GetProperty(isChar ? "char2idx" : "word2idx").EnumerateObject())
+                    vocab[kv.Name] = kv.Value.GetInt32();
+                int maxLen = root.GetProperty("max_len").GetInt32();
+                if (isChar) return new NameTokenizer(true, vocab, maxLen, 0, null, false);
+                return new NameTokenizer(false, vocab, maxLen, root.GetProperty("digest_size").GetInt32(),
+                                         root.GetProperty("salt").GetString(),
+                                         root.GetProperty("hashed").GetBoolean());
+            }
+#else
             var js = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
             var root = js.Deserialize<Dictionary<string, object>>(File.ReadAllText(jsonPath));
             var raw = (Dictionary<string, object>)root[isChar ? "char2idx" : "word2idx"];
@@ -41,6 +59,7 @@ namespace IndoNameGender
             if (isChar) return new NameTokenizer(true, vocab, maxLen, 0, null, false);
             return new NameTokenizer(false, vocab, maxLen, Convert.ToInt32(root["digest_size"]),
                                      (string)root["salt"], (bool)root["hashed"]);
+#endif
         }
 
         string Key(string word)
