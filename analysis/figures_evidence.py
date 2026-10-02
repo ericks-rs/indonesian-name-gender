@@ -292,8 +292,8 @@ def fig_errors():
     ax = axes[1]
     g = prof.set_index("group").loc[["always correct", "disputed", "always wrong"]]
     x = np.arange(3)
-    # Round 2: oranye dipakai khusus untuk word-level di figure lain, jadi kelompok
-    # memakai abu-abu terang, abu-abu sedang, dan merah tua untuk error.
+    # Orange is reserved for word-level models in the other figures, so the groups
+    # use light gray, medium gray, and dark red for errors.
     ax.bar(x, g.pct_female, 0.62, color=["#bdbdbd", "#8c8c8c", "#8b1a1a"],
            edgecolor="white", linewidth=0.5)
     ax.axhline(50, color="0.4", linestyle=":", linewidth=1.0)
@@ -332,8 +332,8 @@ def fig_errors():
 
 def fig_temporal():
     """Accuracy year by year, and what training only on older records costs."""
-    # rata-rata lima seed dari grid final (pipeline/per_year_f1_grid.py). File lama di
-    # 10_temporal_drift berasal dari checkpoint satu seed dengan Transformer mean pooling.
+    # mean of five seeds from the final grid (analysis/per_year_f1_grid.py). The older file in
+    # 10_temporal_drift came from a single-seed checkpoint with Transformer mean pooling.
     y = pd.read_csv(FINAL / "43_per_year_f1_grid" / "per_year_f1.csv")
     c = pd.read_csv(FINAL / "10_temporal_drift" / "tables" / "temporal" /
                     "cross_decade_results.csv")
@@ -363,8 +363,8 @@ def fig_temporal():
                plt.Line2D([], [], color=CWORD, label="word")]
     # The band between the character and word curves is the only empty part of
     # the panel once it is half a column wide. Lower left sat on a word curve.
-    # Dengan rata-rata grid final, garis char terbawah lewat di kiri tengah, jadi
-    # legend pindah ke kanan tengah, celah antara kelompok char dan word di 2025.
+    # With the final-grid means, the lowest char line passes through the middle left,
+    # so the legend moved to the middle right, in the gap between the char and word groups at 2025.
     ax.legend(handles=handles, frameon=False, ncol=1, loc="center right",
               fontsize=5.6, handlelength=1.2, labelspacing=0.25, borderaxespad=0.3)
     ax = axes[1]
@@ -376,7 +376,7 @@ def fig_temporal():
         ax.annotate(f"{v:.2f}", (v, i), xytext=(3.4, -1.8), textcoords="offset points",
                     fontsize=6)
     ax.set_yticks(np.arange(len(lab)))
-    # Round 2: rentang tahun pakai en dash seperti di prosa
+    # year ranges use an en dash, as in the text
     ax.set_yticklabels([l.replace("_full", ", full").replace("-", "\u2013") for l in lab], fontsize=6)
     ax.set_xlim(min(val) - 1.2, max(val) + 1.8)
     ax.set_xlabel("Test F1 (%)")
@@ -422,8 +422,8 @@ def fig_imbalance():
     ax.set_yticks(yy)
     ax.set_yticklabels(order, fontsize=6)
     ax.invert_yaxis()
-    # Label pendek. Versi panjang ("F1 change against class weighting ...") menempel
-    # di atas caption dan terbaca seperti judul gambar kedua (Ers, 2026-09-23).
+    # Short label. The long version ("F1 change against class weighting ...") sat
+    # right above the caption and read like a second figure title.
     ax.set_xlabel("ΔF1 (percentage points)")
     # Upper left, inside the axes. Every bar runs left from zero and only
     # WordTransformer reaches past one point, so the top left corner is the one

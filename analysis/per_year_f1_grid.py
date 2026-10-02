@@ -1,15 +1,16 @@
-"""F1 per tahun registrasi (2024 vs 2025) dari grid final, lima seed.
+"""F1 per registration year (2024 vs 2025) from the final grid, five seeds.
 
-Dipakai untuk Fig. 15(a). Prediksi dibaca dari
-`results/final/24_grid_attention_pooling/val_predictions.csv` (anonim, urut
-`row_id`). Tahun registrasi pertama tidak dirilis, jadi kolom `FIRST_YEAR` dibaca
-dari `data/splits/val_2024_2026.csv`, yang sama seperti script training tidak
-ikut di repository ini. Baris ke-i split itu adalah `row_id` i.
+Used for Fig. 15(a). Predictions are read from
+`results/final/24_grid_attention_pooling/val_predictions.csv` (anonymized,
+ordered by `row_id`). The first registration year is not released, so the
+`FIRST_YEAR` column is read from `data/splits/val_2024_2026.csv`, which, like
+the training scripts, is not included in this repository. Row i of that split
+is `row_id` i.
 
-Output di results/final/43_per_year_f1_grid/ (agregat, tanpa nama):
-- per_seed.csv                F1 per model, seed, tahun
-- per_year_f1.csv             rata-rata lima seed per model dan tahun
-- delta_2025_minus_2024.csv   selisih per model, rata-rata dan rentang antar seed
+Output in results/final/43_per_year_f1_grid/ (aggregates, no names):
+- per_seed.csv                F1 per model, seed, and year
+- per_year_f1.csv             mean over five seeds per model and year
+- delta_2025_minus_2024.csv   difference per model, mean and range across seeds
 """
 from __future__ import annotations
 

@@ -43,11 +43,9 @@ plt.rcParams.update({"font.size": 7, "axes.titlesize": 7.6, "axes.labelsize": 7,
 def holm(p):
     """Holm step-down, returned in the order the p-values came in.
 
-    This was missing. `build_table` ran a t-test per model and wrote the raw
-    p-value straight out, and the manuscript then printed that column under the
-    heading `Holm p`. Ers caught it on 15 August. The family is the eight
-    positional tests, so a model is judged against the whole grid rather than
-    against its own representation level.
+    The correction is applied to the whole family of eight positional tests, so
+    a model is judged against the whole grid rather than against its own
+    representation level. The `Holm p` column reports these adjusted values.
     """
     import numpy as _np
     p = _np.asarray(p, dtype=float)

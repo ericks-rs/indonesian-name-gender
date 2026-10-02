@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 ROOT = Path(__file__).parent.parent
 
-DATA = Path(r"D:/MyPaper/RisetNamaGender/data/splits")
+DATA = ROOT / "data" / "splits"
 OUT = ROOT / "results" / "final" / "14_selection_bias"
 
 SEEDS = [42, 7, 123, 2024, 777]

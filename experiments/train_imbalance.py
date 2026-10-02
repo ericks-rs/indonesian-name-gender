@@ -135,8 +135,8 @@ class TransformerClf(nn.Module):
                                            dropout=dropout, activation="gelu",
                                            batch_first=True, norm_first=True)
         self.encoder = nn.TransformerEncoder(layer, num_layers=layers)
-        # attention pooling, sama dengan model yang dilaporkan (grid final); urutan
-        # konstruksi layer dijaga supaya inisialisasi per seed identik
+        # attention pooling, same as the reported model (final grid); the layer
+        # construction order is kept so that initialization is identical per seed
         self.norm = nn.LayerNorm(d)
         self.attention = Attention(d)
         self.dropout = nn.Dropout(dropout); self.fc = nn.Linear(d, 1)

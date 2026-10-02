@@ -1,178 +1,178 @@
-row_id,suffix3,type,category,label,predicted,n_tokens,ending,ending_len,ending_n,ending_female_share,first_token,first_n,first_female_share,unseen_tokens,reason
-1,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,daffa,119,0.0504201680672268,1,ending is 97 percent male across 5931 training names
-2,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,ema,13,1.0,0,ending is 97 percent male across 5931 training names
-3,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,fafirru,0,,1,ending is 97 percent male across 5931 training names
-4,nto,false negative,misleading ending,1,0,2,anto,4,5931,0.0251222390827853,neo,0,,0,ending is 97 percent male across 5931 training names
-5,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,raynanda,1,0.0,0,ending is 97 percent male across 5931 training names
-6,wan,false negative,misleading ending,1,0,3,wan,3,4430,0.0492099322799097,eka,540,0.6907407407407408,0,ending is 95 percent male across 4430 training names
-7,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,adin,3,0.0,0,ending is 95 percent male across 4117 training names
-8,wan,false negative,misleading ending,1,0,2,awan,4,4117,0.0466358999271314,fhiky,0,,1,ending is 95 percent male across 4117 training names
-9,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,girdana,0,,2,ending is 95 percent male across 4117 training names
-10,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,nibras,1,1.0,1,ending is 95 percent male across 4117 training names
-11,wan,false negative,misleading ending,1,0,2,awan,4,4117,0.0466358999271314,riandi,8,0.0,0,ending is 95 percent male across 4117 training names
-12,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,zannuba,0,,2,ending is 95 percent male across 4117 training names
-13,wan,false negative,misleading ending,1,0,2,awan,4,4117,0.0466358999271314,zerin,0,,1,ending is 95 percent male across 4117 training names
-14,gia,false negative,ending not a marker against the label,1,0,3,ia,2,3883,0.7841874839041978,yahya,21,0.0,0,"ending is 78 percent female across 3883 training names, which agrees with the recorded label, so the error comes from elsewhere"
-15,tra,false negative,misleading ending,1,0,3,utra,4,3731,0.0026802465826856,yusha,0,,0,ending is 100 percent male across 3731 training names
-16,yah,false negative,misleading ending,1,0,3,syah,4,2759,0.0536426241391808,alvito,4,0.0,0,ending is 95 percent male across 2759 training names
-17,yah,false negative,misleading ending,1,0,2,syah,4,2759,0.0536426241391808,andi,480,0.1458333333333333,0,ending is 95 percent male across 2759 training names
-18,yah,false negative,misleading ending,1,0,2,syah,4,2759,0.0536426241391808,deni,163,0.0490797546012269,0,ending is 95 percent male across 2759 training names
-19,yah,false negative,misleading ending,1,0,3,syah,4,2759,0.0536426241391808,dzaki,14,0.0,0,ending is 95 percent male across 2759 training names
-20,yah,false negative,misleading ending,1,0,3,syah,4,2759,0.0536426241391808,eka,540,0.6907407407407408,0,ending is 95 percent male across 2759 training names
-21,yah,false negative,misleading ending,1,0,1,syah,4,2759,0.0536426241391808,iyansyah,0,,1,ending is 95 percent male across 2759 training names
-22,yah,false negative,misleading ending,1,0,2,syah,4,2759,0.0536426241391808,reisya,3,0.6666666666666666,0,ending is 95 percent male across 2759 training names
-23,ama,false negative,misleading ending,1,0,2,ama,3,2234,0.0613249776186213,firli,15,0.4666666666666667,1,ending is 94 percent male across 2234 training names
-24,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,agil,33,0.0,0,ending is 97 percent male across 1915 training names
-25,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,amar,12,0.0,0,ending is 97 percent male across 1915 training names
-26,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,arsa,0,,0,ending is 97 percent male across 1915 training names
-27,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,davano,0,,2,ending is 97 percent male across 1915 training names
-28,ama,false negative,misleading ending,1,0,1,tama,4,1915,0.0349869451697127,rakaputrapratama,0,,1,ending is 97 percent male across 1915 training names
-29,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,reydifta,0,,1,ending is 97 percent male across 1915 training names
-30,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,rian,183,0.0710382513661202,0,ending is 97 percent male across 1915 training names
-31,lah,false negative,misleading ending,1,0,4,llah,4,1237,0.1511721907841552,adji,33,0.0,0,ending is 85 percent male across 1237 training names
-32,lah,false negative,misleading ending,1,0,1,llah,4,1237,0.1511721907841552,fardillah,1,0.0,0,ending is 85 percent male across 1237 training names
-33,aya,false negative,misleading ending,1,0,3,jaya,4,1008,0.1240079365079365,hazel,1,0.0,0,ending is 88 percent male across 1008 training names
-34,nda,false negative,ending not a marker against the label,1,0,3,anda,4,995,0.392964824120603,revalentza,0,,1,"ending is 61 percent male across 995 training names, which points away from the recorded label without reaching the 75 percent threshold"
-35,dus,false negative,misleading ending,1,0,3,us,2,988,0.1295546558704453,dave,9,0.0,0,ending is 87 percent male across 988 training names
-36,oho,false negative,misleading ending,1,0,3,roho,4,893,0.0123180291153415,arfan,21,0.0,0,ending is 99 percent male across 893 training names
-37,ani,false negative,ending balanced,1,0,2,dani,4,706,0.5325779036827195,gufron,1,0.0,0,ending is balanced at 53 percent female across 706 training names
-38,ani,false negative,ending balanced,1,0,3,dani,4,706,0.5325779036827195,sahrul,17,0.0,0,ending is balanced at 53 percent female across 706 training names
-39,ana,false negative,misleading ending,1,0,2,dana,4,690,0.0405797101449275,humairoo,0,,2,ending is 96 percent male across 690 training names
-40,ang,false negative,ending not a marker against the label,1,0,3,ang,3,639,0.2566510172143975,jery,6,0.0,1,"ending is 74 percent male across 639 training names, which points away from the recorded label without reaching the 75 percent threshold"
-41,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,abigail,5,0.8,1,ending is 82 percent male across 634 training names
-42,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,fanes,0,,1,ending is 82 percent male across 634 training names
-43,dra,false negative,misleading ending,1,0,2,ndra,4,634,0.1813880126182965,mychiko,0,,1,ending is 82 percent male across 634 training names
-44,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,rake,1,0.0,0,ending is 82 percent male across 634 training names
-45,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,resky,9,0.1111111111111111,0,ending is 82 percent male across 634 training names
-46,dra,false negative,misleading ending,1,0,2,ndra,4,634,0.1813880126182965,rizqi,93,0.3010752688172043,0,ending is 82 percent male across 634 training names
-47,tyo,false negative,misleading ending,1,0,3,etyo,4,625,0.0208,rizyal,0,,1,ending is 98 percent male across 625 training names
-48,tyo,false negative,misleading ending,1,0,3,etyo,4,625,0.0208,shalu,0,,1,ending is 98 percent male across 625 training names
-49,yat,false negative,misleading ending,1,0,2,ayat,4,615,0.0878048780487804,tofiq,0,,1,ending is 91 percent male across 615 training names
-50,oro,false negative,misleading ending,1,0,3,toro,4,560,0.0142857142857142,nawal,1,1.0,0,ending is 99 percent male across 560 training names
-51,jki,false negative,misleading ending,1,0,2,ki,2,559,0.2271914132379248,ghifran,0,,2,ending is 77 percent male across 559 training names
-52,fki,false negative,misleading ending,1,0,3,ki,2,559,0.2271914132379248,raifan,0,,2,ending is 77 percent male across 559 training names
-53,adi,false negative,misleading ending,1,0,2,iadi,4,515,0.0310679611650485,ahmat,8,0.0,0,ending is 97 percent male across 515 training names
-54,rto,false negative,misleading ending,1,0,2,arto,4,451,0.0643015521064301,ioannis,0,,2,ending is 94 percent male across 451 training names
-55,pen,false negative,first token conflicts with the label,1,0,3,en,2,431,0.2900232018561485,gabriel,33,0.1212121212121212,0,"first token gabriel is 88 percent male across 33 training names, against the recorded label"
-56,uma,false negative,misleading ending,1,0,3,suma,4,403,0.173697270471464,andri,276,0.0289855072463768,0,ending is 83 percent male across 403 training names
-57,ian,false negative,misleading ending,1,0,3,tian,4,385,0.0649350649350649,jorel,0,,1,ending is 94 percent male across 385 training names
-58,ian,false negative,misleading ending,1,0,2,tian,4,385,0.0649350649350649,naoval,0,,1,ending is 94 percent male across 385 training names
-59,ian,false negative,misleading ending,1,0,3,rian,4,382,0.1047120418848167,daffa,119,0.0504201680672268,0,ending is 90 percent male across 382 training names
-60,ung,false negative,no token seen,1,0,3,ung,3,376,0.3031914893617021,fredinan,0,,3,no token appears in training
-61,san,false negative,misleading ending,1,0,3,san,3,372,0.1048387096774193,kefas,0,,2,ending is 90 percent male across 372 training names
-62,ldi,false negative,misleading ending,1,0,3,aldi,4,365,0.0410958904109589,nouval,5,0.2,1,ending is 96 percent male across 365 training names
-63,ata,false negative,misleading ending,1,0,3,nata,4,360,0.1166666666666666,ananda,168,0.4702380952380952,1,ending is 88 percent male across 360 training names
-64,rah,false negative,ending balanced,1,0,4,rah,3,336,0.5952380952380952,rafiud,0,,0,ending is balanced at 60 percent female across 336 training names
-65,aus,false negative,misleading ending,1,0,3,daus,4,323,0.0990712074303405,carleneio,0,,2,ending is 90 percent male across 323 training names
-66,aus,false negative,misleading ending,1,0,3,daus,4,323,0.0990712074303405,shandy,26,0.1923076923076923,1,ending is 90 percent male across 323 training names
-67,adi,false negative,misleading ending,1,0,2,hadi,4,319,0.0971786833855799,aman,2,0.0,0,ending is 90 percent male across 319 training names
-68,zal,false negative,misleading ending,1,0,3,izal,4,306,0.0490196078431372,syed,2,0.0,0,ending is 95 percent male across 306 training names
-69,ian,false negative,misleading ending,1,0,2,dian,4,304,0.1052631578947368,ainal,2,0.0,0,ending is 89 percent male across 304 training names
-70,ria,false negative,first token conflicts with the label,1,0,3,tria,4,292,0.4041095890410959,jerry,35,0.0,0,"first token jerry is 100 percent male across 35 training names, against the recorded label"
-71,ono,false negative,misleading ending,1,0,3,tono,4,291,0.0618556701030927,haqi,1,0.0,0,ending is 94 percent male across 291 training names
-72,qqi,false negative,misleading ending,1,0,3,qi,2,280,0.0714285714285714,labib,8,0.0,0,ending is 93 percent male across 280 training names
-73,ily,false negative,first token conflicts with the label,1,0,2,ly,2,248,0.375,azhar,41,0.024390243902439,1,"first token azhar is 98 percent male across 41 training names, against the recorded label"
-74,ruf,false negative,misleading ending,1,0,3,uf,2,237,0.1181434599156118,fikri,162,0.037037037037037,0,ending is 88 percent male across 237 training names
-75,stu,false negative,misleading ending,1,0,3,estu,4,231,0.0995670995670995,happy,16,0.6875,0,ending is 90 percent male across 231 training names
-76,stu,false negative,misleading ending,1,0,3,estu,4,231,0.0995670995670995,tri,609,0.4597701149425287,0,ending is 90 percent male across 231 training names
-77,liq,false negative,misleading ending,1,0,3,iq,2,227,0.0176211453744493,sandy,99,0.0505050505050505,1,ending is 98 percent male across 227 training names
-78,udi,false negative,misleading ending,1,0,3,budi,4,226,0.0575221238938053,bintang,105,0.0952380952380952,0,ending is 94 percent male across 226 training names
-79,mad,false negative,misleading ending,1,0,3,hmad,4,214,0.0981308411214953,zarrish,0,,1,ending is 90 percent male across 214 training names
-80,ita,false negative,ending not a marker against the label,1,0,3,dita,4,206,0.6796116504854369,indrasta,0,,1,"ending is 68 percent female across 206 training names, which agrees with the recorded label, so the error comes from elsewhere"
-81,ndi,false negative,misleading ending,1,0,1,endi,4,206,0.1844660194174757,pendi,2,0.0,0,ending is 82 percent male across 206 training names
-82,tio,false negative,misleading ending,1,0,3,tio,3,195,0.0769230769230769,dewa,34,0.1176470588235294,1,ending is 92 percent male across 195 training names
-83,oyo,false negative,misleading ending,1,0,3,oyo,3,180,0.0333333333333333,reno,53,0.0,0,ending is 97 percent male across 180 training names
-84,zki,false negative,ending not a marker against the label,1,0,2,izki,4,178,0.2528089887640449,mulya,16,0.0625,0,"ending is 75 percent male across 178 training names, which points away from the recorded label without reaching the 75 percent threshold"
-85,ran,false negative,misleading ending,1,0,2,ran,3,174,0.1551724137931034,mohd,6,0.0,0,ending is 84 percent male across 174 training names
-86,oga,false negative,misleading ending,1,0,3,yoga,4,168,0.0238095238095238,dias,27,0.1851851851851851,0,ending is 98 percent male across 168 training names
-87,hya,false negative,ending not a marker against the label,1,0,2,hya,3,167,0.2634730538922156,raya,3,0.0,1,"ending is 74 percent male across 167 training names, which points away from the recorded label without reaching the 75 percent threshold"
-88,zky,false negative,misleading ending,1,0,3,izky,4,166,0.2108433734939759,rezha,13,0.2307692307692307,1,ending is 79 percent male across 166 training names
-89,rba,false negative,ending not a marker against the label,1,0,3,urba,4,164,0.3353658536585366,yudhya,1,0.0,0,"ending is 66 percent male across 164 training names, which points away from the recorded label without reaching the 75 percent threshold"
-90,ima,false negative,ending balanced,1,0,3,ima,3,161,0.4472049689440994,dzaky,11,0.0,0,ending is balanced at 45 percent female across 161 training names
-91,lim,false negative,misleading ending,1,0,2,alim,4,151,0.0993377483443708,jenifer,2,1.0,0,ending is 90 percent male across 151 training names
-92,rta,false negative,misleading ending,1,0,3,rta,3,142,0.2323943661971831,bintang,105,0.0952380952380952,0,ending is 77 percent male across 142 training names
-93,hya,false negative,misleading ending,1,0,1,ahya,4,138,0.2246376811594203,zakariayahya,0,,1,ending is 78 percent male across 138 training names
-94,dri,false negative,misleading ending,1,0,3,ndri,4,135,0.2074074074074074,daffa,119,0.0504201680672268,0,ending is 79 percent male across 135 training names
-95,ari,false negative,misleading ending,1,0,2,fari,4,134,0.0298507462686567,rakha,26,0.0384615384615384,0,ending is 97 percent male across 134 training names
-96,jar,false negative,misleading ending,1,0,2,ajar,4,111,0.045045045045045,farly,1,0.0,1,ending is 95 percent male across 111 training names
-97,lib,false negative,misleading ending,1,0,3,ib,2,103,0.0970873786407767,shausan,1,1.0,0,ending is 90 percent male across 103 training names
-98,ong,false negative,misleading ending,1,0,3,ong,3,101,0.2277227722772277,miltion,0,,2,ending is 77 percent male across 101 training names
-99,lon,false negative,ending not a marker against the label,1,0,2,olon,4,100,0.3,gideon,11,0.0,0,"ending is 70 percent male across 100 training names, which points away from the recorded label without reaching the 75 percent threshold"
-100,ldo,false negative,misleading ending,1,0,2,aldo,4,97,0.0103092783505154,edo,40,0.0,1,ending is 99 percent male across 97 training names
-101,rus,false negative,ending not a marker against the label,1,0,3,orus,4,92,0.3260869565217391,ryo,10,0.0,1,"ending is 67 percent male across 92 training names, which points away from the recorded label without reaching the 75 percent threshold"
-102,rus,false negative,first token conflicts with the label,1,0,3,orus,4,92,0.3260869565217391,sandy,99,0.0505050505050505,0,"first token sandy is 95 percent male across 99 training names, against the recorded label"
-103,nur,false negative,first token conflicts with the label,1,0,2, nur,4,84,0.2976190476190476,febrian,59,0.0338983050847457,0,"first token febrian is 97 percent male across 59 training names, against the recorded label"
-104,zis,false negative,misleading ending,1,0,3,azis,4,82,0.0853658536585365,jundi,1,0.0,0,ending is 91 percent male across 82 training names
-105,asa,false negative,misleading ending,1,0,4,kasa,4,81,0.037037037037037,raja,42,0.0714285714285714,0,ending is 96 percent male across 81 training names
-106,ura,false negative,first token conflicts with the label,1,0,2,ura,3,78,0.6153846153846154,bintang,105,0.0952380952380952,0,"first token bintang is 90 percent male across 105 training names, against the recorded label"
-107,hia,false negative,first token conflicts with the label,1,0,2,hia,3,78,0.7564102564102564,faiz,68,0.0441176470588235,0,"first token faiz is 96 percent male across 68 training names, against the recorded label"
-108,ron,false negative,misleading ending,1,0,1,ron,3,75,0.12,sharon,2,0.5,0,ending is 88 percent male across 75 training names
-109,far,false negative,misleading ending,1,0,3,far,3,73,0.136986301369863,azhar,41,0.024390243902439,0,ending is 86 percent male across 73 training names
-110,kal,false negative,misleading ending,1,0,1,kal,3,70,0.0714285714285714,adityawakal,0,,1,ending is 93 percent male across 70 training names
-111,der,false negative,misleading ending,1,0,2,nder,4,65,0.0769230769230769,destanto,0,,0,ending is 92 percent male across 65 training names
-112,dji,false negative,misleading ending,1,0,4,adji,4,64,0.078125,reza,509,0.0471512770137524,0,ending is 92 percent male across 64 training names
-113,rip,false negative,misleading ending,1,0,1,ip,2,56,0.1071428571428571,asrip,0,,1,ending is 89 percent male across 56 training names
-114,zqi,false negative,misleading ending,1,0,3,izqi,4,53,0.2075471698113207,kelvin,20,0.0,0,ending is 79 percent male across 53 training names
-115,afi,false negative,misleading ending,1,0,3,nafi,4,52,0.1538461538461538,rizky,707,0.1669024045261669,0,ending is 85 percent male across 52 training names
-116,ola,false negative,first token conflicts with the label,1,0,4,ola,3,51,0.6470588235294118,rony,34,0.0,1,"first token rony is 100 percent male across 34 training names, against the recorded label"
-117,ole,false negative,no token seen,1,0,2,le,2,49,0.3673469387755102,riyos,0,,2,no token appears in training
-118,uhu,false negative,ending not a marker against the label,1,0,3,hu,2,48,0.375,hafidlo,0,,2,"ending is 62 percent male across 48 training names, which points away from the recorded label without reaching the 75 percent threshold"
-119,iha,false negative,ending not a marker against the label,1,0,4,iha,3,43,0.9069767441860463,barbie,0,,2,"ending is 91 percent female across 43 training names, which agrees with the recorded label, so the error comes from elsewhere"
-120,sar,false negative,misleading ending,1,0,4,tsar,4,42,0.1904761904761904,nurul,412,0.8980582524271845,0,ending is 81 percent male across 42 training names
-121,ezi,false negative,misleading ending,1,0,3,rezi,4,38,0.0,dhika,42,0.0714285714285714,0,ending is 100 percent male across 38 training names
-122,her,false negative,misleading ending,1,0,2,her,3,38,0.131578947368421,jehezkiel,1,0.0,0,ending is 87 percent male across 38 training names
-123,hin,false negative,misleading ending,1,0,3,ihin,4,37,0.1351351351351351,andi,480,0.1458333333333333,0,ending is 86 percent male across 37 training names
-124,eny,false negative,first token conflicts with the label,1,0,4,eny,3,35,0.8857142857142857,johanes,43,0.0,0,"first token johanes is 100 percent male across 43 training names, against the recorded label"
-125,smi,false negative,ending not a marker against the label,1,0,3,smi,3,34,0.8235294117647058,jauzi,0,,2,"ending is 82 percent female across 34 training names, which agrees with the recorded label, so the error comes from elsewhere"
-126,ony,false negative,misleading ending,1,0,3,hony,4,33,0.0606060606060606,derryl,0,,1,ending is 94 percent male across 33 training names
-127,hil,false negative,misleading ending,1,0,2,dhil,4,31,0.0,luthfi,122,0.0655737704918032,0,ending is 100 percent male across 31 training names
-128,jib,false negative,misleading ending,1,0,1,jib,3,31,0.032258064516129,rajib,1,0.0,0,ending is 97 percent male across 31 training names
-129,kur,false negative,misleading ending,1,0,3,kur,3,30,0.0333333333333333,abert,0,,1,ending is 97 percent male across 30 training names
-130,ohm,false negative,ending rare,1,0,4,rohm,4,2,0.0,dandi,21,0.0,2,ending seen only 2 times in training
-131,soe,false negative,ending never seen,1,0,5, soe,4,0,,arnoldus,6,0.0,1,ending never seen in training
-132,vic,false negative,ending never seen,1,0,2,ovic,4,0,,ivanaly,0,,2,ending never seen in training
-133,liu,false negative,ending never seen,1,0,2,iliu,4,0,,sayokhi,0,,2,ending never seen in training
-134,aah,false positive,ending balanced,0,1,3,ah,2,9514,0.5055707378599958,ananda,168,0.4702380952380952,1,ending is balanced at 51 percent female across 9514 training names
-135,ama,false positive,ending not a marker against the label,0,1,3,tama,4,1915,0.0349869451697127,marevi,0,,1,"ending is 97 percent male across 1915 training names, which agrees with the recorded label, so the error comes from elsewhere"
-136,kla,false positive,no token seen,0,1,3,la,2,1629,0.7360343769183548,dzukaifia,0,,3,no token appears in training
-137,ika,false positive,ending balanced,0,1,3,ika,3,1139,0.5750658472344161,felda,2,0.0,1,ending is balanced at 58 percent female across 1139 training names
-138,ami,false positive,misleading ending,0,1,2,ami,3,737,0.7869742198100407,feysa,0,,1,ending is 79 percent female across 737 training names
-139,had,false positive,ending not a marker against the label,0,1,3,ad,2,710,0.080281690140845,fahra,3,1.0,1,"ending is 92 percent male across 710 training names, which agrees with the recorded label, so the error comes from elsewhere"
-140,ana,false positive,ending not a marker against the label,0,1,3,dana,4,690,0.0405797101449275,alifa,19,1.0,1,"ending is 96 percent male across 690 training names, which agrees with the recorded label, so the error comes from elsewhere"
-141,ani,false positive,ending not a marker against the label,0,1,3,hani,4,630,0.6095238095238096,lintang,46,0.6956521739130435,0,"ending is 61 percent female across 630 training names, which points away from the recorded label without reaching the 75 percent threshold"
-142,ana,false positive,ending balanced,0,1,3,yana,4,601,0.4908485856905158,zalva,1,1.0,0,ending is balanced at 49 percent female across 601 training names
-143,lah,false positive,ending balanced,0,1,3,ilah,4,511,0.5733855185909981,armanda,2,0.0,0,ending is balanced at 57 percent female across 511 training names
-144,ing,false positive,ending balanced,0,1,3,ing,3,419,0.441527446300716,sunrise,0,,2,ending is balanced at 44 percent female across 419 training names
-145,fah,false positive,misleading ending,0,1,3,ifah,4,329,0.9544072948328268,fani,50,0.78,0,ending is 95 percent female across 329 training names
-146,gky,false positive,ending not a marker against the label,0,1,3,ky,2,314,0.1719745222929936,heugenee,0,,2,"ending is 83 percent male across 314 training names, which agrees with the recorded label, so the error comes from elsewhere"
-147,ian,false positive,ending not a marker against the label,0,1,3,dian,4,304,0.1052631578947368,azrinna,0,,1,"ending is 89 percent male across 304 training names, which agrees with the recorded label, so the error comes from elsewhere"
-148,oni,false positive,ending not a marker against the label,0,1,4,oni,3,281,0.1245551601423487,elizabeth,17,1.0,0,"ending is 88 percent male across 281 training names, which agrees with the recorded label, so the error comes from elsewhere"
-149,uzi,false positive,ending not a marker against the label,0,1,3,auzi,4,279,0.039426523297491,gaitza,0,,1,"ending is 96 percent male across 279 training names, which agrees with the recorded label, so the error comes from elsewhere"
-150,yas,false positive,misleading ending,0,1,3,tyas,4,262,0.950381679389313,arifa,5,1.0,0,ending is 95 percent female across 262 training names
-151,sih,false positive,misleading ending,0,1,3,asih,4,247,0.7975708502024291,tri,609,0.4597701149425287,0,ending is 80 percent female across 247 training names
-152,lla,false positive,misleading ending,0,1,3,illa,4,240,0.7625,keira,0,,3,ending is 76 percent female across 240 training names
-153,asa,false positive,ending not a marker against the label,0,1,3,asa,3,213,0.1408450704225352,syakirana,0,,2,"ending is 86 percent male across 213 training names, which agrees with the recorded label, so the error comes from elsewhere"
-154,man,false positive,ending not a marker against the label,0,1,3,sman,4,180,0.1944444444444444,ghaitsa,5,1.0,0,"ending is 81 percent male across 180 training names, which agrees with the recorded label, so the error comes from elsewhere"
-155,zki,false positive,ending not a marker against the label,0,1,3,izki,4,178,0.2528089887640449,prima,70,0.3285714285714285,1,"ending is 75 percent male across 178 training names, which agrees with the recorded label, so the error comes from elsewhere"
-156,ena,false positive,ending not a marker against the label,0,1,2,ena,3,167,0.6287425149700598,jehan,10,0.8,1,"ending is 63 percent female across 167 training names, which points away from the recorded label without reaching the 75 percent threshold"
-157,lim,false positive,ending not a marker against the label,0,1,3,alim,4,151,0.0993377483443708,wisely,0,,1,"ending is 90 percent male across 151 training names, which agrees with the recorded label, so the error comes from elsewhere"
-158,sha,false positive,ending balanced,0,1,3,sha,3,140,0.5714285714285714,ghiffa,0,,1,ending is balanced at 57 percent female across 140 training names
-159,ias,false positive,ending not a marker against the label,0,1,4,ias,3,125,0.632,fairuz,29,0.6206896551724138,2,"ending is 63 percent female across 125 training names, which points away from the recorded label without reaching the 75 percent threshold"
-160,sti,false positive,misleading ending,0,1,3,esti,4,124,0.9596774193548387,maulidya,11,1.0,0,ending is 96 percent female across 124 training names
-161,ian,false positive,ending not a marker against the label,0,1,3,fian,4,104,0.0384615384615384,messi,0,,1,"ending is 96 percent male across 104 training names, which agrees with the recorded label, so the error comes from elsewhere"
-162,rah,false positive,misleading ending,0,1,3,irah,4,93,0.967741935483871,evanie,1,1.0,0,ending is 97 percent female across 93 training names
-163,rah,false positive,misleading ending,0,1,2,irah,4,93,0.967741935483871,fadiyah,3,1.0,1,ending is 97 percent female across 93 training names
-164,ani,false positive,ending not a marker against the label,0,1,2,mani,4,83,0.6144578313253012,aszka,0,,1,"ending is 61 percent female across 83 training names, which points away from the recorded label without reaching the 75 percent threshold"
-165,aqi,false positive,ending not a marker against the label,0,1,3,haqi,4,68,0.0,azura,5,1.0,0,"ending is 100 percent male across 68 training names, which agrees with the recorded label, so the error comes from elsewhere"
-166,ila,false positive,misleading ending,0,1,3,mila,4,67,0.9552238805970148,yumna,2,0.5,0,ending is 96 percent female across 67 training names
-167,ing,false positive,ending not a marker against the label,0,1,3,ring,4,58,0.3275862068965517,kharisma,28,0.5357142857142857,1,"ending is 67 percent male across 58 training names, which agrees with the recorded label, so the error comes from elsewhere"
-168,hir,false positive,ending not a marker against the label,0,1,3,hir,3,52,0.0576923076923076,rasya,4,0.5,0,"ending is 94 percent male across 52 training names, which agrees with the recorded label, so the error comes from elsewhere"
-169,i h,false positive,ends in an initial,0,1,4,i h,3,49,0.5306122448979592,ainur,3,0.3333333333333333,0,"name ends in a single-letter initial, so the final characters carry no suffix"
-170,isi,false positive,ending not a marker against the label,0,1,3,isi,3,49,0.0612244897959183,elbanna,0,,2,"ending is 94 percent male across 49 training names, which agrees with the recorded label, so the error comes from elsewhere"
-171,sia,false positive,misleading ending,0,1,1,esia,4,47,0.8936170212765957,eklesia,0,,0,ending is 89 percent female across 47 training names
-172,sia,false positive,misleading ending,0,1,2,esia,4,47,0.8936170212765957,nelsa,0,,1,ending is 89 percent female across 47 training names
-173,zia,false positive,misleading ending,0,1,3,zia,3,44,0.9545454545454546,sheryl,3,1.0,0,ending is 95 percent female across 44 training names
-174,sti,false positive,ending balanced,0,1,4,usti,4,36,0.4722222222222222,adzra,7,0.8571428571428571,1,ending is balanced at 47 percent female across 36 training names
-175,las,false positive,ending not a marker against the label,0,1,3,las,3,36,0.0833333333333333,valentine,3,1.0,1,"ending is 92 percent male across 36 training names, which agrees with the recorded label, so the error comes from elsewhere"
-176,gke,false positive,ending rare,0,1,2,ngke,4,3,0.3333333333333333,gustiara,1,1.0,1,ending seen only 3 times in training
-177,ash,false positive,ending rare,0,1,2,yash,4,1,0.0,izzatul,1,1.0,0,ending seen only 1 times in training
+row_id,suffix3,type,category,label,predicted,n_tokens,ending,ending_len,ending_n,ending_female_share,first_n,first_female_share,unseen_tokens,reason
+1,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,119,0.0504201680672268,1,ending is 97 percent male across 5931 training names
+2,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,13,1.0,0,ending is 97 percent male across 5931 training names
+3,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,0,,1,ending is 97 percent male across 5931 training names
+4,nto,false negative,misleading ending,1,0,2,anto,4,5931,0.0251222390827853,0,,0,ending is 97 percent male across 5931 training names
+5,nto,false negative,misleading ending,1,0,3,anto,4,5931,0.0251222390827853,1,0.0,0,ending is 97 percent male across 5931 training names
+6,wan,false negative,misleading ending,1,0,3,wan,3,4430,0.0492099322799097,540,0.6907407407407408,0,ending is 95 percent male across 4430 training names
+7,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,3,0.0,0,ending is 95 percent male across 4117 training names
+8,wan,false negative,misleading ending,1,0,2,awan,4,4117,0.0466358999271314,0,,1,ending is 95 percent male across 4117 training names
+9,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,0,,2,ending is 95 percent male across 4117 training names
+10,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,1,1.0,1,ending is 95 percent male across 4117 training names
+11,wan,false negative,misleading ending,1,0,2,awan,4,4117,0.0466358999271314,8,0.0,0,ending is 95 percent male across 4117 training names
+12,wan,false negative,misleading ending,1,0,3,awan,4,4117,0.0466358999271314,0,,2,ending is 95 percent male across 4117 training names
+13,wan,false negative,misleading ending,1,0,2,awan,4,4117,0.0466358999271314,0,,1,ending is 95 percent male across 4117 training names
+14,gia,false negative,ending not a marker against the label,1,0,3,ia,2,3883,0.7841874839041978,21,0.0,0,"ending is 78 percent female across 3883 training names, which agrees with the recorded label, so the error comes from elsewhere"
+15,tra,false negative,misleading ending,1,0,3,utra,4,3731,0.0026802465826856,0,,0,ending is 100 percent male across 3731 training names
+16,yah,false negative,misleading ending,1,0,3,syah,4,2759,0.0536426241391808,4,0.0,0,ending is 95 percent male across 2759 training names
+17,yah,false negative,misleading ending,1,0,2,syah,4,2759,0.0536426241391808,480,0.1458333333333333,0,ending is 95 percent male across 2759 training names
+18,yah,false negative,misleading ending,1,0,2,syah,4,2759,0.0536426241391808,163,0.0490797546012269,0,ending is 95 percent male across 2759 training names
+19,yah,false negative,misleading ending,1,0,3,syah,4,2759,0.0536426241391808,14,0.0,0,ending is 95 percent male across 2759 training names
+20,yah,false negative,misleading ending,1,0,3,syah,4,2759,0.0536426241391808,540,0.6907407407407408,0,ending is 95 percent male across 2759 training names
+21,yah,false negative,misleading ending,1,0,1,syah,4,2759,0.0536426241391808,0,,1,ending is 95 percent male across 2759 training names
+22,yah,false negative,misleading ending,1,0,2,syah,4,2759,0.0536426241391808,3,0.6666666666666666,0,ending is 95 percent male across 2759 training names
+23,ama,false negative,misleading ending,1,0,2,ama,3,2234,0.0613249776186213,15,0.4666666666666667,1,ending is 94 percent male across 2234 training names
+24,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,33,0.0,0,ending is 97 percent male across 1915 training names
+25,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,12,0.0,0,ending is 97 percent male across 1915 training names
+26,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,0,,0,ending is 97 percent male across 1915 training names
+27,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,0,,2,ending is 97 percent male across 1915 training names
+28,ama,false negative,misleading ending,1,0,1,tama,4,1915,0.0349869451697127,0,,1,ending is 97 percent male across 1915 training names
+29,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,0,,1,ending is 97 percent male across 1915 training names
+30,ama,false negative,misleading ending,1,0,3,tama,4,1915,0.0349869451697127,183,0.0710382513661202,0,ending is 97 percent male across 1915 training names
+31,lah,false negative,misleading ending,1,0,4,llah,4,1237,0.1511721907841552,33,0.0,0,ending is 85 percent male across 1237 training names
+32,lah,false negative,misleading ending,1,0,1,llah,4,1237,0.1511721907841552,1,0.0,0,ending is 85 percent male across 1237 training names
+33,aya,false negative,misleading ending,1,0,3,jaya,4,1008,0.1240079365079365,1,0.0,0,ending is 88 percent male across 1008 training names
+34,nda,false negative,ending not a marker against the label,1,0,3,anda,4,995,0.392964824120603,0,,1,"ending is 61 percent male across 995 training names, which points away from the recorded label without reaching the 75 percent threshold"
+35,dus,false negative,misleading ending,1,0,3,us,2,988,0.1295546558704453,9,0.0,0,ending is 87 percent male across 988 training names
+36,oho,false negative,misleading ending,1,0,3,roho,4,893,0.0123180291153415,21,0.0,0,ending is 99 percent male across 893 training names
+37,ani,false negative,ending balanced,1,0,2,dani,4,706,0.5325779036827195,1,0.0,0,ending is balanced at 53 percent female across 706 training names
+38,ani,false negative,ending balanced,1,0,3,dani,4,706,0.5325779036827195,17,0.0,0,ending is balanced at 53 percent female across 706 training names
+39,ana,false negative,misleading ending,1,0,2,dana,4,690,0.0405797101449275,0,,2,ending is 96 percent male across 690 training names
+40,ang,false negative,ending not a marker against the label,1,0,3,ang,3,639,0.2566510172143975,6,0.0,1,"ending is 74 percent male across 639 training names, which points away from the recorded label without reaching the 75 percent threshold"
+41,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,5,0.8,1,ending is 82 percent male across 634 training names
+42,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,0,,1,ending is 82 percent male across 634 training names
+43,dra,false negative,misleading ending,1,0,2,ndra,4,634,0.1813880126182965,0,,1,ending is 82 percent male across 634 training names
+44,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,1,0.0,0,ending is 82 percent male across 634 training names
+45,dra,false negative,misleading ending,1,0,3,ndra,4,634,0.1813880126182965,9,0.1111111111111111,0,ending is 82 percent male across 634 training names
+46,dra,false negative,misleading ending,1,0,2,ndra,4,634,0.1813880126182965,93,0.3010752688172043,0,ending is 82 percent male across 634 training names
+47,tyo,false negative,misleading ending,1,0,3,etyo,4,625,0.0208,0,,1,ending is 98 percent male across 625 training names
+48,tyo,false negative,misleading ending,1,0,3,etyo,4,625,0.0208,0,,1,ending is 98 percent male across 625 training names
+49,yat,false negative,misleading ending,1,0,2,ayat,4,615,0.0878048780487804,0,,1,ending is 91 percent male across 615 training names
+50,oro,false negative,misleading ending,1,0,3,toro,4,560,0.0142857142857142,1,1.0,0,ending is 99 percent male across 560 training names
+51,jki,false negative,misleading ending,1,0,2,ki,2,559,0.2271914132379248,0,,2,ending is 77 percent male across 559 training names
+52,fki,false negative,misleading ending,1,0,3,ki,2,559,0.2271914132379248,0,,2,ending is 77 percent male across 559 training names
+53,adi,false negative,misleading ending,1,0,2,iadi,4,515,0.0310679611650485,8,0.0,0,ending is 97 percent male across 515 training names
+54,rto,false negative,misleading ending,1,0,2,arto,4,451,0.0643015521064301,0,,2,ending is 94 percent male across 451 training names
+55,pen,false negative,first token conflicts with the label,1,0,3,en,2,431,0.2900232018561485,33,0.1212121212121212,0,"first token is 88 percent male across 33 training names, against the recorded label"
+56,uma,false negative,misleading ending,1,0,3,suma,4,403,0.173697270471464,276,0.0289855072463768,0,ending is 83 percent male across 403 training names
+57,ian,false negative,misleading ending,1,0,3,tian,4,385,0.0649350649350649,0,,1,ending is 94 percent male across 385 training names
+58,ian,false negative,misleading ending,1,0,2,tian,4,385,0.0649350649350649,0,,1,ending is 94 percent male across 385 training names
+59,ian,false negative,misleading ending,1,0,3,rian,4,382,0.1047120418848167,119,0.0504201680672268,0,ending is 90 percent male across 382 training names
+60,ung,false negative,no token seen,1,0,3,ung,3,376,0.3031914893617021,0,,3,no token appears in training
+61,san,false negative,misleading ending,1,0,3,san,3,372,0.1048387096774193,0,,2,ending is 90 percent male across 372 training names
+62,ldi,false negative,misleading ending,1,0,3,aldi,4,365,0.0410958904109589,5,0.2,1,ending is 96 percent male across 365 training names
+63,ata,false negative,misleading ending,1,0,3,nata,4,360,0.1166666666666666,168,0.4702380952380952,1,ending is 88 percent male across 360 training names
+64,rah,false negative,ending balanced,1,0,4,rah,3,336,0.5952380952380952,0,,0,ending is balanced at 60 percent female across 336 training names
+65,aus,false negative,misleading ending,1,0,3,daus,4,323,0.0990712074303405,0,,2,ending is 90 percent male across 323 training names
+66,aus,false negative,misleading ending,1,0,3,daus,4,323,0.0990712074303405,26,0.1923076923076923,1,ending is 90 percent male across 323 training names
+67,adi,false negative,misleading ending,1,0,2,hadi,4,319,0.0971786833855799,2,0.0,0,ending is 90 percent male across 319 training names
+68,zal,false negative,misleading ending,1,0,3,izal,4,306,0.0490196078431372,2,0.0,0,ending is 95 percent male across 306 training names
+69,ian,false negative,misleading ending,1,0,2,dian,4,304,0.1052631578947368,2,0.0,0,ending is 89 percent male across 304 training names
+70,ria,false negative,first token conflicts with the label,1,0,3,tria,4,292,0.4041095890410959,35,0.0,0,"first token is 100 percent male across 35 training names, against the recorded label"
+71,ono,false negative,misleading ending,1,0,3,tono,4,291,0.0618556701030927,1,0.0,0,ending is 94 percent male across 291 training names
+72,qqi,false negative,misleading ending,1,0,3,qi,2,280,0.0714285714285714,8,0.0,0,ending is 93 percent male across 280 training names
+73,ily,false negative,first token conflicts with the label,1,0,2,ly,2,248,0.375,41,0.024390243902439,1,"first token is 98 percent male across 41 training names, against the recorded label"
+74,ruf,false negative,misleading ending,1,0,3,uf,2,237,0.1181434599156118,162,0.037037037037037,0,ending is 88 percent male across 237 training names
+75,stu,false negative,misleading ending,1,0,3,estu,4,231,0.0995670995670995,16,0.6875,0,ending is 90 percent male across 231 training names
+76,stu,false negative,misleading ending,1,0,3,estu,4,231,0.0995670995670995,609,0.4597701149425287,0,ending is 90 percent male across 231 training names
+77,liq,false negative,misleading ending,1,0,3,iq,2,227,0.0176211453744493,99,0.0505050505050505,1,ending is 98 percent male across 227 training names
+78,udi,false negative,misleading ending,1,0,3,budi,4,226,0.0575221238938053,105,0.0952380952380952,0,ending is 94 percent male across 226 training names
+79,mad,false negative,misleading ending,1,0,3,hmad,4,214,0.0981308411214953,0,,1,ending is 90 percent male across 214 training names
+80,ita,false negative,ending not a marker against the label,1,0,3,dita,4,206,0.6796116504854369,0,,1,"ending is 68 percent female across 206 training names, which agrees with the recorded label, so the error comes from elsewhere"
+81,ndi,false negative,misleading ending,1,0,1,endi,4,206,0.1844660194174757,2,0.0,0,ending is 82 percent male across 206 training names
+82,tio,false negative,misleading ending,1,0,3,tio,3,195,0.0769230769230769,34,0.1176470588235294,1,ending is 92 percent male across 195 training names
+83,oyo,false negative,misleading ending,1,0,3,oyo,3,180,0.0333333333333333,53,0.0,0,ending is 97 percent male across 180 training names
+84,zki,false negative,ending not a marker against the label,1,0,2,izki,4,178,0.2528089887640449,16,0.0625,0,"ending is 75 percent male across 178 training names, which points away from the recorded label without reaching the 75 percent threshold"
+85,ran,false negative,misleading ending,1,0,2,ran,3,174,0.1551724137931034,6,0.0,0,ending is 84 percent male across 174 training names
+86,oga,false negative,misleading ending,1,0,3,yoga,4,168,0.0238095238095238,27,0.1851851851851851,0,ending is 98 percent male across 168 training names
+87,hya,false negative,ending not a marker against the label,1,0,2,hya,3,167,0.2634730538922156,3,0.0,1,"ending is 74 percent male across 167 training names, which points away from the recorded label without reaching the 75 percent threshold"
+88,zky,false negative,misleading ending,1,0,3,izky,4,166,0.2108433734939759,13,0.2307692307692307,1,ending is 79 percent male across 166 training names
+89,rba,false negative,ending not a marker against the label,1,0,3,urba,4,164,0.3353658536585366,1,0.0,0,"ending is 66 percent male across 164 training names, which points away from the recorded label without reaching the 75 percent threshold"
+90,ima,false negative,ending balanced,1,0,3,ima,3,161,0.4472049689440994,11,0.0,0,ending is balanced at 45 percent female across 161 training names
+91,lim,false negative,misleading ending,1,0,2,alim,4,151,0.0993377483443708,2,1.0,0,ending is 90 percent male across 151 training names
+92,rta,false negative,misleading ending,1,0,3,rta,3,142,0.2323943661971831,105,0.0952380952380952,0,ending is 77 percent male across 142 training names
+93,hya,false negative,misleading ending,1,0,1,ahya,4,138,0.2246376811594203,0,,1,ending is 78 percent male across 138 training names
+94,dri,false negative,misleading ending,1,0,3,ndri,4,135,0.2074074074074074,119,0.0504201680672268,0,ending is 79 percent male across 135 training names
+95,ari,false negative,misleading ending,1,0,2,fari,4,134,0.0298507462686567,26,0.0384615384615384,0,ending is 97 percent male across 134 training names
+96,jar,false negative,misleading ending,1,0,2,ajar,4,111,0.045045045045045,1,0.0,1,ending is 95 percent male across 111 training names
+97,lib,false negative,misleading ending,1,0,3,ib,2,103,0.0970873786407767,1,1.0,0,ending is 90 percent male across 103 training names
+98,ong,false negative,misleading ending,1,0,3,ong,3,101,0.2277227722772277,0,,2,ending is 77 percent male across 101 training names
+99,lon,false negative,ending not a marker against the label,1,0,2,olon,4,100,0.3,11,0.0,0,"ending is 70 percent male across 100 training names, which points away from the recorded label without reaching the 75 percent threshold"
+100,ldo,false negative,misleading ending,1,0,2,aldo,4,97,0.0103092783505154,40,0.0,1,ending is 99 percent male across 97 training names
+101,rus,false negative,ending not a marker against the label,1,0,3,orus,4,92,0.3260869565217391,10,0.0,1,"ending is 67 percent male across 92 training names, which points away from the recorded label without reaching the 75 percent threshold"
+102,rus,false negative,first token conflicts with the label,1,0,3,orus,4,92,0.3260869565217391,99,0.0505050505050505,0,"first token is 95 percent male across 99 training names, against the recorded label"
+103,nur,false negative,first token conflicts with the label,1,0,2, nur,4,84,0.2976190476190476,59,0.0338983050847457,0,"first token is 97 percent male across 59 training names, against the recorded label"
+104,zis,false negative,misleading ending,1,0,3,azis,4,82,0.0853658536585365,1,0.0,0,ending is 91 percent male across 82 training names
+105,asa,false negative,misleading ending,1,0,4,kasa,4,81,0.037037037037037,42,0.0714285714285714,0,ending is 96 percent male across 81 training names
+106,ura,false negative,first token conflicts with the label,1,0,2,ura,3,78,0.6153846153846154,105,0.0952380952380952,0,"first token is 90 percent male across 105 training names, against the recorded label"
+107,hia,false negative,first token conflicts with the label,1,0,2,hia,3,78,0.7564102564102564,68,0.0441176470588235,0,"first token is 96 percent male across 68 training names, against the recorded label"
+108,ron,false negative,misleading ending,1,0,1,ron,3,75,0.12,2,0.5,0,ending is 88 percent male across 75 training names
+109,far,false negative,misleading ending,1,0,3,far,3,73,0.136986301369863,41,0.024390243902439,0,ending is 86 percent male across 73 training names
+110,kal,false negative,misleading ending,1,0,1,kal,3,70,0.0714285714285714,0,,1,ending is 93 percent male across 70 training names
+111,der,false negative,misleading ending,1,0,2,nder,4,65,0.0769230769230769,0,,0,ending is 92 percent male across 65 training names
+112,dji,false negative,misleading ending,1,0,4,adji,4,64,0.078125,509,0.0471512770137524,0,ending is 92 percent male across 64 training names
+113,rip,false negative,misleading ending,1,0,1,ip,2,56,0.1071428571428571,0,,1,ending is 89 percent male across 56 training names
+114,zqi,false negative,misleading ending,1,0,3,izqi,4,53,0.2075471698113207,20,0.0,0,ending is 79 percent male across 53 training names
+115,afi,false negative,misleading ending,1,0,3,nafi,4,52,0.1538461538461538,707,0.1669024045261669,0,ending is 85 percent male across 52 training names
+116,ola,false negative,first token conflicts with the label,1,0,4,ola,3,51,0.6470588235294118,34,0.0,1,"first token is 100 percent male across 34 training names, against the recorded label"
+117,ole,false negative,no token seen,1,0,2,le,2,49,0.3673469387755102,0,,2,no token appears in training
+118,uhu,false negative,ending not a marker against the label,1,0,3,hu,2,48,0.375,0,,2,"ending is 62 percent male across 48 training names, which points away from the recorded label without reaching the 75 percent threshold"
+119,iha,false negative,ending not a marker against the label,1,0,4,iha,3,43,0.9069767441860463,0,,2,"ending is 91 percent female across 43 training names, which agrees with the recorded label, so the error comes from elsewhere"
+120,sar,false negative,misleading ending,1,0,4,tsar,4,42,0.1904761904761904,412,0.8980582524271845,0,ending is 81 percent male across 42 training names
+121,ezi,false negative,misleading ending,1,0,3,rezi,4,38,0.0,42,0.0714285714285714,0,ending is 100 percent male across 38 training names
+122,her,false negative,misleading ending,1,0,2,her,3,38,0.131578947368421,1,0.0,0,ending is 87 percent male across 38 training names
+123,hin,false negative,misleading ending,1,0,3,ihin,4,37,0.1351351351351351,480,0.1458333333333333,0,ending is 86 percent male across 37 training names
+124,eny,false negative,first token conflicts with the label,1,0,4,eny,3,35,0.8857142857142857,43,0.0,0,"first token is 100 percent male across 43 training names, against the recorded label"
+125,smi,false negative,ending not a marker against the label,1,0,3,smi,3,34,0.8235294117647058,0,,2,"ending is 82 percent female across 34 training names, which agrees with the recorded label, so the error comes from elsewhere"
+126,ony,false negative,misleading ending,1,0,3,hony,4,33,0.0606060606060606,0,,1,ending is 94 percent male across 33 training names
+127,hil,false negative,misleading ending,1,0,2,dhil,4,31,0.0,122,0.0655737704918032,0,ending is 100 percent male across 31 training names
+128,jib,false negative,misleading ending,1,0,1,jib,3,31,0.032258064516129,1,0.0,0,ending is 97 percent male across 31 training names
+129,kur,false negative,misleading ending,1,0,3,kur,3,30,0.0333333333333333,0,,1,ending is 97 percent male across 30 training names
+130,ohm,false negative,ending rare,1,0,4,rohm,4,2,0.0,21,0.0,2,ending seen only 2 times in training
+131,soe,false negative,ending never seen,1,0,5, soe,4,0,,6,0.0,1,ending never seen in training
+132,vic,false negative,ending never seen,1,0,2,ovic,4,0,,0,,2,ending never seen in training
+133,liu,false negative,ending never seen,1,0,2,iliu,4,0,,0,,2,ending never seen in training
+134,aah,false positive,ending balanced,0,1,3,ah,2,9514,0.5055707378599958,168,0.4702380952380952,1,ending is balanced at 51 percent female across 9514 training names
+135,ama,false positive,ending not a marker against the label,0,1,3,tama,4,1915,0.0349869451697127,0,,1,"ending is 97 percent male across 1915 training names, which agrees with the recorded label, so the error comes from elsewhere"
+136,kla,false positive,no token seen,0,1,3,la,2,1629,0.7360343769183548,0,,3,no token appears in training
+137,ika,false positive,ending balanced,0,1,3,ika,3,1139,0.5750658472344161,2,0.0,1,ending is balanced at 58 percent female across 1139 training names
+138,ami,false positive,misleading ending,0,1,2,ami,3,737,0.7869742198100407,0,,1,ending is 79 percent female across 737 training names
+139,had,false positive,ending not a marker against the label,0,1,3,ad,2,710,0.080281690140845,3,1.0,1,"ending is 92 percent male across 710 training names, which agrees with the recorded label, so the error comes from elsewhere"
+140,ana,false positive,ending not a marker against the label,0,1,3,dana,4,690,0.0405797101449275,19,1.0,1,"ending is 96 percent male across 690 training names, which agrees with the recorded label, so the error comes from elsewhere"
+141,ani,false positive,ending not a marker against the label,0,1,3,hani,4,630,0.6095238095238096,46,0.6956521739130435,0,"ending is 61 percent female across 630 training names, which points away from the recorded label without reaching the 75 percent threshold"
+142,ana,false positive,ending balanced,0,1,3,yana,4,601,0.4908485856905158,1,1.0,0,ending is balanced at 49 percent female across 601 training names
+143,lah,false positive,ending balanced,0,1,3,ilah,4,511,0.5733855185909981,2,0.0,0,ending is balanced at 57 percent female across 511 training names
+144,ing,false positive,ending balanced,0,1,3,ing,3,419,0.441527446300716,0,,2,ending is balanced at 44 percent female across 419 training names
+145,fah,false positive,misleading ending,0,1,3,ifah,4,329,0.9544072948328268,50,0.78,0,ending is 95 percent female across 329 training names
+146,gky,false positive,ending not a marker against the label,0,1,3,ky,2,314,0.1719745222929936,0,,2,"ending is 83 percent male across 314 training names, which agrees with the recorded label, so the error comes from elsewhere"
+147,ian,false positive,ending not a marker against the label,0,1,3,dian,4,304,0.1052631578947368,0,,1,"ending is 89 percent male across 304 training names, which agrees with the recorded label, so the error comes from elsewhere"
+148,oni,false positive,ending not a marker against the label,0,1,4,oni,3,281,0.1245551601423487,17,1.0,0,"ending is 88 percent male across 281 training names, which agrees with the recorded label, so the error comes from elsewhere"
+149,uzi,false positive,ending not a marker against the label,0,1,3,auzi,4,279,0.039426523297491,0,,1,"ending is 96 percent male across 279 training names, which agrees with the recorded label, so the error comes from elsewhere"
+150,yas,false positive,misleading ending,0,1,3,tyas,4,262,0.950381679389313,5,1.0,0,ending is 95 percent female across 262 training names
+151,sih,false positive,misleading ending,0,1,3,asih,4,247,0.7975708502024291,609,0.4597701149425287,0,ending is 80 percent female across 247 training names
+152,lla,false positive,misleading ending,0,1,3,illa,4,240,0.7625,0,,3,ending is 76 percent female across 240 training names
+153,asa,false positive,ending not a marker against the label,0,1,3,asa,3,213,0.1408450704225352,0,,2,"ending is 86 percent male across 213 training names, which agrees with the recorded label, so the error comes from elsewhere"
+154,man,false positive,ending not a marker against the label,0,1,3,sman,4,180,0.1944444444444444,5,1.0,0,"ending is 81 percent male across 180 training names, which agrees with the recorded label, so the error comes from elsewhere"
+155,zki,false positive,ending not a marker against the label,0,1,3,izki,4,178,0.2528089887640449,70,0.3285714285714285,1,"ending is 75 percent male across 178 training names, which agrees with the recorded label, so the error comes from elsewhere"
+156,ena,false positive,ending not a marker against the label,0,1,2,ena,3,167,0.6287425149700598,10,0.8,1,"ending is 63 percent female across 167 training names, which points away from the recorded label without reaching the 75 percent threshold"
+157,lim,false positive,ending not a marker against the label,0,1,3,alim,4,151,0.0993377483443708,0,,1,"ending is 90 percent male across 151 training names, which agrees with the recorded label, so the error comes from elsewhere"
+158,sha,false positive,ending balanced,0,1,3,sha,3,140,0.5714285714285714,0,,1,ending is balanced at 57 percent female across 140 training names
+159,ias,false positive,ending not a marker against the label,0,1,4,ias,3,125,0.632,29,0.6206896551724138,2,"ending is 63 percent female across 125 training names, which points away from the recorded label without reaching the 75 percent threshold"
+160,sti,false positive,misleading ending,0,1,3,esti,4,124,0.9596774193548387,11,1.0,0,ending is 96 percent female across 124 training names
+161,ian,false positive,ending not a marker against the label,0,1,3,fian,4,104,0.0384615384615384,0,,1,"ending is 96 percent male across 104 training names, which agrees with the recorded label, so the error comes from elsewhere"
+162,rah,false positive,misleading ending,0,1,3,irah,4,93,0.967741935483871,1,1.0,0,ending is 97 percent female across 93 training names
+163,rah,false positive,misleading ending,0,1,2,irah,4,93,0.967741935483871,3,1.0,1,ending is 97 percent female across 93 training names
+164,ani,false positive,ending not a marker against the label,0,1,2,mani,4,83,0.6144578313253012,0,,1,"ending is 61 percent female across 83 training names, which points away from the recorded label without reaching the 75 percent threshold"
+165,aqi,false positive,ending not a marker against the label,0,1,3,haqi,4,68,0.0,5,1.0,0,"ending is 100 percent male across 68 training names, which agrees with the recorded label, so the error comes from elsewhere"
+166,ila,false positive,misleading ending,0,1,3,mila,4,67,0.9552238805970148,2,0.5,0,ending is 96 percent female across 67 training names
+167,ing,false positive,ending not a marker against the label,0,1,3,ring,4,58,0.3275862068965517,28,0.5357142857142857,1,"ending is 67 percent male across 58 training names, which agrees with the recorded label, so the error comes from elsewhere"
+168,hir,false positive,ending not a marker against the label,0,1,3,hir,3,52,0.0576923076923076,4,0.5,0,"ending is 94 percent male across 52 training names, which agrees with the recorded label, so the error comes from elsewhere"
+169,i h,false positive,ends in an initial,0,1,4,i h,3,49,0.5306122448979592,3,0.3333333333333333,0,"name ends in a single-letter initial, so the final characters carry no suffix"
+170,isi,false positive,ending not a marker against the label,0,1,3,isi,3,49,0.0612244897959183,0,,2,"ending is 94 percent male across 49 training names, which agrees with the recorded label, so the error comes from elsewhere"
+171,sia,false positive,misleading ending,0,1,1,esia,4,47,0.8936170212765957,0,,0,ending is 89 percent female across 47 training names
+172,sia,false positive,misleading ending,0,1,2,esia,4,47,0.8936170212765957,0,,1,ending is 89 percent female across 47 training names
+173,zia,false positive,misleading ending,0,1,3,zia,3,44,0.9545454545454546,3,1.0,0,ending is 95 percent female across 44 training names
+174,sti,false positive,ending balanced,0,1,4,usti,4,36,0.4722222222222222,7,0.8571428571428571,1,ending is balanced at 47 percent female across 36 training names
+175,las,false positive,ending not a marker against the label,0,1,3,las,3,36,0.0833333333333333,3,1.0,1,"ending is 92 percent male across 36 training names, which agrees with the recorded label, so the error comes from elsewhere"
+176,gke,false positive,ending rare,0,1,2,ngke,4,3,0.3333333333333333,1,1.0,1,ending seen only 3 times in training
+177,ash,false positive,ending rare,0,1,2,yash,4,1,0.0,1,1.0,0,ending seen only 1 times in training

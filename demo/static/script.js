@@ -112,12 +112,12 @@ async function renderSingle(name) {
 
       <div class="confidence-bars">
         <div class="confidence-row">
-          <span class="label-mini">Laki-laki (L)</span>
+          <span class="label-mini">Male (L)</span>
           <div class="bar-bg"><div class="bar-fill L" style="width: ${probM}%;"></div></div>
           <span class="pct">${probM}%</span>
         </div>
         <div class="confidence-row">
-          <span class="label-mini">Perempuan (P)</span>
+          <span class="label-mini">Female (P)</span>
           <div class="bar-bg"><div class="bar-fill P" style="width: ${probP}%;"></div></div>
           <span class="pct">${probP}%</span>
         </div>
@@ -165,8 +165,8 @@ async function renderCompare(name) {
 
   const consensusBadge = `<span class="badge ${consensus}">${consensus}</span>`;
   const agreementText = allAgree
-    ? `Semua 8 model setuju: ${consensusBadge}`
-    : `Tidak semua model setuju. Konsensus: ${consensusBadge}`;
+    ? `All 8 models agree: ${consensusBadge}`
+    : `Models disagree. Consensus: ${consensusBadge}`;
 
   compareResult.innerHTML = `
     <p style="margin-bottom: 16px;">
@@ -177,7 +177,7 @@ async function renderCompare(name) {
         <tr>
           <th>Model</th>
           <th>Embedding</th>
-          <th>Prediksi</th>
+          <th>Prediction</th>
           <th class="mini-bar-cell">Confidence</th>
           <th>%</th>
         </tr>
@@ -185,7 +185,7 @@ async function renderCompare(name) {
       <tbody>${rows}</tbody>
     </table>
     <p style="margin-top: 12px; font-size: 0.85rem; color: var(--color-muted);">
-      Model yang <em>disagree</em> dari konsensus di-highlight oranye.
+      Models that <em>disagree</em> with the consensus are highlighted in orange.
     </p>
   `;
 }
@@ -241,7 +241,7 @@ async function renderAttention(name) {
 
     <h3 style="margin-bottom: 8px;">Token-level attention</h3>
     <p style="font-size: 0.85rem; color: var(--color-muted); margin-bottom: 12px;">
-      Warna lebih gelap = model lebih memperhatikan token tersebut saat memprediksi.
+      Darker color = the model attends more to that token when predicting.
     </p>
     <div class="attention-tokens">${tokensHtml}</div>
 

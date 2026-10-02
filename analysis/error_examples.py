@@ -84,10 +84,10 @@ def main() -> int:
                     f"{int(r.ending_n)} training names")
 
         if r.first_n >= MIN_SUPPORT and r.label == 1 and fshare <= 1 - STRONG:
-            return (f"first token {r.first_token} is {(1 - fshare) * 100:.0f} percent male "
+            return (f"first token is {(1 - fshare) * 100:.0f} percent male "
                     f"across {int(r.first_n)} training names, against the ending")
         if r.first_n >= MIN_SUPPORT and r.label == 0 and fshare >= STRONG:
-            return (f"first token {r.first_token} is {fshare * 100:.0f} percent female "
+            return (f"first token is {fshare * 100:.0f} percent female "
                     f"across {int(r.first_n)} training names, against the ending")
         if r.unseen_tokens == r.n_tokens:
             return "no token appears in training"
@@ -127,8 +127,9 @@ def main() -> int:
 
     hard["category"] = hard.apply(category, axis=1)
     keep = ["name", "type", "category", "label", "predicted", "n_tokens", "ending", "ending_len",
-            "ending_n", "ending_female_share", "first_token", "first_n",
+            "ending_n", "ending_female_share", "first_n",
             "first_female_share", "unseen_tokens", "reason"]
+    # first_token is a whole name part, so it is not in `keep` and stays out of the released file
     hard[keep].sort_values(["type", "ending_n"], ascending=[True, False]).to_csv(
         OUT / "always_wrong_with_reason.csv", index=False)
 

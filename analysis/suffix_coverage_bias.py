@@ -40,7 +40,7 @@ STRONG = 0.80
 T_CRIT = 2.776  # t(0.975, df = 4)
 
 
-class WordTokenizer:  # stub supaya pickle tokenizer bisa dibuka, cuma word2idx yang dipakai
+class WordTokenizer:  # stub so the tokenizer pickle can be loaded, only word2idx is used
     pass
 
 

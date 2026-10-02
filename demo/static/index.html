@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <header>
-      <h1>Klasifikasi Gender dari Nama Indonesia</h1>
+      <h1>Gender Classification from Indonesian Names</h1>
       <p class="subtitle">Char-Embedding vs Word-Embedding: A Comparative Study</p>
       <p class="meta" id="device-info">Loading...</p>
     </header>
@@ -19,16 +19,16 @@
         <input
           type="text"
           id="name-input"
-          placeholder="Masukkan nama (contoh: Banowati Larasati)"
+          placeholder="Enter a name (e.g. Banowati Larasati)"
           autocomplete="off"
           autofocus
         >
-        <button id="predict-btn" class="primary">Prediksi</button>
+        <button id="predict-btn" class="primary">Predict</button>
       </div>
       <div class="examples">
-        Contoh:
+        Examples:
         <button class="example" data-name="BANOWATI LARASATI">Banowati Larasati</button>
-        <button class="example" data-name="ANTAREJA NURUDIN">Muhammad Ali</button>
+        <button class="example" data-name="MUHAMMAD ALI">Muhammad Ali</button>
         <button class="example" data-name="SRIKANDI PALUPI">Srikandi Palupi</button>
         <button class="example" data-name="BUDI">Budi</button>
         <button class="example" data-name="WULAN">Wulan</button>
@@ -44,14 +44,14 @@
     <!-- Tab 1: Single Prediction -->
     <section class="tab-content active" id="tab-single">
       <div class="result-card" id="single-result">
-        <p class="placeholder">Masukkan nama dan klik <strong>Prediksi</strong>.</p>
+        <p class="placeholder">Enter a name and click <strong>Predict</strong>.</p>
       </div>
     </section>
 
     <!-- Tab 2: Compare All 8 Models -->
     <section class="tab-content" id="tab-compare">
       <div id="compare-result">
-        <p class="placeholder">Masukkan nama dan klik <strong>Prediksi</strong> untuk membandingkan 8 model.</p>
+        <p class="placeholder">Enter a name and click <strong>Predict</strong> to compare 8 models.</p>
       </div>
     </section>
 
@@ -71,16 +71,16 @@
         </select>
       </div>
       <div id="attention-result">
-        <p class="placeholder">Pilih model dan masukkan nama untuk lihat <strong>karakter mana yang paling diperhatikan model</strong>.</p>
+        <p class="placeholder">Select a model and enter a name to see <strong>which characters the model attends to most</strong>.</p>
       </div>
     </section>
 
     <footer>
       <p>
-        Dataset: 205,093 nama Indonesia (1990-2026) &middot;
+        Dataset: 205,093 Indonesian names (1990-2026) &middot;
         Train 169,329 (1990-2021) &middot; Dev 16,882 (2022-2023) &middot;
-        Uji 18,882 (2024-2026) &middot;
-        F1 model character: <strong>0.9554 sampai 0.9593</strong> (rata-rata 5 seed)
+        Test 18,882 (2024-2026) &middot;
+        Character-model F1: <strong>0.9554 to 0.9593</strong> (mean of 5 seeds)
       </p>
     </footer>
   </div>

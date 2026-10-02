@@ -92,13 +92,13 @@ def main() -> int:
         # curves sit low at the first epoch, so the corner stays clear.
         ax.text(0.03, 0.97, title, transform=ax.transAxes, ha="left", va="top",
                 fontsize=7.6)
-        # Round 2: angka sumbu 6.4 pt seperti figure lain (7.5 lebih besar dari label sumbu)
+        # tick labels at 6.4 pt like the other figures (7.5 pt was larger than the axis label)
         ax.tick_params(labelsize=6.4)
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", color="0.9", linewidth=0.6)
         ax.set_axisbelow(True)
-    # Round 2 (Ers): kedua panel memakai label dan angka sumbu y, supaya tiap panel
-    # terbaca sendiri. sharey menyembunyikan angka di panel kanan, jadi dinyalakan lagi.
+    # Both panels carry a y label and y tick labels so each panel reads on its own.
+    # sharey hides the tick labels on the right panel, so they are turned back on.
     for ax in axes:
         ax.set_ylabel("F1")
         ax.yaxis.set_tick_params(labelleft=True)
@@ -119,8 +119,8 @@ def main() -> int:
                    framealpha=1.0, edgecolor="0.8", ncol=1,
                    loc="lower right", handlelength=1.8, labelspacing=0.22,
                    borderpad=0.3, borderaxespad=0.2)
-    # Round 2 (Ers): jarak antar panel dilebarkan, angka 40 di sumbu (a) tadinya
-    # hampir menempel ke sumbu (b)
+    # Wider gap between panels, the tick label 40 on axis (a) was almost touching
+    # axis (b)
     fig.tight_layout(pad=0.7, w_pad=WPAD)
     # No repositioning here. That step pinned each letter to the left edge of the
     # figure, which was right while the panels were stacked and put both letters

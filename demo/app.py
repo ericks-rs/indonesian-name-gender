@@ -8,11 +8,11 @@ from pydantic import BaseModel, Field
 from inference import Predictor
 
 HERE = Path(__file__).parent
-RESULTS_DIR = HERE.parent / "results"
+ROOT_DIR = HERE.parent
 
 app = FastAPI(
     title="Riset Nama Gender - Demo API",
-    description="Klasifikasi gender berdasarkan nama Indonesia.",
+    description="Gender classification from Indonesian names.",
     version="1.1.1",
 )
 
@@ -25,11 +25,12 @@ app.add_middleware(
 )
 
 print("Loading models...")
-predictor = Predictor(RESULTS_DIR)
+predictor = Predictor(ROOT_DIR, models_dir=ROOT_DIR / "models",
+                      tokenizers_dir=ROOT_DIR / "tokenizers")
 print("Models loaded.")
 
 class PredictRequest(BaseModel):
-    name: str = Field(..., min_length=1, max_length=200, description="Nama lengkap")
+    name: str = Field(..., min_length=1, max_length=200, description="Full name")
     model: str = Field(default="CharBiLSTM", description="Model name")
 
 class CompareRequest(BaseModel):

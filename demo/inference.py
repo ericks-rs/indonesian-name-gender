@@ -140,18 +140,21 @@ CFG = {
 
 class Predictor:
     LABEL_MAP = {0: "L", 1: "P"}
-    LABEL_DESC = {"L": "Laki-laki", "P": "Perempuan"}
+    LABEL_DESC = {"L": "Male", "P": "Female"}
 
     def __init__(self, results_dir: str | Path, model_suffix: str = "",
-                 models_dir: str | Path | None = None):
+                 models_dir: str | Path | None = None,
+                 tokenizers_dir: str | Path | None = None):
         self.results_dir = Path(results_dir)
         self.model_suffix = model_suffix
         self.models_dir = Path(models_dir) if models_dir else self.results_dir / "models"
+        self.tokenizers_dir = (Path(tokenizers_dir) if tokenizers_dir
+                               else self.results_dir / "tokenizers")
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        with open(self.results_dir / "tokenizers" / "char_tokenizer.pkl", "rb") as f:
+        with open(self.tokenizers_dir / "char_tokenizer.pkl", "rb") as f:
             self.char_tok: CharTokenizer = pickle.load(f)
-        with open(self.results_dir / "tokenizers" / "word_tokenizer.pkl", "rb") as f:
+        with open(self.tokenizers_dir / "word_tokenizer.pkl", "rb") as f:
             self.word_tok: WordTokenizer = pickle.load(f)
 
         self.model_configs = {
@@ -269,14 +272,15 @@ class Predictor:
 
 if __name__ == "__main__":
 
-    pred = Predictor(Path(__file__).parent.parent / "results")
+    root = Path(__file__).parent.parent
+    pred = Predictor(root, models_dir=root / "models", tokenizers_dir=root / "tokenizers")
     print("\n=== Single prediction ===")
     print(pred.predict_single("BANOWATI LARASATI"))
     print("\n=== All models ===")
-    for r in pred.predict_all("ANTAREJA NURUDIN"):
+    for r in pred.predict_all("MUHAMMAD ALI"):
         print(f"  {r['model']:<18} {r['label']} ({r['confidence']*100:.1f}%)")
     print("\n=== With attention ===")
-    r = pred.predict_with_attention("ERICKS RAMA", "CharBiLSTM")
+    r = pred.predict_with_attention("SRIKANDI PALUPI", "CharBiLSTM")
     print(f"  Predicted: {r['label']} ({r['confidence']*100:.1f}%)")
     for tok, attn in zip(r["tokens"], r["attention"]):
         bar = "#" * int(attn * 80)
