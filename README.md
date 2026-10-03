@@ -138,17 +138,17 @@ A hosted instance of the models is available for trying them without installing
 anything.
 
 - Interactive documentation: <https://api.lab-gunadarma.id/namegender/docs>
-- Endpoint: `POST https://api.lab-gunadarma.id/namegender/api/gender`
+- Endpoint: `POST https://api.lab-gunadarma.id/namegender/api`
 
 ```bash
-curl -X POST https://api.lab-gunadarma.id/namegender/api/gender \
+curl -X POST https://api.lab-gunadarma.id/namegender/api \
   -H "Content-Type: application/json" \
   -d '{"name": "banowati larasati"}'
 # {"label":"P","gender":"Female","maleProbability":"7.57%","femaleProbability":"92.43%","confidence":"92.43%","model":"CharBiLSTM","tokens":null,"attention":null}
 ```
 
 The request body also accepts the optional fields `model` and `includeAttention`,
-and `POST /api/gender/batch` accepts up to 100 names at once. The probabilities
+and `POST /namegender/api/batch` accepts up to 100 names at once. The probabilities
 are returned as percentage strings.
 
 The service runs the seed-42 `CharBiLSTM` checkpoint through the ONNX export in
